@@ -11,5 +11,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Carlos V Garcia Gallery';
+  title = 'The Jungle';
 }
