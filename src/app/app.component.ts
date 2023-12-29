@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <main class="flex">
 
       <aside class="bg-cvg-400 p-2 h-screen">
-        <h1>Welcome to {{ title }}</h1>
+        <app-navigation />
       </aside>
 
       <router-outlet />

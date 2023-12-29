@@ -6,7 +6,6 @@ import { ErrorComponent } from './pages/error.component';
 const routes: Routes = [
   {
     path: '',
-    title: 'Home',
     component:HomeComponent
   },
   {
