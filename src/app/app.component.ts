@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <main class="flex">
 
-      <aside class="bg-cvg-400 p-2 h-screen">
+      <aside>
         <app-navigation />
       </aside>
 

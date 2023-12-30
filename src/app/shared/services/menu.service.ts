@@ -7,10 +7,10 @@ import { menuinterface } from '../../core/models/menu.interface';
   providedIn: 'root'
 })
 export class MenuService {
-  public navigationUrl = 'assets/data/menu-navigation.json';
-  private http = inject(HttpClient)
+  #navigationUrl = 'assets/data/menu-navigation.json';
+  #http = inject(HttpClient)
 
   getNavigation(): Observable<menuinterface[]> {
-    return this.http.get<menuinterface[]>(this.navigationUrl);
+    return this.#http.get<menuinterface[]>(this.#navigationUrl);
   }
 }

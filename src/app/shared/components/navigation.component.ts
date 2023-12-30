@@ -1,4 +1,4 @@
-import { Component, WritableSignal, inject, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../services/menu.service';
 import { menuinterface } from '../../core/models/menu.interface';
@@ -8,7 +8,7 @@ import { menuinterface } from '../../core/models/menu.interface';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section>
+    <section class="flex-1 bg-cvg-300 h-screen p-4">
       <ul>
         @for (menuItem of menuSignal(); track $index) {
         <li>{{ menuItem.label }}</li>
@@ -16,9 +16,9 @@ import { menuinterface } from '../../core/models/menu.interface';
       </ul>
     </section>
   `,
-  styles: ``,
 })
-export class NavigationComponent {
+
+export class NavigationComponent implements OnInit {
   #menuService = inject(MenuService);
   public menuSignal: WritableSignal<menuinterface[]> = signal([]);
 
