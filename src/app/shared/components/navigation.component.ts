@@ -1,4 +1,10 @@
-import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../services/menu.service';
 import { menuinterface } from '../../core/models/menu.interface';
@@ -17,7 +23,6 @@ import { menuinterface } from '../../core/models/menu.interface';
     </section>
   `,
 })
-
 export class NavigationComponent implements OnInit {
   #menuService = inject(MenuService);
   public menuSignal: WritableSignal<menuinterface[]> = signal([]);
@@ -25,7 +30,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     this.#menuService.getNavigation().subscribe({
       next: (data) => {
-        this.menuSignal.set(data)
+        this.menuSignal.set(data);
       },
       error: (error) => {
         console.error(error);

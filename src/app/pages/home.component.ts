@@ -6,7 +6,11 @@ import { MenuService } from '../shared/services/menu.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
-  template: ` <p class="">home works!</p> `,
+  template: `
+    <div class="w-full flex-1 bg-slate-500">
+      <p class="">home works!</p>
+    </div>
+  `,
   styles: ``,
 })
 export class HomeComponent {}

@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { menuinterface } from '../../core/models/menu.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuService {
   #navigationUrl = 'assets/data/menu-navigation.json';
-  #http = inject(HttpClient)
+  #http = inject(HttpClient);
 
   getNavigation(): Observable<menuinterface[]> {
     return this.#http.get<menuinterface[]>(this.#navigationUrl);

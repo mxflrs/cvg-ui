@@ -4,13 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   standalone: false,
   template: `
-    <main class="flex">
+    <main class="grid grid-cols-12 gap-6 last-of-type:col-span-6">
 
       <aside>
         <app-navigation />
       </aside>
 
-      <router-outlet />
+      <router-outlet class="hidden" />
 
     </main>
   `
