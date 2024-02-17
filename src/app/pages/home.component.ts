@@ -1,6 +1,5 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuService } from '../shared/services/menu.service';
 
 @Component({
   selector: 'app-home',
