@@ -22,11 +22,26 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--cvg-400);
+}
+
+h5 {
+  font-size: 0.8rem;
+}
+
+h6 {
+  font-size: 0.6rem;
+}
+
 .bullet {
   display: inline-block;
   width: 4px;
   height: 4px;
   background-color: black;
 }
-
-

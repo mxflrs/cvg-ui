@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="w-full flex-1 bg-slate-500">
-      <p class="">home works!</p>
+    <div class="bg-slate-500 h-full min-h-screen">
+      <h1>HEY</h1>
     </div>
   `,
   styles: ``,

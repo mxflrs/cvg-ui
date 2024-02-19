@@ -4,17 +4,18 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   standalone: false,
   template: `
-    <main class="grid grid-cols-12 gap-6 last-of-type:col-span-6">
+    <main class="grid grid-cols-12">
 
       <aside class="col-span-2">
         <app-navigation />
       </aside>
 
-      <router-outlet class="hidden" />
+      <div class="col-span-10">
+        <router-outlet class="hidden" />
+      </div>
 
     </main>
   `
 })
 export class AppComponent {
-  title = 'The Jungle';
 }

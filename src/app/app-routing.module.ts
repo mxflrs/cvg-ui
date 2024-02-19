@@ -7,25 +7,21 @@ import { OriginalsComponent } from './pages/originals.component';
 const routes: Routes = [
   {
     path: '',
-    component:HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'originals',
-    component: OriginalsComponent
+    component: OriginalsComponent,
   },
-  // {
-  //   path: '',
-  //   component:HomeComponent
-  // },
   {
     path: '**',
     title: 'Oops!',
-    component:ErrorComponent
+    component: ErrorComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

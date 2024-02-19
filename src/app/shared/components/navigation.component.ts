@@ -25,6 +25,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             class="w-full h-auto px-12 py-8"
           />
         </a>
+        <button class="bg-cvg-300 w-8 h-8 absolute -bottom-4 -right-4 hover:rotate-180" (click)="hideSideBar()">
+          <i class="ri-arrow-left-s-fill text-white"></i>
+        </button>
       </div>
 
       <!-- LINKS -->
@@ -42,12 +45,17 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       </ul>
 
       <!-- ADDRESS -->
-      <section class="">
-        <p>#15 The Grove Plaza Seven Mile Beach Grand Cayman</p>
+      <section class="flex flex-col gap-2 w-auto">
+        <i class="ri-map-2-line ri-2 bg-white p-4 mr-auto"></i>
+        <div>
+
+          <h5>#15 The Grove Plaza Seven Mile Beach Grand Cayman</h5>
+        </div>
       </section>
     </nav>
   `,
 })
+
 export class NavigationComponent implements OnInit {
   #menuService = inject(MenuService);
   public menuSignal: WritableSignal<menuinterface[]> = signal([]);
@@ -61,5 +69,9 @@ export class NavigationComponent implements OnInit {
         console.error(error);
       },
     });
+  }
+
+  hideSideBar() {
+    console.log('HIDE')
   }
 }
