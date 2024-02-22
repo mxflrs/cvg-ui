@@ -25,7 +25,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             class="w-full h-auto px-12 py-8"
           />
         </a>
-        <button class="bg-cvg-300 w-8 h-8 absolute -bottom-4 -right-4 hover:rotate-180" (click)="hideSideBar()">
+        <button class="bg-cvg-300 size-8 hover:rotate-180 absolute -bottom-4 -right-4 z-10" (click)="hideSideBar()">
           <i class="ri-arrow-left-s-fill text-white"></i>
         </button>
       </div>
@@ -45,11 +45,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       </ul>
 
       <!-- ADDRESS -->
-      <section class="flex flex-col gap-2 w-auto">
-        <i class="ri-map-2-line ri-2 bg-white p-4 mr-auto"></i>
+      <section class="flex flex-col gap-4 w-auto pb-4">
+        <i class="ri-map-2-line ri-2x bg-white px-4 py-2 mr-auto"></i>
         <div>
 
-          <h5>#15 The Grove Plaza Seven Mile Beach Grand Cayman</h5>
+          <h5 class="max-w-48">#15 The Grove Plaza Seven Mile Beach Grand Cayman</h5>
         </div>
       </section>
     </nav>
