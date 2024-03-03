@@ -1,7 +1,9 @@
-<section class="col-span-9 w-fit bg-cvg-200">
+<section class="flex justify-end">
 
-  <div class="col-span-4 bg-cvg-300">
-    <h2>HELLO</h2>
-  </div>
+    <ul class="flex flex-col gap-2">
+        @for (image of imagesData; track $index) {
+        <li>{{image.title}}</li>
+        }
+    </ul>
 
 </section>

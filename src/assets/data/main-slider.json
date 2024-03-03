@@ -1,0 +1,11 @@
+[
+  { "title": "Beautiful Landscapes", "url": "https://source.unsplash.com/featured/?landscape" },
+  { "title": "Abstract Art", "url": "https://source.unsplash.com/featured/?abstract" },
+  { "title": "Wildlife Photography", "url": "https://source.unsplash.com/featured/?wildlife" },
+  { "title": "City Skylines", "url": "https://source.unsplash.com/featured/?city" },
+  { "title": "Ocean Views", "url": "https://source.unsplash.com/featured/?ocean" },
+  { "title": "Sunset and Sunrise", "url": "https://source.unsplash.com/featured/?sunrise,sunset" },
+  { "title": "Architecture", "url": "https://source.unsplash.com/featured/?architecture" },
+  { "title": "Floral Photography", "url": "https://source.unsplash.com/featured/?flowers" }
+]
+

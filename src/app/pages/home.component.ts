@@ -7,12 +7,10 @@ import { MainSliderComponent } from './components/home/main-slider/main-slider.c
   standalone: true,
   imports: [CommonModule, MainSliderComponent],
   template: `
-    <div class="h-full min-h-screen grid grid-cols-10">
-      <section
-        class="flex flex-col items-end col-span-9 pt-20 relative"
-      >
+    <div class="h-full min-h-screen grid grid-cols-10 gap-6">
+      <section class="col-span-9 pt-20 relative">
         <!-- TITLE -->
-        <div class="uppercase flex flex-col justify-end items-end">
+        <div class="uppercase flex flex-col items-end">
           <h1>Carlos</h1>
           <h1 class="-my-6">V Garcia</h1>
           <h1 class="font-bold">Gallery</h1>
@@ -29,7 +27,6 @@ import { MainSliderComponent } from './components/home/main-slider/main-slider.c
           <h4>Search Artworks / Artists</h4>
         </div>
       </section>
-
     </div>
   `,
 })
