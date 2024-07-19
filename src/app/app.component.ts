@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CmsService } from 'src/app/shared/services/cms.service';
 
 @Component({
   selector: 'app-root',
@@ -18,4 +19,7 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
+  constructor(private cmsService: CmsService){
+    this.cmsService.getData();
+  }
 }
