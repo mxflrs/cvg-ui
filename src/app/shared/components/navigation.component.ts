@@ -6,9 +6,9 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuService } from '../services/menu.service';
-import { menuinterface } from '../../core/models/menu.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MenuService } from 'src/app/services/menu.service';
+import { menuinterface } from 'src/app/core/models/menu.interface';
 
 @Component({
   selector: 'app-navigation',

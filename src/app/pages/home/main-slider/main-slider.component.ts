@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeService } from '../../../../services/home.service';
-import { images } from '../../../../core/models/images.interface';
+import { HomeService } from 'src/app/services/home.service';
+import { images } from 'src/app/core/models/images.interface';
 
 @Component({
   selector: 'app-main-slider',

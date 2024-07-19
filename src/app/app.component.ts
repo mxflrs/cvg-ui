@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CmsService } from 'src/app/shared/services/cms.service';
+import { CmsService } from 'src/app/services/cms.service';
 
 @Component({
   selector: 'app-root',

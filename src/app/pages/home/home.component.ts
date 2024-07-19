@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainSliderComponent } from './components/home/main-slider/main-slider.component';
+import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.component';
 
 @Component({
   selector: 'app-home',

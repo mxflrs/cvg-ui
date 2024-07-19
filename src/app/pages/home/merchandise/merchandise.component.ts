@@ -2,16 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-originals',
+  selector: 'app-merchandise',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <p>
-      originals works!
-    </p>
-  `,
-  styles: ``
+  templateUrl: './merchandise.component.html',
+  styleUrl: './merchandise.component.scss'
 })
-export class OriginalsComponent {
+export class MerchandiseComponent {
 
 }

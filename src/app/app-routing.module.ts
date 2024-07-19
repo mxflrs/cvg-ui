@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home.component';
-import { ErrorComponent } from './pages/error.component';
-import { OriginalsComponent } from './pages/originals.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+import { OriginalArtworksComponent } from 'src/app/pages/home/original-artworks/original-artworks.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'originals',
-    component: OriginalsComponent,
+    component: OriginalArtworksComponent,
   },
   {
     path: '**',
