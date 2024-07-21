@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.component';
+import { LimitedEditionComponent } from "./limited-edition/limited-edition.component";
+import { OriginalArtworksComponent } from "./original-artworks/original-artworks.component";
+import { DigitalArtComponent } from "./digital-art/digital-art.component";
+import { ExtrasComponent } from "./extras/extras.component";
+import { MerchandiseComponent } from "./merchandise/merchandise.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MainSliderComponent],
+  imports: [CommonModule, MainSliderComponent, LimitedEditionComponent, OriginalArtworksComponent, DigitalArtComponent, ExtrasComponent, MerchandiseComponent],
   template: `
     <div class="h-full min-h-screen grid grid-cols-10 gap-6">
       <section class="col-span-9 pt-20 relative">
@@ -28,6 +33,12 @@ import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.
         </div>
       </section>
     </div>
+
+    <app-limited-edition />
+    <app-original-artworks />
+    <app-digital-art />
+    <app-extras />
+    <app-merchandise />
   `,
 })
 export class HomeComponent {}

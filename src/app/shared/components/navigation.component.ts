@@ -15,7 +15,7 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <nav class="bg-cvg-100 h-screen p-4 w-full relative flex flex-col justify-between">
+    <nav class="bg-cvg-100 h-screen p-4 w-64 fixed flex flex-col justify-between">
       <!-- LOGO -->
       <div class="bg-cvg-200 absolute top-0 left-0 w-full">
         <a routerLink="/">
