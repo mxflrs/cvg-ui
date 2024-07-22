@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.component';
-import { LimitedEditionComponent } from "./limited-edition/limited-edition.component";
-import { OriginalArtworksComponent } from "./original-artworks/original-artworks.component";
-import { DigitalArtComponent } from "./digital-art/digital-art.component";
-import { ExtrasComponent } from "./extras/extras.component";
-import { MerchandiseComponent } from "./merchandise/merchandise.component";
+import { LimitedEditionComponent } from './limited-edition/limited-edition.component';
+import { OriginalArtworksComponent } from './original-artworks/original-artworks.component';
+import { DigitalArtComponent } from './digital-art/digital-art.component';
+import { ExtrasComponent } from './extras/extras.component';
+import { MerchandiseComponent } from './merchandise/merchandise.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MainSliderComponent, LimitedEditionComponent, OriginalArtworksComponent, DigitalArtComponent, ExtrasComponent, MerchandiseComponent],
+  imports: [
+    CommonModule,
+    MainSliderComponent,
+    LimitedEditionComponent,
+    OriginalArtworksComponent,
+    DigitalArtComponent,
+    ExtrasComponent,
+    MerchandiseComponent,
+  ],
   template: `
-    <div class="h-full min-h-screen grid grid-cols-10 gap-6">
-      <section class="col-span-9 pt-20 relative">
+    <div class="max-h-screen grid grid-cols-10 gap-6 bg-slate-100 mb-96 relative">
+      <section class="col-span-9 pt-20 max-h-full">
         <!-- TITLE -->
         <div class="uppercase flex flex-col items-end">
           <h1>Carlos</h1>
@@ -21,7 +29,6 @@ import { MerchandiseComponent } from "./merchandise/merchandise.component";
           <h1 class="font-bold">Gallery</h1>
         </div>
 
-        <!-- MAIN SLIDER -->
         <app-main-slider />
 
         <!-- SEARCH -->
@@ -34,8 +41,8 @@ import { MerchandiseComponent } from "./merchandise/merchandise.component";
       </section>
     </div>
 
-    <app-limited-edition />
     <app-original-artworks />
+    <app-limited-edition />
     <app-digital-art />
     <app-extras />
     <app-merchandise />

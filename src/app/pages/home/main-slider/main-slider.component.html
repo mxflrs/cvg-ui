@@ -1,9 +1,24 @@
-<section class="flex justify-end">
-
-    <ul class="flex flex-col gap-2">
+<section class="grid w-full grid-cols-9 gap-6">
+  <!-- <ul class="flex flex-col gap-2">
         @for (image of imagesData; track $index) {
         <li>{{image.title}}</li>
         }
-    </ul>
+    </ul> -->
+  <div class="col-start-4 gap-2 mt-auto flex-flex-col *:text-right">
+    <h2>Artwork Title</h2>
+    <h6 class="font-bold">Carlos V Garcia</h6>
+  </div>
 
+  <div class="relative col-span-5 col-start-5">
+    <img
+      src="/assets/images/sample1.jpg"
+      alt="Random Image from Unsplash"
+      class="object-cover w-full h-auto rounded max-h-[80vh] pt-8"
+    />
+    <div class="absolute right-0 flex items-center justify-center w-full gap-2 -bottom-6">
+      <div class="bg-gray-500 rounded-sm size-3"></div>
+      <div class="bg-gray-500 rounded-sm size-3"></div>
+      <div class="bg-gray-500 rounded-sm size-3"></div>
+    </div>
+  </div>
 </section>

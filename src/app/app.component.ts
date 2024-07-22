@@ -11,7 +11,7 @@ import { CmsService } from 'src/app/services/cms.service';
         <app-navigation [(hideSideBar)]="hideSideBar" />
       </aside>
 
-      <div class="flex-1 bg-slate-600 z-10">
+      <div class="flex-1 z-10">
         <router-outlet class="hidden" />
       </div>
 
