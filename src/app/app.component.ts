@@ -5,29 +5,23 @@ import { CmsService } from 'src/app/services/cms.service';
   selector: 'app-root',
   standalone: false,
   template: `
-    <main class="grid grid-cols-12">
+    <main class="flex p-0 m-0">
 
-      <aside class="col-span-2" [ngClass]=""]>
-        <app-navigation />
+      <aside class="w-64 z-20" [ngClass]="{'w-8': hideSideBar}">
+        <app-navigation [(hideSideBar)]="hideSideBar" />
       </aside>
 
-      <div class="col-span-10 main-container">
+      <div class="flex-1 bg-slate-600 z-10">
         <router-outlet class="hidden" />
       </div>
 
     </main>
   `,
-  styles: `
-    .main-container {
-      width: calc(100vw - 16rem);
-      margin-left: auto;
-    }
-  `
 })
 export class AppComponent {
   hideSideBar = false;
-  
+
   constructor(private cmsService: CmsService){
-    this.cmsService.getData();
+    // this.cmsService.getData();
   }
 }

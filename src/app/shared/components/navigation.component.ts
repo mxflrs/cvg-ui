@@ -1,6 +1,9 @@
 import {
   Component,
+  EventEmitter,
+  Input,
   OnInit,
+  Output,
   WritableSignal,
   inject,
   signal,
@@ -15,23 +18,33 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <nav class="bg-cvg-100 h-screen p-4 w-64 fixed flex flex-col justify-between">
+    <nav
+      class="bg-cvg-100 h-screen p-4 w-64 fixed flex flex-col justify-between"
+      [ngClass]="{ 'w-8': hideSideBar }"
+    >
       <!-- LOGO -->
-      <div class="bg-cvg-200 absolute top-0 left-0 w-full">
+      <div class="bg-cvg-200 absolute top-0 left-0 w-full h-32">
         <a routerLink="/">
           <img
             src="/assets/images/cvg-logo.png"
             alt=""
-            class="w-full h-auto px-12 py-8"
+            class="w-full h-full px-12 py-8 object-contain box-border"
           />
         </a>
-        <button class="bg-cvg-300 size-8 hover:rotate-180 absolute -bottom-4 -right-4 z-10" (click)="hideSideBar()">
+        <button
+          class="bg-cvg-300 hover:bg-cvg-400 size-8 absolute -bottom-4 -right-4 z-20"
+          [ngClass]="{ 'rotate-180': hideSideBar }"
+          (click)="onHideSideBar()"
+        >
           <i class="ri-arrow-left-s-fill text-white"></i>
         </button>
       </div>
 
       <!-- LINKS -->
-      <ul class="mt-32 flex flex-col gap-2 p-4">
+      <ul
+        class="mt-32 flex flex-col gap-2 p-4"
+        [ngClass]="{ hidden: hideSideBar }"
+      >
         @for (menuItem of menuSignal(); track $index) {
         <li>
           <a
@@ -45,18 +58,23 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
       </ul>
 
       <!-- ADDRESS -->
-      <section class="flex flex-col gap-4 w-auto pb-4">
+      <section
+        class="flex flex-col gap-4 w-auto pb-4"
+        [ngClass]="{ hidden: hideSideBar }"
+      >
         <i class="ri-map-2-line ri-2x bg-white px-4 py-2 mr-auto"></i>
         <div>
-
-          <h5 class="max-w-48">#15 The Grove Plaza Seven Mile Beach Grand Cayman</h5>
+          <h5 class="max-w-48">
+            #15 The Grove Plaza Seven Mile Beach Grand Cayman
+          </h5>
         </div>
       </section>
     </nav>
   `,
 })
-
 export class NavigationComponent implements OnInit {
+  @Input() hideSideBar: boolean = false;
+  @Output() hideSideBarChange = new EventEmitter<boolean>();
   #menuService = inject(MenuService);
   public menuSignal: WritableSignal<menuinterface[]> = signal([]);
 
@@ -71,7 +89,8 @@ export class NavigationComponent implements OnInit {
     });
   }
 
-  hideSideBar() {
-    console.log('HIDE')
+  onHideSideBar() {
+    this.hideSideBarChange.emit(!this.hideSideBar);
+    console.log('YES!');
   }
 }
