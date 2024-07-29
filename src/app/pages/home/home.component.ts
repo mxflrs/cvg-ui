@@ -20,7 +20,7 @@ import { MerchandiseComponent } from './merchandise/merchandise.component';
     MerchandiseComponent,
   ],
   template: `
-    <div class="max-h-screen grid grid-cols-10 gap-6 bg-slate-100 mb-96 relative">
+    <div class="max-h-screen grid grid-cols-10 gap-6 bg-slate-100 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">
         <!-- TITLE -->
         <div class="uppercase flex flex-col items-end">
@@ -42,8 +42,8 @@ import { MerchandiseComponent } from './merchandise/merchandise.component';
     </div>
 
     <app-original-artworks />
-    <app-limited-edition />
     <app-digital-art />
+    <app-limited-edition />
     <app-extras />
     <app-merchandise />
   `,
