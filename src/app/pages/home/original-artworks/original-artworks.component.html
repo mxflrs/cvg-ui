@@ -1,12 +1,15 @@
-<app-content-wrapper title="Original Artworks" customClass="pb-32">
+<app-content-wrapper title="Original Artworks" sectionCustomClass="pb-24">
   <div class="grid grid-cols-9 gap-6">
     <span></span>
 
-    <div class="grid grid-cols-8 col-span-8 gap-6">
+    <div
+      class="grid grid-cols-8 col-span-8 gap-6"
+      (mouseleave)="onResetIndex()"
+    >
       @for(image of imagesToDisplay; track $index) {
       <div
         class="relative flex flex-col col-span-2 gap-2 group"
-        (mouseover)="currentIndex = $index"
+        (mouseover)="onHoverItem($index)"
       >
         <img
           [src]="image.url"
@@ -19,7 +22,10 @@
         >
           <h4>{{ image.title }}</h4>
           <h6>{{ image.author }}</h6>
-          <span class="absolute z-40 left-2 top-2">heart</span>
+          <i
+            class="absolute z-40 px-2 py-1 rounded-md bg-cvg-200 left-2 top-2"
+            [ngClass]="isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
+          ></i>
         </div>
       </div>
       }

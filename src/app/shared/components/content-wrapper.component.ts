@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section class="grid grid-cols-10 gap-3 pt-24" [ngClass]="customClass">
+    <section class="grid grid-cols-10 gap-3 pt-24" [ngClass]="sectionCustomClass">
 
       <div class="col-span-9 w-full">
-        <div class="flex justify-end items-center w-full gap-2 pb-16">
+        <div class="flex justify-end items-center w-full gap-2 pb-16" [ngClass]="containerCustomClass">
           <h2>{{ title }}</h2>
           <a [href]="url" class="text-black ri-2">
             <i class="ri-link bg-cvg-200 p-2"></i>
@@ -25,5 +25,6 @@ import { CommonModule } from '@angular/common';
 export class ContentWrapperComponent {
   @Input() title = '';
   @Input() url = '';
-  @Input() customClass = '';
+  @Input() sectionCustomClass = '';
+  @Input() containerCustomClass = '';
 }

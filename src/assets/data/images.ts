@@ -5,11 +5,6 @@ export const sampleImages: imageObject[] = [
     url: '/assets/images/sample1.jpg'
   },
   {
-    title: 'Image1',
-    author: 'Carlos V Garcia',
-    url: '/assets/images/sample1.jpg'
-  },
-  {
     title: 'Image2',
     author: 'Carlos V Garcia',
     url: '/assets/images/sample1.jpg'
@@ -23,12 +18,7 @@ export const sampleImages: imageObject[] = [
     title: 'Image4',
     author: 'Carlos V Garcia',
     url: '/assets/images/sample1.jpg'
-  },
-  {
-    title: 'Image5',
-    author: 'Carlos V Garcia',
-    url: '/assets/images/sample1.jpg'
-  },
+  }
 ]
 
 interface imageObject {
