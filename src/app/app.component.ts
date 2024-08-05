@@ -13,6 +13,7 @@ import { CmsService } from 'src/app/services/cms.service';
 
       <div class="flex-1 z-10">
         <router-outlet class="hidden" />
+        <app-footer />
       </div>
 
     </main>

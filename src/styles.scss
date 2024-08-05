@@ -55,6 +55,10 @@ h6 {
   font-size: 0.6rem;
 }
 
+.btn {
+  @apply bg-black rounded-md px-6 py-3 text-white
+}
+
 .bullet {
   display: inline-block;
   width: 4px;

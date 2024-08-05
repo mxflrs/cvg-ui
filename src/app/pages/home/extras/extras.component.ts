@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentWrapperComponent } from "../../../shared/components/content-wrapper.component";
+import { CardsComponent } from "./cards/cards.component";
 
 @Component({
   selector: 'app-extras',
   standalone: true,
-  imports: [CommonModule, ContentWrapperComponent],
+  imports: [CommonModule, ContentWrapperComponent, CardsComponent],
   templateUrl: './extras.component.html',
   styleUrl: './extras.component.scss'
 })

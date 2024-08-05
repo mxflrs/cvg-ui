@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentWrapperComponent } from "../../../shared/components/content-wrapper.component";
-import { sampleImages } from 'src/assets/data/images';
 
 @Component({
-  selector: 'app-merchandise',
+  selector: 'app-furniture-and-applied-arts',
   standalone: true,
   imports: [CommonModule, ContentWrapperComponent],
-  templateUrl: './merchandise.component.html',
-  styleUrl: './merchandise.component.scss'
+  templateUrl: './furniture-and-applied-arts.component.html',
+  styleUrl: './furniture-and-applied-arts.component.scss'
 })
-export class MerchandiseComponent {
-  public imagesToDisplay = sampleImages;
+export class FurnitureAndAppliedArtsComponent {
+
 }

@@ -6,6 +6,7 @@ import { OriginalArtworksComponent } from './original-artworks/original-artworks
 import { DigitalArtComponent } from './digital-art/digital-art.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { MerchandiseComponent } from './merchandise/merchandise.component';
+import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/furniture-and-applied-arts.component";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ import { MerchandiseComponent } from './merchandise/merchandise.component';
     DigitalArtComponent,
     ExtrasComponent,
     MerchandiseComponent,
-  ],
+    FurnitureAndAppliedArtsComponent
+],
   template: `
     <div class="max-h-screen grid grid-cols-10 gap-6 bg-slate-100 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">
@@ -44,8 +46,9 @@ import { MerchandiseComponent } from './merchandise/merchandise.component';
     <app-original-artworks />
     <app-digital-art />
     <app-limited-edition />
-    <app-extras />
+    <app-furniture-and-applied-arts />
     <app-merchandise />
+    <app-extras />
   `,
 })
 export class HomeComponent {}
