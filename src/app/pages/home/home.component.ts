@@ -7,6 +7,7 @@ import { DigitalArtComponent } from './digital-art/digital-art.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { MerchandiseComponent } from './merchandise/merchandise.component';
 import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/furniture-and-applied-arts.component";
+import { SearchModalComponent } from "./search-modal/search-modal.component";
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,11 @@ import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/f
     DigitalArtComponent,
     ExtrasComponent,
     MerchandiseComponent,
-    FurnitureAndAppliedArtsComponent
+    FurnitureAndAppliedArtsComponent,
+    SearchModalComponent
 ],
   template: `
-    <div class="max-h-screen grid grid-cols-10 gap-6 bg-slate-100 relative mb-56">
+    <div class="max-h-screen grid grid-cols-10 gap-6 bg-cvg-50 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">
         <!-- TITLE -->
         <div class="uppercase flex flex-col items-end">
@@ -35,8 +37,8 @@ import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/f
 
         <!-- SEARCH -->
         <div class="absolute bottom-8 left-6 flex gap-2">
-          <button>
-            <i class="ri-search-line ri-2 bg-cvg-200 p-2 mr-auto"></i>
+          <button (click)="openSearchModal()">
+            <i class="ri-search-line ri-2 bg-cvg-100 hover:bg-cvg-200 p-2 mr-auto"></i>
           </button>
           <h4>Search Artworks / Artists</h4>
         </div>
@@ -49,6 +51,13 @@ import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/f
     <app-furniture-and-applied-arts />
     <app-merchandise />
     <app-extras />
+    <app-search-modal [(showSearch)]="showSearch" />
   `,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  public showSearch = false;
+
+  openSearchModal() {
+    this.showSearch = true;
+  }
+}

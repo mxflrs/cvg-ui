@@ -1,17 +1,13 @@
-<app-content-wrapper title="Merchandise" url="merchandise">
-  <div class="grid grid-cols-9 gap-6">
-    <span></span>
-
-    <div class="grid grid-cols-8 col-span-8 gap-6">
-      @for(image of imagesToDisplay; track $index) {
-      <div class="relative flex flex-col col-span-2 gap-2 group">
-        <img
-          [src]="image.url"
-          alt="image"
-          class="relative z-10 w-full h-24 transition-all duration-200 rounded"
-        />
-      </div>
-      }
+<app-content-wrapper title="Merchandise" url="merchandise" [hasNavigation]="true">
+  <div class="grid grid-cols-8 col-span-8 gap-6">
+    @for(image of imagesToDisplay; track $index) {
+    <div class="relative flex flex-col col-span-2 gap-2 group">
+      <img
+        [src]="image.url"
+        alt="image"
+        class="relative z-10 w-full h-24 transition-all duration-200 rounded"
+      />
     </div>
+    }
   </div>
 </app-content-wrapper>

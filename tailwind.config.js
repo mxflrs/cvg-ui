@@ -11,6 +11,8 @@ module.exports = {
           300: '#545D68',
           200: '#C5CED6',
           100: '#E8EBEF',
+          75: '#E8EBEF75',
+          50: '#E8EBEF50',
         }
       }
     },
