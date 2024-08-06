@@ -6,9 +6,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
+  <div>
     <p>
       error works!
     </p>
+  </div>
   `,
   styles: ``
 })

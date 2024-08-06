@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientConfig, createClient, SanityClient, Any } from '@sanity/client';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, from, map, Observable } from 'rxjs';
+import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import environment from 'src/environments/environtment.development';
 
 @Injectable({
@@ -34,5 +35,12 @@ export class CmsService {
     populateData() {
       const data = this.#dataSubject.getValue();
       console.log(data)
+    }
+
+    getArtworksByArtistName(name: string): Observable<sanityImage[]> {
+      const query = `*[_type == "artworks" && artist._ref in *[_type == "artists" && name match "${name}*"]._id]`;
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result)
+      );
     }
 }

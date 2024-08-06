@@ -12,8 +12,10 @@ import { CmsService } from 'src/app/services/cms.service';
       </aside>
 
       <div class="flex-1 z-10">
-        <router-outlet class="hidden" />
-        <app-footer />
+        <div class="flex flex-col min-h-screen justify-between">
+          <router-outlet class="hidden" />
+          <app-footer />
+        </div>
       </div>
 
     </main>
@@ -23,6 +25,6 @@ export class AppComponent {
   hideSideBar = false;
 
   constructor(private cmsService: CmsService){
-    // this.cmsService.getData();
+
   }
 }

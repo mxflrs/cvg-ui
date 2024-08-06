@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { OriginalArtworksComponent } from 'src/app/pages/home/original-artworks/original-artworks.component';
+import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
 
 const routes: Routes = [
   {
@@ -10,12 +10,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'originals',
-    component: OriginalArtworksComponent,
+    path: 'gallery/:slug',
+    component: GalleryComponent,
   },
   {
     path: '**',
-    title: 'Oops!',
+    title: '404',
     component: ErrorComponent,
   },
 ];

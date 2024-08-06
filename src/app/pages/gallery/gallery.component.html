@@ -1,0 +1,40 @@
+<section>
+  <!-- HEADER -->
+  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+    <div
+      class="flex items-center justify-between w-full col-span-8 col-start-2"
+    >
+      <h2 class="font-semibold">{{ sanitizeTitle() }}</h2>
+      <a href="/" aria-label="Go home">
+        <i
+          class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"
+        ></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="grid grid-cols-10 mt-8 mb-32">
+    <div class="grid grid-cols-8 col-span-8 col-start-2 gap-6">
+      @for(artwork of artworks; track $index) {
+      <div class="relative flex flex-col w-full col-span-2 group">
+        <img
+          [src]="imageUrl(artwork.image.asset._ref) + '?q=25&fm=webp&w=400'"
+          alt="artwork"
+          class="object-cover w-full h-full rounded-sm max-h-[30vh] group-hover:opacity-80 mb-4"
+        />
+        <p class="text-sm font-semibold text-cvg-200 group-hover:text-cvg-400">{{ artist }}</p>
+        <p class="text-xs text-cvg-200 group-hover:text-cvg-400">{{ artwork.title }}</p>
+
+        <!-- OVERLAY -->
+         <div class="absolute invisible w-full h-full pt-6 cursor-pointer indent-0 group-hover:visible">
+          <div class="flex items-center justify-center h-full">
+            <!-- <i class="text-white ri-expand-diagonal-line size-5 bg-cvg-400"></i> -->
+            <p class="p-2 rounded-sm bg-cvg-100 hover:scale-110 hover:bg-cvg-200">Expand Image</p>
+          </div>
+         </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
