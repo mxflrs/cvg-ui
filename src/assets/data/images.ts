@@ -7,7 +7,7 @@ export const sampleImages: imageObject[] = [
   {
     title: 'Image2',
     author: 'Carlos V Garcia',
-    url: '/assets/images/sample1.jpg'
+    url: '/assets/images/sample2.jpg'
   },
   {
     title: 'Image3',
@@ -17,7 +17,7 @@ export const sampleImages: imageObject[] = [
   {
     title: 'Image4',
     author: 'Carlos V Garcia',
-    url: '/assets/images/sample1.jpg'
+    url: '/assets/images/sample2.jpg'
   }
 ]
 

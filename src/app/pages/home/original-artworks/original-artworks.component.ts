@@ -27,4 +27,18 @@ export class OriginalArtworksComponent {
       this.currentIndex = 0;
     }, 1500);
   }
+
+  onNextImage() {
+    const next = this.imagesToDisplay.shift();
+    if (next) {
+      this.imagesToDisplay.push(next);
+    }
+  }
+
+  onPrevImage() {
+    const last = this.imagesToDisplay.pop();
+    if (last) {
+      this.imagesToDisplay.unshift(last);
+    }
+  }
 }

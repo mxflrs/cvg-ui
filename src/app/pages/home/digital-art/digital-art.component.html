@@ -1,11 +1,15 @@
 <app-content-wrapper
   title="Digital Art"
-  sectionCustomClass="bg-cvg-400 pb-32"
-  containerCustomClass="*:text-white"
-  url="digital-art">
+  sectionCustomClass="pb-32 bg-cvg-400"
+  url="digital-art"
+  [darkMode]="true"
+  >
   <div class="grid grid-cols-9 gap-6">
-    <div class="col-span-4 pb-24 pr-24 text-xs leading-6 text-justify text-white">
-      Digital art is a contemporary form of artistic expression that leverages technology and digital tools. Artists use software, tablets, and other digital mediums to create visually stunning and innovative pieces. This medium allows for endless possibilities, blending traditional art techniques with the versatility of digital platforms. Digital art has transformed the way artists conceptualize and produce their work, offering new avenues for creativity and exploration in the ever-evolving landscape of artistic expression.
+    <div class="flex flex-col col-span-4 gap-6 pb-24 pr-24">
+      <p class="text-xs leading-6 text-justify text-white">
+        Digital art is a contemporary form of artistic expression that leverages technology and digital tools. Artists use software, tablets, and other digital mediums to create visually stunning and innovative pieces. This medium allows for endless possibilities, blending traditional art techniques with the versatility of digital platforms. Digital art has transformed the way artists conceptualize and produce their work, offering new avenues for creativity and exploration in the ever-evolving landscape of artistic expression.
+      </p>
+      <button class="mr-auto btn clear">View All</button>
     </div>
 
     <div class="col-span-2">
@@ -17,7 +21,7 @@
     </div>
     <div class="col-span-3">
       <img
-      src="/assets/images/sample1.jpg"
+      src="/assets/images/sample2.jpg"
       alt="Random Image from Unsplash"
       class="object-cover w-full rounded h-96"
     />

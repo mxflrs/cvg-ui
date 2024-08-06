@@ -58,6 +58,6 @@ export class HomeComponent {
   public showSearch = false;
 
   openSearchModal() {
-    this.showSearch = true;
+    this.showSearch = !this.showSearch;
   }
 }

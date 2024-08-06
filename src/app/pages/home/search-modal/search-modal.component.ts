@@ -13,8 +13,6 @@ export class SearchModalComponent {
   @Output() showSearchChange = new EventEmitter<boolean>();
 
   onCloseModal() {
-    this.showSearch = false;
-    this.showSearchChange.emit(this.showSearch);
-    console.log('cerraaaar')
+    this.showSearchChange.emit(false);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,38 +8,51 @@ import { CommonModule } from '@angular/common';
   template: `
     <section
       class="grid grid-cols-10 gap-3 pt-24"
-      [ngClass]="sectionCustomClass"
+      [ngClass]="[
+        darkMode ? 'bg-cvg-400' : '',
+        sectionCustomClass
+      ]"
     >
       <div class="col-span-8 w-full col-start-2">
+        <div class="flex justify-between items-start">
+          <!-- * ARROWS -->
+          <div
+            class="flex gap-6 h-auto items-start pt-4"
+            [ngClass]="hasNavigation ? 'visible' : 'invisible'"
+          >
+            <button (click)="onNextAction()">
+              <i
+                class="ri-arrow-left-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm"
+              ></i>
+            </button>
+            <button (click)="onPrevAction()">
+              <i
+                class="ri-arrow-right-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm"
+              ></i>
+            </button>
+          </div>
 
-      <div class="flex justify-between items-center">
+          <!-- * TITLE -->
+          <div
+            class="flex justify-end items-center w-full gap-4 pb-16"
+            [ngClass]="containerCustomClass"
+          >
+            <h2 [ngClass]="{ 'text-white': darkMode }">{{ title }}</h2>
 
-        <div class="flex gap-6" [ngClass]="hasNavigation ? 'visible' : 'invisible'">
-          <button>
-            <i class="ri-arrow-left-line hover:bg-cvg-100 bg-cvg-50 p-2"></i>
-          </button>
-          <button>
-            <i class="ri-arrow-right-line hover:bg-cvg-100 bg-cvg-50 p-2"></i>
-          </button>
+            <!-- * LINK -->
+            @if(url != "") {
+            <a [href]="url" class="text-black ri-2">
+              <i
+                class="ri-add-line hover:bg-cvg-200 bg-cvg-100 p-2 rounded-sm"
+              ></i>
+            </a>
+            }
+          </div>
         </div>
 
-        <div
-        class="flex justify-end items-center w-full gap-4 pb-16"
-        [ngClass]="containerCustomClass"
-        >
-        <h2>{{ title }}</h2>
-
-        @if(url != "") {
-          <a [href]="url" class="text-black ri-2">
-            <i class="ri-add-line hover:bg-cvg-200 bg-cvg-100 p-2"></i>
-          </a>
-        }
+        <ng-content></ng-content>
       </div>
-    </div>
-
-      <ng-content></ng-content>
-    </div>
-  </section>
+    </section>
   `,
 })
 export class ContentWrapperComponent {
@@ -48,4 +61,17 @@ export class ContentWrapperComponent {
   @Input() sectionCustomClass = '';
   @Input() containerCustomClass = '';
   @Input() hasNavigation = false;
+  @Input() darkMode = false;
+
+  // ARROW ACTIONS
+  @Output() nextAction = new EventEmitter();
+  @Output() prevAction = new EventEmitter();
+
+  onNextAction() {
+    this.nextAction.emit();
+  }
+
+  onPrevAction() {
+    this.prevAction.emit();
+  }
 }
