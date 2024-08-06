@@ -11,5 +11,19 @@ import { sampleImages } from 'src/assets/data/images';
   styleUrl: './merchandise.component.scss'
 })
 export class MerchandiseComponent {
-  public imagesToDisplay = sampleImages;
+  public imagesToDisplay = structuredClone(sampleImages);
+
+  onNextImage() {
+    const last = this.imagesToDisplay.pop();
+    if (last) {
+      this.imagesToDisplay.unshift(last);
+    }
+  }
+
+  onPrevImage() {
+    const next = this.imagesToDisplay.shift();
+    if (next) {
+      this.imagesToDisplay.push(next);
+    }
+  }
 }

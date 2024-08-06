@@ -1,13 +1,27 @@
-<app-content-wrapper title="Merchandise" url="merchandise" [hasNavigation]="true">
+<app-content-wrapper
+  title="Merchandise"
+  url="merchandise"
+  [hasNavigation]="true"
+  (nextAction)="onNextImage()"
+  (prevAction)="onPrevImage()"
+>
   <div class="grid grid-cols-8 col-span-8 gap-6">
     @for(image of imagesToDisplay; track $index) {
     <div class="relative flex flex-col col-span-2 gap-2 group">
       <img
         [src]="image.url"
         alt="image"
-        class="relative z-10 w-full h-24 transition-all duration-200 rounded"
+        class="relative z-10 object-cover w-full transition-all duration-200 rounded min-h-24 max-h-48 hover:opacity-80"
       />
     </div>
     }
+  </div>
+
+  <div class="grid grid-cols-8 gap-6 pt-4">
+    <div class="flex col-span-2 col-start-7 gap-2 justify-evenly">
+      @for(image of imagesToDisplay; track $index) {
+        <span class="w-full h-2 cursor-pointer bg-cvg-100 hover:bg-cvg-200"></span>
+      }
+    </div>
   </div>
 </app-content-wrapper>

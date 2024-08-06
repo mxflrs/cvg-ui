@@ -12,7 +12,7 @@ import { sampleImages } from 'src/assets/data/images';
   styleUrl: './original-artworks.component.scss',
 })
 export class OriginalArtworksComponent {
-  public imagesToDisplay = sampleImages;
+  public imagesToDisplay = structuredClone(sampleImages);
   public currentIndex = 0;
   public isHovering = false;
   public isLiked = false;
@@ -29,16 +29,16 @@ export class OriginalArtworksComponent {
   }
 
   onNextImage() {
-    const next = this.imagesToDisplay.shift();
+    const next = this.imagesToDisplay.pop();
     if (next) {
-      this.imagesToDisplay.push(next);
+      this.imagesToDisplay.unshift(next);
     }
   }
 
   onPrevImage() {
-    const last = this.imagesToDisplay.pop();
+    const last = this.imagesToDisplay.shift();
     if (last) {
-      this.imagesToDisplay.unshift(last);
+      this.imagesToDisplay.push(last);
     }
   }
 }

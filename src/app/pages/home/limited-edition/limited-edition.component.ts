@@ -11,7 +11,7 @@ import { sampleImages } from 'src/assets/data/images';
   styleUrl: './limited-edition.component.scss'
 })
 export class LimitedEditionComponent {
-  public imagesToDisplay = sampleImages;
+  public imagesToDisplay = structuredClone(sampleImages);
   public currentIndex = 0;
   public isHovering = false;
   public isLiked = false;
@@ -25,5 +25,19 @@ export class LimitedEditionComponent {
     setTimeout(() => {
       this.currentIndex = 0;
     }, 1500);
+  }
+
+  onNextImage() {
+    const next = this.imagesToDisplay.pop();
+    if (next) {
+      this.imagesToDisplay.unshift(next);
+    }
+  }
+
+  onPrevImage() {
+    const last = this.imagesToDisplay.shift();
+    if (last) {
+      this.imagesToDisplay.push(last);
+    }
   }
 }

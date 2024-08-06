@@ -1,10 +1,15 @@
 <div
-  class="flex flex-col justify-between w-full col-span-4 p-8 mt-auto align-bottom rounded-md bg-cvg-50 min-h-72"
+  class="relative flex flex-col justify-between w-full col-span-4 p-8 mt-auto align-bottom bg-cover rounded-md cursor-pointer bg-cvg-50 min-h-72 group"
+  [ngStyle]="{ 'background-image': backgroundUrl }"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
 >
-  <div class="ml-auto">
+  <div class="ml-auto cursor-pointer hover:scale-105">
     <i
-      class="p-4 m-auto text-white rounded-md ri-arrow-right-up-line bg-cvg-400 hover:bg-cvg-300 size-8"
+      class="z-10 p-4 m-auto text-white rounded-md group-hover:text-cvg-400 group-hover:bg-cvg-100 ri-arrow-right-up-line bg-cvg-400 size-8"
     ></i>
   </div>
-  <h3 class="mt-auto">{{ title }}</h3>
+  <h3 class="w-auto p-2 mr-auto text-left rounded-md group-hover:bg-cvg-100">
+    {{ title }}
+  </h3>
 </div>

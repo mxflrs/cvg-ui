@@ -22,12 +22,12 @@ import { CommonModule } from '@angular/common';
           >
             <button (click)="onNextAction()">
               <i
-                class="ri-arrow-left-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm"
+                class="ri-arrow-left-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm cursor-pointer"
               ></i>
             </button>
             <button (click)="onPrevAction()">
               <i
-                class="ri-arrow-right-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm"
+                class="ri-arrow-right-line hover:bg-cvg-100 bg-cvg-50 p-2 rounded-sm cursor-pointer"
               ></i>
             </button>
           </div>

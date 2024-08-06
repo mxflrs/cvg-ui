@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,7 +12,15 @@ export class SearchModalComponent {
   @Input() showSearch = false;
   @Output() showSearchChange = new EventEmitter<boolean>();
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.showSearchChange.emit(false);
+    }
+  }
+
   onCloseModal() {
     this.showSearchChange.emit(false);
+    document.body.style.overflow = 'auto';
   }
 }

@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       colors: {
         cvg: {
+          475: '#1E1F2176',
+          450: '#1E1F2150',
           400: '#1E1F21',
           300: '#545D68',
           200: '#C5CED6',

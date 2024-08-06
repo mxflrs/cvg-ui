@@ -19,11 +19,11 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
     <nav
-      class="bg-cvg-100 h-screen p-4 w-64 fixed flex flex-col justify-between"
+      class="bg-cvg-500 h-screen p-4 w-64 fixed flex flex-col justify-between border border-l-2 border-cvg-100 bg-white"
       [ngClass]="{ 'w-8': hideSideBar }"
     >
       <!-- LOGO -->
-      <div class="bg-cvg-200 absolute top-0 left-0 w-full h-32">
+      <div class="bg-cvg-100 absolute top-0 left-0 w-full h-32">
         <a routerLink="/">
           <img
             src="/assets/images/cvg-logo.png"
@@ -32,7 +32,7 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
           />
         </a>
         <button
-          class="bg-cvg-300 hover:bg-cvg-400 size-8 absolute -bottom-4 -right-4 z-20"
+          class="bg-cvg-300 hover:bg-cvg-400 size-8 absolute -bottom-4 -right-4 z-20 rounded-sm"
           [ngClass]="{ 'rotate-180': hideSideBar }"
           (click)="onHideSideBar()"
         >
@@ -50,7 +50,7 @@ import { menuinterface } from 'src/app/core/models/menu.interface';
           <a
             [routerLink]="menuItem.link"
             routerLinkActive="font-black text-black"
-            class="flex justify-start gap-2 items-center text-cvg-300 text-nowrap"
+            class="flex justify-start gap-2 items-center text-cvg-400 hover:text-cvg-300 text-nowrap"
             ><span class="bullet"></span>{{ menuItem.label }}</a
           >
         </li>

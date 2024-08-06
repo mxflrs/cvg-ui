@@ -6,8 +6,8 @@ import { OriginalArtworksComponent } from './original-artworks/original-artworks
 import { DigitalArtComponent } from './digital-art/digital-art.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { MerchandiseComponent } from './merchandise/merchandise.component';
-import { FurnitureAndAppliedArtsComponent } from "./furniture-and-applied-arts/furniture-and-applied-arts.component";
-import { SearchModalComponent } from "./search-modal/search-modal.component";
+import { FurnitureAndAppliedArtsComponent } from './furniture-and-applied-arts/furniture-and-applied-arts.component';
+import { SearchModalComponent } from './search-modal/search-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -21,8 +21,8 @@ import { SearchModalComponent } from "./search-modal/search-modal.component";
     ExtrasComponent,
     MerchandiseComponent,
     FurnitureAndAppliedArtsComponent,
-    SearchModalComponent
-],
+    SearchModalComponent,
+  ],
   template: `
     <div class="max-h-screen grid grid-cols-10 gap-6 bg-cvg-50 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">
@@ -36,13 +36,18 @@ import { SearchModalComponent } from "./search-modal/search-modal.component";
         <app-main-slider />
 
         <!-- SEARCH -->
-        <div class="absolute bottom-8 left-6 flex gap-2">
-          <button (click)="openSearchModal()">
-            <i class="ri-search-line ri-2 bg-cvg-100 hover:bg-cvg-200 p-2 mr-auto"></i>
-          </button>
+        <button
+          class="absolute bottom-8 left-6 flex gap-2 items-center group"
+          (click)="openSearchModal()"
+        >
+          <i
+            class="ri-search-line ri-2 bg-cvg-100 group-hover:bg-cvg-200 p-2 mr-auto"
+          ></i>
           <h4>Search Artworks / Artists</h4>
-        </div>
+        </button>
       </section>
+
+      <app-search-modal [(showSearch)]="showSearch" />
     </div>
 
     <app-original-artworks />
@@ -51,7 +56,6 @@ import { SearchModalComponent } from "./search-modal/search-modal.component";
     <app-furniture-and-applied-arts />
     <app-merchandise />
     <app-extras />
-    <app-search-modal [(showSearch)]="showSearch" />
   `,
 })
 export class HomeComponent {
@@ -59,5 +63,7 @@ export class HomeComponent {
 
   openSearchModal() {
     this.showSearch = !this.showSearch;
+    document.body.style.overflow = 'hidden';
+    window.scrollTo({ top: 0});
   }
 }
