@@ -12,7 +12,7 @@
         [src]="image.url"
         alt="image"
         class="relative z-10 object-cover w-full transition-all duration-200 rounded min-h-24 max-h-48 hover:opacity-80"
-        (click)="onOpenModal(image)"
+        (click)="onOpenModal(image, $index)"
       />
     </div>
     }
@@ -26,4 +26,5 @@
     </div>
   </div>
 </app-content-wrapper>
-<app-image-preview-modal [(openModal)]="openModal" [selectedImage]="selectedImage" />
+<app-image-preview-modal [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
+(prevAction)="onSelectPrevImage()" />

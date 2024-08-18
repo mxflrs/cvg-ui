@@ -67,6 +67,14 @@ h6 {
   }
 }
 
+.btn-round {
+  @apply size-8 rounded-full bg-cvg-450 hover:bg-cvg-400 flex items-center justify-center text-white cursor-pointer;
+
+  &.clear {
+    @apply bg-cvg-100 text-cvg-400 hover:bg-cvg-200;
+  }
+}
+
 .bullet {
   display: inline-block;
   width: 4px;

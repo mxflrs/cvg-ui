@@ -16,7 +16,7 @@
         [src]="image.url"
         alt="image"
         class="relative z-10 object-cover w-full transition-all duration-200 rounded min-h-64"
-        (click)="onOpenModal(image)"
+        (click)="onOpenModal(image, $index)"
       />
       <div
         class="flex flex-col"
@@ -33,4 +33,5 @@
     }
   </div>
 </app-content-wrapper>
-<app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage"/>
+<app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
+(prevAction)="onSelectPrevImage()" />

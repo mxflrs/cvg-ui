@@ -16,6 +16,7 @@ export class MerchandiseComponent {
   public imagesToDisplay = structuredClone(sampleImages);
   public openModal = false;
   public selectedImage: images | null = null;
+  public selectedIndex: number = 0;
 
   onNextImage() {
     const last = this.imagesToDisplay.pop();
@@ -31,9 +32,29 @@ export class MerchandiseComponent {
     }
   }
 
-  onOpenModal(image: images) {
+  onSelectNextImage() {
+    if (this.selectedIndex >= this.imagesToDisplay.length - 1) {
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex++;
+    }
+    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+  }
+
+  onSelectPrevImage() {
+    if (this.selectedIndex == 0) {
+      this.selectedIndex = this.imagesToDisplay.length - 1;
+    } else {
+      this.selectedIndex--;
+    }
+    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+  }
+
+
+  onOpenModal(image: images, index: number) {
     this.openModal = true;
     document.body.style.overflow = 'hidden';
     this.selectedImage = image;
+    this.selectedIndex = index;
   }
 }

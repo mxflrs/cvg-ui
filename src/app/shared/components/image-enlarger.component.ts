@@ -10,13 +10,19 @@ import { images } from 'src/app/core/models/images.interface';
   @if (openModal) {
     <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-[9999] backdrop-blur-sm">
       <div class="flex justify-center align-center flex-col items-center w-full h-full">
-        @if (selectedImage) {
-          <img
-          [src]="selectedImage.url"
-          alt="image"
-          class="relative z-10 object-cover w-auto max-w-[70vw] h-full transition-all duration-200 rounded max-h-[70vh] group-hover:opacity-70"
-          />
-        }
+
+      <!-- IMAGE CONTAINER AND ARROWS -->
+       <div class="flex gap-8 justify-center items-center">
+          <i class="ri-arrow-left-line btn-round" (click)="onPrevAction()"></i>
+          @if (selectedImage) {
+            <img
+            [src]="selectedImage.url"
+            alt="image"
+            class="relative z-10 object-cover w-auto max-w-[70vw] h-full transition-all duration-200 rounded max-h-[70vh] group-hover:opacity-70"
+            />
+          }
+          <i class="ri-arrow-right-line btn-round" (click)="onNextAction()"></i>
+        </div>
         <button (click)="closeModal()" class="absolute top-4 right-4 btn">Close</button>
        <div class="flex flex-col gap-1 justify-start pt-4">
         <p class="text-white">{{selectedImage?.title}}</p>
@@ -31,6 +37,18 @@ export class ImageEnlargerComponent {
   @Input() openModal = false;
   @Output() openModalChange = new EventEmitter<boolean>();
   @Input() selectedImage: images | null = null;
+
+  // ARROW ACTIONS
+  @Output() nextAction = new EventEmitter();
+  @Output() prevAction = new EventEmitter();
+
+  onNextAction() {
+    this.nextAction.emit();
+  }
+
+  onPrevAction() {
+    this.prevAction.emit();
+  }
 
   closeModal() {
     this.openModal = false;

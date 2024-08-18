@@ -27,6 +27,12 @@ import { images } from 'src/app/core/models/images.interface';
         ></i>
        </div>
       </div>
+
+      <!-- BUTTONS -->
+       <div class="absolute bottom-8 right-8 flex gap-4 items-center">
+         <i class="ri-arrow-left-line btn-round clear" (click)="onPrevAction()"></i>
+         <i class="ri-arrow-right-line btn-round clear" (click)="onNextAction()"></i>
+       </div>
     </section>
   }`
 })
@@ -37,6 +43,19 @@ export class ImagePreviewModalComponent {
   @Input() selectedImage: images | null = null;
   @Input() isLiked: boolean = false;
   // public liked = this.isLiked
+
+  // ARROW ACTIONS
+  @Output() nextAction = new EventEmitter();
+  @Output() prevAction = new EventEmitter();
+
+  onNextAction() {
+    this.nextAction.emit();
+  }
+
+  onPrevAction() {
+    this.prevAction.emit();
+  }
+
 
   closeModal() {
     this.openModal = false;

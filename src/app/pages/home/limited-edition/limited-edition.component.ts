@@ -19,6 +19,7 @@ export class LimitedEditionComponent {
   public isLiked = false;
   public openModal = false;
   public selectedImage: images | null = null;
+  public selectedIndex = 0;
 
   onHoverItem(index: number) {
     this.isHovering = true;
@@ -45,10 +46,29 @@ export class LimitedEditionComponent {
     }
   }
 
-  onOpenModal(image: any) {
+  onSelectNextImage() {
+    if (this.selectedIndex >= this.imagesToDisplay.length - 1) {
+      this.selectedIndex = 0;
+    } else {
+      this.selectedIndex++;
+    }
+    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+  }
+
+  onSelectPrevImage() {
+    if (this.selectedIndex == 0) {
+      this.selectedIndex = this.imagesToDisplay.length - 1;
+    } else {
+      this.selectedIndex--;
+    }
+    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+  }
+
+  onOpenModal(image:any , index: number) {
     this.openModal = true;
     document.body.style.overflow = 'hidden';
     this.selectedImage = image;
+    this.selectedIndex = index;
   }
 
 }
