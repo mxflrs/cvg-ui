@@ -11,14 +11,5 @@ import { CommonModule } from '@angular/common';
 export class CardsComponent {
   @Input() title = '';
   @Input() url = '';
-
-  public backgroundUrl = '';
-
-  onMouseEnter() {
-    this.backgroundUrl = 'url(/assets/images/sample1.jpg)';
-  }
-
-  onMouseLeave() {
-    this.backgroundUrl = '';
-  }
+  @Input() imageUrl = '';
 }

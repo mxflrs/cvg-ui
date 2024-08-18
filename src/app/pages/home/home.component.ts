@@ -74,7 +74,9 @@ export class HomeComponent {
     this.cmsService.getArtworksByArtistName(this.artist).subscribe({
       next: (data) => {
         this.artworks = data;
-        console.log(data);
+        data.forEach(a => {
+          a.about?.category?.forEach(c => console.log(c._ref))
+        })
       }
     });
   }

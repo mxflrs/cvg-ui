@@ -5,7 +5,7 @@ export interface sanityImage {
   };
   artist: {
     _ref: string;
-    _type: 'reference';
+    _type: string;
   };
   _createdAt: string;
   _type: 'artworks';
@@ -14,20 +14,20 @@ export interface sanityImage {
   image: {
     asset: {
       _ref: string;
-      _type: 'reference';
+      _type: string;
     };
     _type: 'image';
   };
   _rev: string;
   about: {
     medium: Array<{
-      _type: 'reference';
+      _type: string;
       _key: string;
       _ref: string;
     }>;
     category: Array<{
       _ref: string;
-      _type: 'reference';
+      _type: string;
       _key?: string;
     }>;
   };
