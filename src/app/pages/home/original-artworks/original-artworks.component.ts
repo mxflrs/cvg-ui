@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TitleComponent } from '../../../shared/components/title.component';
 import { ContentWrapperComponent } from '../../../shared/components/content-wrapper.component';
 import { sampleImages } from 'src/assets/data/images';
 import { ImageEnlargerComponent } from "../../../shared/components/image-enlarger.component";
 import { images } from 'src/app/core/models/images.interface';
+import { sanityImage } from 'src/app/core/models/sanity-image.interface';
+import { ImageBuilderService } from 'src/app/services/image-builder.service';
 
 @Component({
   selector: 'app-original-artworks',
@@ -14,6 +16,8 @@ import { images } from 'src/app/core/models/images.interface';
   styleUrl: './original-artworks.component.scss',
 })
 export class OriginalArtworksComponent {
+  @Input() artworks: sanityImage[] = [];
+  public artworksShow: sanityImage[] = []
   public imagesToDisplay = structuredClone(sampleImages);
   public currentIndex = 0;
   public isHovering = false;
@@ -21,6 +25,8 @@ export class OriginalArtworksComponent {
   public openModal = false;
   public selectedImage: images | null = null;
   public selectedIndex = 0;
+
+  constructor(private imageBuilder: ImageBuilderService) { }
 
   onHoverItem(index: number) {
     this.isHovering = true;
@@ -72,4 +78,7 @@ export class OriginalArtworksComponent {
     this.selectedIndex = index;
   }
 
+  imageUrl(id: string) {
+    return this.imageBuilder.image(id).url();
+  }
 }

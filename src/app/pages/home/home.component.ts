@@ -8,6 +8,8 @@ import { ExtrasComponent } from './extras/extras.component';
 import { MerchandiseComponent } from './merchandise/merchandise.component';
 import { FurnitureAndAppliedArtsComponent } from './furniture-and-applied-arts/furniture-and-applied-arts.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
+import { CmsService } from 'src/app/services/cms.service';
+import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 
 @Component({
   selector: 'app-home',
@@ -50,16 +52,32 @@ import { SearchModalComponent } from './search-modal/search-modal.component';
       <app-search-modal [(showSearch)]="showSearch" />
     </div>
 
-    <app-original-artworks />
-    <app-digital-art />
-    <app-limited-edition />
-    <app-furniture-and-applied-arts />
-    <app-merchandise />
-    <app-extras />
+    <app-original-artworks  [artworks]="artworks" />
+    <app-digital-art [artworks]="artworks" />
+    <app-limited-edition [artworks]="artworks" />
+    <app-furniture-and-applied-arts [artworks]="artworks" />
+    <app-merchandise [artworks]="artworks" />
+    <app-extras [artworks]="artworks" />
   `,
 })
 export class HomeComponent {
+  public slug = '';
+  public artist = 'Carlos V Garcia';
+  public artworks: sanityImage[] = [];
   public showSearch = false;
+
+  constructor(private cmsService: CmsService) {
+
+  }
+
+  ngOnInit() {
+    this.cmsService.getArtworksByArtistName(this.artist).subscribe({
+      next: (data) => {
+        this.artworks = data;
+        console.log(data);
+      }
+    });
+  }
 
   openSearchModal() {
     this.showSearch = !this.showSearch;

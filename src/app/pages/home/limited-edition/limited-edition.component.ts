@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentWrapperComponent } from "../../../shared/components/content-wrapper.component";
 import { sampleImages } from 'src/assets/data/images';
 import { images } from 'src/app/core/models/images.interface';
 import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
+import { sanityImage } from 'src/app/core/models/sanity-image.interface';
+import { ImageBuilderService } from 'src/app/services/image-builder.service';
 
 @Component({
   selector: 'app-limited-edition',
@@ -13,6 +15,8 @@ import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger
   styleUrl: './limited-edition.component.scss'
 })
 export class LimitedEditionComponent {
+  @Input() artworks: sanityImage[] = [];
+  public artworksShow: sanityImage[] = [];
   public imagesToDisplay = structuredClone(sampleImages);
   public currentIndex = 0;
   public isHovering = false;
@@ -20,6 +24,15 @@ export class LimitedEditionComponent {
   public openModal = false;
   public selectedImage: images | null = null;
   public selectedIndex = 0;
+
+  constructor(private imageBuilder: ImageBuilderService) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['artworks']) {
+      this.artworksShow = this.artworks.slice(0, 4);
+    }
+  }
+
 
   onHoverItem(index: number) {
     this.isHovering = true;
