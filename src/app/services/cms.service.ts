@@ -43,4 +43,11 @@ export class CmsService {
         map(result => result)
       );
     }
+
+    getAllCategories() {
+      const query = '*[_type == "categories"] { title, _id, description }'
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result)
+      );
+    }
 }

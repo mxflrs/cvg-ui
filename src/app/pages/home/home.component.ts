@@ -79,6 +79,12 @@ export class HomeComponent {
         })
       }
     });
+
+    this.cmsService.getAllCategories().subscribe({
+      next: (data) => {
+        console.log(data)
+      }
+    })
   }
 
   openSearchModal() {
