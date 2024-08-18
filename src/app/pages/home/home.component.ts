@@ -21,8 +21,8 @@ import { SearchModalComponent } from './search-modal/search-modal.component';
     ExtrasComponent,
     MerchandiseComponent,
     FurnitureAndAppliedArtsComponent,
-    SearchModalComponent,
-  ],
+    SearchModalComponent
+],
   template: `
     <div class="max-h-screen grid grid-cols-10 gap-6 bg-cvg-50 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">

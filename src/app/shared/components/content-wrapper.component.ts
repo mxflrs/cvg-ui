@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <section
-      class="grid grid-cols-10 gap-3 pt-24"
+      class="grid grid-cols-10 gap-3 pt-24 relative"
       [ngClass]="[
         darkMode ? 'bg-cvg-400' : '',
         sectionCustomClass

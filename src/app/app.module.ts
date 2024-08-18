@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from 'src/app/shared/components/navigation.component';
 import { TitleComponent } from 'src/app/shared/components/title.component';
 import { FooterComponent } from 'src/app/shared/components/footer.component';
+import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,12 @@ import { FooterComponent } from 'src/app/shared/components/footer.component';
     NavigationComponent,
     HttpClientModule,
     TitleComponent,
-    FooterComponent
+    FooterComponent,
+    ImageEnlargerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  @Input() currentImage = [];
+}

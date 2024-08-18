@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ClientConfig, createClient, SanityClient, Any } from '@sanity/client';
 import { BehaviorSubject, from, map, Observable } from 'rxjs';
 import { sanityImage } from 'src/app/core/models/sanity-image.interface';
-import environment from 'src/environments/environtment.development';
+import { environment } from 'src/environments/environment.production';
 
 @Injectable({
   providedIn: 'root'
