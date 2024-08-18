@@ -5,9 +5,11 @@
   (mouseleave)="onMouseLeave()"
 >
   <div class="ml-auto cursor-pointer hover:scale-105">
-    <i
+    <a [href]="url">
+      <i
       class="z-10 p-4 m-auto text-white rounded-md group-hover:text-cvg-400 group-hover:bg-cvg-100 ri-arrow-right-up-line bg-cvg-400 size-8"
-    ></i>
+      ></i>
+    </a>
   </div>
   <h3 class="w-auto p-2 mr-auto text-left rounded-md group-hover:bg-cvg-100">
     {{ title }}

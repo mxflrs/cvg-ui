@@ -81,3 +81,9 @@ h6 {
   height: 4px;
   background-color: black;
 }
+
+.star::before {
+  content: '*';
+  color: inherit;
+  margin-right: 0.5rem;
+}

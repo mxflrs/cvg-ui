@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent {
-  @Input() title = ''
+  @Input() title = '';
+  @Input() url = '';
 
   public backgroundUrl = '';
 

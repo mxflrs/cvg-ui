@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
+import { FeaturedComponent } from 'src/app/pages/featured/featured.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'gallery/:slug',
     component: GalleryComponent,
+  },
+  {
+    path: 'featured/:slug',
+    component: FeaturedComponent,
   },
   {
     path: '**',

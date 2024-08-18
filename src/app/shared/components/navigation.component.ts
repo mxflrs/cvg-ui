@@ -91,6 +91,5 @@ export class NavigationComponent implements OnInit {
 
   onHideSideBar() {
     this.hideSideBarChange.emit(!this.hideSideBar);
-    console.log('YES!');
   }
 }
