@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ClientConfig, createClient, SanityClient, Any } from '@sanity/client';
 import { BehaviorSubject, from, map, Observable } from 'rxjs';
+import { Artists } from 'src/app/core/models/artists.interface';
+import { Artworks } from 'src/app/core/models/artworks.interface';
 import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { environment } from 'src/environments/environment.production';
 
@@ -48,6 +50,47 @@ export class CmsService {
       const query = '*[_type == "categories"] { title, _id, description }'
       return from(this.#sanityClient().fetch(query)).pipe(
         map(result => result)
+      );
+    }
+
+    getAllArtworks(): Observable<Artworks[]> {
+      const query = `*[_type == "artworks" && title]{
+        _id,
+        _updatedAt,
+        info,
+        image,
+        size,
+        title,
+        keyboards,
+        about {
+          "mediums": medium[]->{
+            _id,
+            medium
+          }
+        },
+        "artist": artist->{
+          _id,
+          name,
+          bio,
+        }
+      }`;
+
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result  as Artworks[])
+      );
+    }
+
+    getArtistsById(id: string): Observable<Artists> {
+      const query = `*[_type == "artists"] && _id == ${id}`
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result as Artists)
+      );
+    }
+
+    getAllArtists(): Observable<Artists[]> {
+      const query = '*[_type == "artists"]'
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result as Artists[])
       );
     }
 }

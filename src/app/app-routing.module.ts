@@ -4,11 +4,16 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
 import { FeaturedComponent } from 'src/app/pages/featured/featured.component';
+import { ArtistsComponent } from 'src/app/pages/artists/artists.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'gallery/artists/:slug',
+    component: ArtistsComponent,
   },
   {
     path: 'gallery/:slug',

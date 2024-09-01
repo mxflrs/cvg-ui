@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.component';
-import { LimitedEditionComponent } from './limited-edition/limited-edition.component';
 import { OriginalArtworksComponent } from './original-artworks/original-artworks.component';
-import { DigitalArtComponent } from './digital-art/digital-art.component';
-import { ExtrasComponent } from './extras/extras.component';
 import { MerchandiseComponent } from './merchandise/merchandise.component';
-import { FurnitureAndAppliedArtsComponent } from './furniture-and-applied-arts/furniture-and-applied-arts.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { CmsService } from 'src/app/services/cms.service';
 import { sanityImage } from 'src/app/core/models/sanity-image.interface';
+import { ArtistSectionComponent } from "./artist-section/artist-section.component";
+import { CommissionsComponent } from 'src/app/pages/home/commissions/commissions.component';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +15,11 @@ import { sanityImage } from 'src/app/core/models/sanity-image.interface';
   imports: [
     CommonModule,
     MainSliderComponent,
-    LimitedEditionComponent,
     OriginalArtworksComponent,
-    DigitalArtComponent,
-    ExtrasComponent,
     MerchandiseComponent,
-    FurnitureAndAppliedArtsComponent,
-    SearchModalComponent
+    SearchModalComponent,
+    ArtistSectionComponent,
+    CommissionsComponent
 ],
   template: `
     <div class="max-h-screen grid grid-cols-10 gap-6 bg-cvg-50 relative mb-56">
@@ -53,11 +49,9 @@ import { sanityImage } from 'src/app/core/models/sanity-image.interface';
     </div>
 
     <app-original-artworks  [artworks]="artworks" />
-    <app-digital-art [artworks]="artworks" />
-    <app-limited-edition [artworks]="artworks" />
-    <app-furniture-and-applied-arts [artworks]="artworks" />
+    <app-commissions [artworks]="artworks" />
     <app-merchandise [artworks]="artworks" />
-    <app-extras [artworks]="artworks" />
+    <app-artist-section />
   `,
 })
 export class HomeComponent {

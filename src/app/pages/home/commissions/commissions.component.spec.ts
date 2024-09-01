@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LimitedEditionComponent } from './limited-edition.component';
+import { CommissionsComponent } from './commissions.component';
 
-describe('LimitedEditionComponent', () => {
-  let component: LimitedEditionComponent;
-  let fixture: ComponentFixture<LimitedEditionComponent>;
+describe('CommissionsComponent', () => {
+  let component: CommissionsComponent;
+  let fixture: ComponentFixture<CommissionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LimitedEditionComponent]
+      imports: [CommissionsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(LimitedEditionComponent);
+    fixture = TestBed.createComponent(CommissionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

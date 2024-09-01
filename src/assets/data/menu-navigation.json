@@ -1,9 +1,6 @@
 [
-  { "label": "Original Artworks", "link": "/gallery/original-artworks" },
-  { "label": "Digital Art", "link": "/gallery/digital-art" },
-  { "label": "Limited Edition", "link": "/gallery/limited-edition" },
-  { "label": "Furniture & More", "link": "/gallery/furniture-and-pplied-arts" },
-  { "label": "Merchandise & More", "link": "/gallery/merchandise" },
-  { "label": "Comissions", "link": "/featured/comissions" },
-  { "label": "Murals", "link": "/featured/murals" }
+  { "label": "Artworks", "link": "/gallery/artworks" },
+  { "label": "Artists", "link": "/gallery/artists" },
+  { "label": "Merchandise", "link": "/featured/merchandise" },
+  { "label": "Comissions", "link": "/featured/comissions" }
 ]
