@@ -7,13 +7,13 @@
   (prevAction)="onPrevImage()"
 >
   <div class="grid grid-cols-8 col-span-8 gap-6" (mouseleave)="onResetIndex()">
-    @for(image of imagesToDisplay; track $index) {
+    @for(image of imagesToShow; track $index) {
     <div
       class="relative flex flex-col col-span-2 gap-2 group"
       (mouseover)="onHoverItem($index)"
     >
       <img
-        [src]="image.url"
+        [src]="imageUrl(image.image.asset._ref) + '?q=75&fm=webp&w=800'"
         alt="image"
         class="relative z-10 object-cover w-full h-full transition-all duration-200 rounded max-h-56 group-hover:opacity-70"
         (click)="onOpenModal(image, $index)"

@@ -54,14 +54,14 @@ export class CmsService {
     }
 
     getAllArtworks(): Observable<Artworks[]> {
-      const query = `*[_type == "artworks" && title]{
+      const query = `*[_type == "artworks"]{
         _id,
         _updatedAt,
         info,
         image,
         size,
         title,
-        keyboards,
+        keywords,
         about {
           "mediums": medium[]->{
             _id,

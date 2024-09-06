@@ -5,6 +5,7 @@ import { images } from 'src/app/core/models/images.interface';
 import { sampleImages } from 'src/assets/data/images';
 import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { Artworks } from 'src/app/core/models/artworks.interface';
 
 @Component({
   selector: 'app-main-slider',
@@ -14,20 +15,21 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
   styleUrl: './main-slider.component.scss'
 })
 export class MainSliderComponent {
-  @Input() artworks: sanityImage[] = [];
-  @Input() artworksShow: sanityImage[] = [];
+  @Input() artworks: Artworks[] = [];
+  @Input() artworksShow: Artworks[] = [];
   public imagesData: images[] = [];
   public imageOnDisplayIndex = 0;
 
   public imagesToDisplay = structuredClone(sampleImages);
 
-  constructor(private imageBuilder: ImageBuilderService) {
-    console.log(this.artworks[this.imageOnDisplayIndex])
-  }
+  constructor(private imageBuilder: ImageBuilderService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['artworks']) {
-      this.artworksShow = this.artworks.slice(5, 8);
+      if (this.artworks.length > 0) {
+        this.artworksShow = this.artworks.slice(0, 6);
+        console.table(this.artworksShow);
+      }
     }
   }
 

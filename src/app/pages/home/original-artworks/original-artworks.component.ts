@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TitleComponent } from '../../../shared/components/title.component';
 import { ContentWrapperComponent } from '../../../shared/components/content-wrapper.component';
 import { sampleImages } from 'src/assets/data/images';
 import { ImageEnlargerComponent } from "../../../shared/components/image-enlarger.component";
 import { images } from 'src/app/core/models/images.interface';
-import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { Artworks } from 'src/app/core/models/artworks.interface';
 
 @Component({
   selector: 'app-original-artworks',
@@ -16,17 +16,24 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
   styleUrl: './original-artworks.component.scss',
 })
 export class OriginalArtworksComponent {
-  @Input() artworks: sanityImage[] = [];
-  public artworksShow: sanityImage[] = []
-  public imagesToDisplay = structuredClone(sampleImages);
+  @Input() artworks: Artworks[] = [];
+  public imagesToShow: Artworks[] = [];
   public currentIndex = 0;
   public isHovering = false;
   public isLiked = false;
   public openModal = false;
-  public selectedImage: images | null = null;
+  public selectedImage: Artworks = {} as Artworks;
   public selectedIndex = 0;
 
   constructor(private imageBuilder: ImageBuilderService) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['artworks'] ){
+      this.imagesToShow = this.getRandomItems(this.artworks, 4);
+      // this.imagesToShow = this.artworks.slice(4,8);
+      console.log(this.imagesToShow)
+    }
+  }
 
   onHoverItem(index: number) {
     this.isHovering = true;
@@ -40,35 +47,35 @@ export class OriginalArtworksComponent {
   }
 
   onNextImage() {
-    const next = this.imagesToDisplay.pop();
+    const next = this.imagesToShow.pop();
     if (next) {
-      this.imagesToDisplay.unshift(next);
+      this.imagesToShow.unshift(next);
     }
   }
 
   onPrevImage() {
-    const last = this.imagesToDisplay.shift();
+    const last = this.imagesToShow.shift();
     if (last) {
-      this.imagesToDisplay.push(last);
+      this.imagesToShow.push(last);
     }
   }
 
   onSelectNextImage() {
-    if (this.selectedIndex >= this.imagesToDisplay.length - 1) {
+    if (this.selectedIndex >= this.imagesToShow.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;
     }
-    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+    this.selectedImage = this.imagesToShow[this.selectedIndex];
   }
 
   onSelectPrevImage() {
     if (this.selectedIndex == 0) {
-      this.selectedIndex = this.imagesToDisplay.length - 1;
+      this.selectedIndex = this.imagesToShow.length - 1;
     } else {
       this.selectedIndex--;
     }
-    this.selectedImage = this.imagesToDisplay[this.selectedIndex];
+    this.selectedImage = this.imagesToShow[this.selectedIndex];
   }
 
   onOpenModal(image: any, index: number) {
@@ -80,5 +87,18 @@ export class OriginalArtworksComponent {
 
   imageUrl(id: string) {
     return this.imageBuilder.image(id).url();
+  }
+
+  shuffleArray(array: Artworks[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  getRandomItems(arr: Artworks[], numItems: number) {
+    const shuffled = this.shuffleArray([...arr]);
+    return shuffled.slice(0, numItems);
   }
 }

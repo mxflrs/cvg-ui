@@ -9,7 +9,7 @@ export interface Artworks {
     height: number;
   };
   title: string;
-  keyboards: string[];
+  keywords: string[];
   about: About;
   artist: Artist;
 }

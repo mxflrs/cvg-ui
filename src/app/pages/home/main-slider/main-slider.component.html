@@ -1,14 +1,14 @@
-<section class="grid w-full grid-cols-9 gap-6">
+<section class="grid w-full grid-cols-9 gap-6" *ngIf="artworks.length > 0">
   <div class="col-start-4 gap-2 mt-auto flex-flex-col *:text-right">
-    <h4>Artwork Title</h4>
-    <h6 class="font-bold">Carlos V Garcia</h6>
+    <h4>{{artworks[imageOnDisplayIndex].title}}</h4>
+    <h6 class="font-bold">{{artworks[imageOnDisplayIndex].artist.name}}</h6>
   </div>
 
   <div class="relative col-span-5 col-start-5">
       <img
-      [src]="imagesToDisplay[imageOnDisplayIndex].url"
+      [src]="imageUrl(artworks[imageOnDisplayIndex].image.asset._ref) + '?q=75&fm=webp&w=800'"
       alt="Random Image from Unsplash"
-      class="object-cover w-full h-auto rounded max-h-[80vh] pt-8"
+      class="object-cover w-full h-auto rounded max-h-[80dvh] pt-8"
       />
     <div class="absolute right-0 flex items-center justify-center w-full gap-2 -bottom-6">
       @for(image of imagesToDisplay; track $index) {

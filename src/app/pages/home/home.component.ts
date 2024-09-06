@@ -5,9 +5,9 @@ import { OriginalArtworksComponent } from './original-artworks/original-artworks
 import { MerchandiseComponent } from './merchandise/merchandise.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { CmsService } from 'src/app/services/cms.service';
-import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { ArtistSectionComponent } from "./artist-section/artist-section.component";
 import { CommissionsComponent } from 'src/app/pages/home/commissions/commissions.component';
+import { Artworks } from 'src/app/core/models/artworks.interface';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,7 @@ import { CommissionsComponent } from 'src/app/pages/home/commissions/commissions
           <h1 class="font-bold">Gallery</h1>
         </div>
 
-        <app-main-slider />
+        <app-main-slider [artworks]="artworks"/>
 
         <!-- SEARCH -->
         <button
@@ -57,26 +57,19 @@ import { CommissionsComponent } from 'src/app/pages/home/commissions/commissions
 export class HomeComponent {
   public slug = '';
   public artist = 'Carlos V Garcia';
-  public artworks: sanityImage[] = [];
+  public artworks: Artworks[] = [];
   public showSearch = false;
 
-  constructor(private cmsService: CmsService) {
-
-  }
+  constructor(private cmsService: CmsService) {}
 
   ngOnInit() {
-    this.cmsService.getArtworksByArtistName(this.artist).subscribe({
+    this.loadArtworks();
+  }
+
+  loadArtworks() {
+    this.cmsService.getAllArtworks().subscribe({
       next: (data) => {
         this.artworks = data;
-        data.forEach(a => {
-          a.about?.category?.forEach(c => console.log(c._ref))
-        })
-      }
-    });
-
-    this.cmsService.getAllCategories().subscribe({
-      next: (data) => {
-        console.log(data)
       }
     })
   }

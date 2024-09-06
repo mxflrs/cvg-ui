@@ -1,6 +1,8 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { images } from 'src/app/core/models/images.interface';
+import { Artworks } from 'src/app/core/models/artworks.interface';
+import { ImageBuilderService } from 'src/app/services/image-builder.service';
 
 @Component({
   selector: 'app-image-enlarger',
@@ -16,7 +18,7 @@ import { images } from 'src/app/core/models/images.interface';
           <i class="ri-arrow-left-line btn-round" (click)="onPrevAction()"></i>
           @if (selectedImage) {
             <img
-            [src]="selectedImage.url"
+            [src]="imageUrl(selectedImage.image.asset._ref) + '?q=75&fm=webp&w=800'"
             alt="image"
             class="relative z-10 object-cover w-auto max-w-[70vw] h-full transition-all duration-200 rounded max-h-[70vh] group-hover:opacity-70"
             />
@@ -25,7 +27,7 @@ import { images } from 'src/app/core/models/images.interface';
         </div>
         <button (click)="closeModal()" class="absolute top-4 right-4 btn">Close</button>
        <div class="flex flex-col gap-1 justify-start pt-4">
-        <p class="text-white">{{selectedImage?.title}}</p>
+        <p class="text-white">{{selectedImage.title}}</p>
        </div>
       </div>
     </section>
@@ -36,11 +38,13 @@ import { images } from 'src/app/core/models/images.interface';
 export class ImageEnlargerComponent {
   @Input() openModal = false;
   @Output() openModalChange = new EventEmitter<boolean>();
-  @Input() selectedImage: images | null = null;
+  @Input() selectedImage: Artworks = {} as Artworks;
 
   // ARROW ACTIONS
   @Output() nextAction = new EventEmitter();
   @Output() prevAction = new EventEmitter();
+
+  constructor(private imageBuilder: ImageBuilderService) { }
 
   onNextAction() {
     this.nextAction.emit();
@@ -61,5 +65,9 @@ export class ImageEnlargerComponent {
     if (event.key === 'Escape') {
       this.closeModal();
     }
+  }
+
+  imageUrl(id: string) {
+    return this.imageBuilder.image(id).url();
   }
 }

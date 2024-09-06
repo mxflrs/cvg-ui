@@ -6,6 +6,7 @@ import { ImagePreviewModalComponent } from "../../../shared/components/image-pre
 import { images } from 'src/app/core/models/images.interface';
 import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { Artworks } from 'src/app/core/models/artworks.interface';
 
 @Component({
   selector: 'app-merchandise',
@@ -15,8 +16,8 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
   styleUrl: './merchandise.component.scss'
 })
 export class MerchandiseComponent {
-  @Input() artworks: sanityImage[] = [];
-  public artworksShow: sanityImage[] = [];
+  @Input() artworks: Artworks[] = [];
+  public artworksShow: Artworks[] = [];
   public imagesToDisplay = structuredClone(sampleImages);
   public openModal = false;
   public selectedImage: images | null = null;
