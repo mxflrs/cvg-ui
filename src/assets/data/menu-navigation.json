@@ -1,6 +1,6 @@
 [
   { "label": "Artworks", "link": "/gallery/artworks" },
-  { "label": "Artists", "link": "/gallery/artists" },
+  { "label": "Artists", "link": "/artists" },
   { "label": "Merchandise", "link": "/featured/merchandise" },
   { "label": "Comissions", "link": "/featured/comissions" }
 ]

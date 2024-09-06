@@ -5,6 +5,7 @@ import { HomeComponent } from 'src/app/pages/home/home.component';
 import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
 import { FeaturedComponent } from 'src/app/pages/featured/featured.component';
 import { ArtistsComponent } from 'src/app/pages/artists/artists.component';
+import { SingleArtistsComponent } from 'src/app/pages/single-artists/single-artists.component';
 
 const routes: Routes = [
   {
@@ -12,8 +13,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'gallery/artists/:slug',
+    path: 'artists',
     component: ArtistsComponent,
+  },
+  {
+    path: 'artists/:id',
+    component: SingleArtistsComponent,
   },
   {
     path: 'gallery/:slug',

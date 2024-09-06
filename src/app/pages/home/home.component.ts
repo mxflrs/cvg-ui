@@ -8,6 +8,8 @@ import { CmsService } from 'src/app/services/cms.service';
 import { ArtistSectionComponent } from "./artist-section/artist-section.component";
 import { CommissionsComponent } from 'src/app/pages/home/commissions/commissions.component';
 import { Artworks } from 'src/app/core/models/artworks.interface';
+import { StringHelper } from 'src/app/shared/helpers/string-helper';
+import { Artists } from 'src/app/core/models/artists.interface';
 
 @Component({
   selector: 'app-home',
@@ -50,26 +52,40 @@ import { Artworks } from 'src/app/core/models/artworks.interface';
 
     <app-original-artworks  [artworks]="artworks" />
     <app-commissions [artworks]="artworks" />
-    <app-merchandise [artworks]="artworks" />
-    <app-artist-section />
+    <!-- <app-merchandise [artworks]="artworks" /> -->
+    <app-artist-section [artists]="artists" />
   `,
 })
 export class HomeComponent {
   public slug = '';
   public artist = 'Carlos V Garcia';
   public artworks: Artworks[] = [];
+  public artists: Artists[] = [];
   public showSearch = false;
 
   constructor(private cmsService: CmsService) {}
 
   ngOnInit() {
     this.loadArtworks();
+    this.loadArtists();
   }
 
   loadArtworks() {
     this.cmsService.getAllArtworks().subscribe({
       next: (data) => {
-        this.artworks = data;
+        const dataCopy = structuredClone(data);
+        dataCopy.forEach(a => {
+          a.title = StringHelper.sanitizeString(a.title);
+        })
+        this.artworks = dataCopy;
+      }
+    })
+  }
+
+  loadArtists() {
+    this.cmsService.getAllArtists().subscribe({
+      next: (data) => {
+        this.artists = data;
       }
     })
   }

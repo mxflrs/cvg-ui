@@ -1,18 +1,21 @@
-<section class="grid w-full grid-cols-9 gap-6" *ngIf="artworks.length > 0">
-  <div class="col-start-4 gap-2 mt-auto flex-flex-col *:text-right">
-    <h4>{{artworks[imageOnDisplayIndex].title}}</h4>
-    <h6 class="font-bold">{{artworks[imageOnDisplayIndex].artist.name}}</h6>
+<section class="grid w-full grid-cols-9 gap-6" *ngIf="artworksShow.length > 0">
+  <!-- ARTWORK INFO -->
+  <div class="col-start-3 gap-1 mt-auto flex flex-col *:text-right col-span-2">
+    <h4 class="whitespace-nowrap">{{artworksShow[imageOnDisplayIndex].title}}</h4>
+    <h5 class="font-bold">{{artworksShow[imageOnDisplayIndex].artist.name}}</h5>
   </div>
 
-  <div class="relative col-span-5 col-start-5">
-      <img
-      [src]="imageUrl(artworks[imageOnDisplayIndex].image.asset._ref) + '?q=75&fm=webp&w=800'"
+  <!-- ACTUAL IMAGE -->
+  <div class="relative col-span-5 col-start-5 h-[80dvh] min-h-56 bg-cvg-400 p-4 flex items-center rounded-lg">
+    <img
+      [src]="imageUrl(artworksShow[imageOnDisplayIndex].image.asset._ref) + '?q=75&fm=webp&w=800'"
       alt="Random Image from Unsplash"
-      class="object-cover w-full h-auto rounded max-h-[80dvh] pt-8"
-      />
+      class="object-contain w-full h-full max-h-full rounded"
+    />
+    <!-- BUTTONS NAVIGATION -->
     <div class="absolute right-0 flex items-center justify-center w-full gap-2 -bottom-6">
-      @for(image of imagesToDisplay; track $index) {
-        <div class="bg-gray-500 rounded-sm size-3" (click)="navigateToImage($index)"></div>
+      @for(image of artworksShow; track $index) {
+        <span class="bg-gray-500 rounded-sm size-3" (click)="navigateToImage($index)"></span>
       }
     </div>
   </div>

@@ -7,6 +7,7 @@ import { ImageEnlargerComponent } from "../../../shared/components/image-enlarge
 import { images } from 'src/app/core/models/images.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { Artworks } from 'src/app/core/models/artworks.interface';
+import { ArrayHelper } from 'src/app/shared/helpers/array-helper';
 
 @Component({
   selector: 'app-original-artworks',
@@ -29,9 +30,7 @@ export class OriginalArtworksComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['artworks'] ){
-      this.imagesToShow = this.getRandomItems(this.artworks, 4);
-      // this.imagesToShow = this.artworks.slice(4,8);
-      console.log(this.imagesToShow)
+      this.imagesToShow = ArrayHelper.getRandomItems(this.artworks, 8);
     }
   }
 
@@ -87,18 +86,5 @@ export class OriginalArtworksComponent {
 
   imageUrl(id: string) {
     return this.imageBuilder.image(id).url();
-  }
-
-  shuffleArray(array: Artworks[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
-  getRandomItems(arr: Artworks[], numItems: number) {
-    const shuffled = this.shuffleArray([...arr]);
-    return shuffled.slice(0, numItems);
   }
 }

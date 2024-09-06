@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CmsService } from 'src/app/services/cms.service';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +22,4 @@ import { CmsService } from 'src/app/services/cms.service';
 })
 export class AppComponent {
   hideSideBar = false;
-
-  constructor(private cmsService: CmsService){
-
-  }
 }

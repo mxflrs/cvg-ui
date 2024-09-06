@@ -1,1 +1,12 @@
-<p>artist-section works!</p>
+<app-content-wrapper
+  title="Top Artists"
+  sectionCustomClass="pb-24"
+  url="artists"
+>
+<div class="flex flex-wrap items-center justify-end gap-4 pb-12">
+  @for (a of artists; track $index) {
+      <a [href]="'artists/'+a._id" class="px-4 py-2 text-white bg-cvg-400 hover:bg-cvg-475">{{a.name}}</a>
+    }
+  </div>
+</app-content-wrapper>
+
