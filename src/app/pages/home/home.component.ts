@@ -47,7 +47,7 @@ import { Artists } from 'src/app/core/models/artists.interface';
         </button>
       </section>
 
-      <app-search-modal [(showSearch)]="showSearch" />
+      <app-search-modal [(showSearch)]="showSearch" [artworks]="artworks" />
     </div>
 
     <app-original-artworks  [artworks]="artworks" />

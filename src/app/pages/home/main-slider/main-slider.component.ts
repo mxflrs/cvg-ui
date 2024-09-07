@@ -1,12 +1,11 @@
 import { Component, inject, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeService } from 'src/app/services/home.service';
-import { images } from 'src/app/core/models/images.interface';
 import { sampleImages } from 'src/assets/data/images';
-import { sanityImage } from 'src/app/core/models/sanity-image.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ArrayHelper } from 'src/app/shared/helpers/array-helper';
+import { StoreArtworksService } from 'src/app/services/store-artworks.service';
+import { ArtworkSimple } from 'src/app/core/models/artwork-simple.interface';
 
 @Component({
   selector: 'app-main-slider',
@@ -19,15 +18,17 @@ export class MainSliderComponent {
   @Input() artworks: Artworks[] = [];
   public artworksShow: Artworks[] = [];
   public imageOnDisplayIndex = 0;
-
+  public isLiked = false;
   public imagesToDisplay = structuredClone(sampleImages);
+  public likedArtworks: ArtworkSimple[] = [];
 
-  constructor(private imageBuilder: ImageBuilderService) {}
+  constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['artworks']) {
       if (this.artworks.length > 0) {
         this.artworksShow = ArrayHelper.getRandomItems(this.artworks, 6);
+        this.fetchLikedArtworks();
       }
     }
   }
@@ -38,5 +39,35 @@ export class MainSliderComponent {
 
   imageUrl(id: string) {
     return this.imageBuilder.image(id).url();
+  }
+
+  onSelectNextImage() {
+    if (this.imageOnDisplayIndex >= this.artworksShow.length - 1) {
+      this.imageOnDisplayIndex = 0;
+    } else {
+      this.imageOnDisplayIndex++;
+    }
+  }
+
+  onSelectPrevImage() {
+    if (this.imageOnDisplayIndex == 0) {
+      this.imageOnDisplayIndex = this.artworksShow.length - 1;
+    } else {
+      this.imageOnDisplayIndex--;
+    }
+  }
+
+  addArtwork(id: string, title: string) {
+    const newArtwork: ArtworkSimple = { id, title };
+    this.storeArtworksService.storeArtwork(newArtwork);
+
+    this.fetchLikedArtworks();
+  }
+
+  fetchLikedArtworks() {
+    const likedIds = this.storeArtworksService.getArtworks().map(x => x.id);
+    this.artworksShow.forEach(art => {
+      art.isLiked = likedIds.includes(art._id);
+    });
   }
 }

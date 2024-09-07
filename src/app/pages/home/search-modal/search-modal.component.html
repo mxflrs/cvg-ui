@@ -1,17 +1,31 @@
 @if (showSearch) {
-  <section class="absolute inset-0 bg-cvg-475 backdrop-blur-sm z-[999]">
+<section class="absolute inset-0 bg-cvg-475 backdrop-blur-sm z-[999]">
 
-    <div class="flex items-start justify-between p-8">
+  <div class="flex items-start justify-between px-8 pt-8">
 
-      <form class="flex flex-col gap-2">
-        <div class="flex items-center gap-4 font-semibold text-white">
-          <i class="text-3xl ri-search-line"></i>
-          <label class="pr-16 text-3xl">Search Artwork</label>
-        </div>
-        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-none" placeholder="Enter text here" />
-      </form>
-      <button class="btn" (click)="onCloseModal()">Close</button>
-    </div>
+    <!-- INPUT -->
+    <form class="flex flex-col gap-2">
+      <div class="flex items-center gap-4 font-semibold text-white">
+        <i class="text-2xl ri-search-line"></i>
+        <label class="pr-16 text-xl">Search Artwork</label>
+      </div>
+      <input type="text"
+        class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-cvg-400 bg-none"
+        placeholder="Search by artwork or artist..." (keyup)="onInputChange($event)" />
+    </form>
+    <button class="btn" (click)="onCloseModal()">Close</button>
+  </div>
 
-  </section>
+  <!-- RETURN LIST -->
+  <div class="flex flex-col px-8 pb-8 pt-4 max-h-[60dvh] overflow-hidden" *ngIf="isSearching">
+    @for(art of filteredArtworks; track $index) {
+    <a class="flex items-center gap-2 px-4 py-2 mr-auto bg-transparent rounded-sm cursor-pointer hover:bg-cvg-450" [href]="'gallery/artworks/' + art._id">
+      <img [src]="imageUrl(art.image.asset._ref) + '?q=10&fm=webp&w=100'" alt="Searchable artwork"
+        class="size-6">
+      <h5 class="text-white">{{art.title}}</h5>
+    </a>
+    }
+  </div>
+
+</section>
 }

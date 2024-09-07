@@ -7,6 +7,7 @@ import { NavigationComponent } from 'src/app/shared/components/navigation.compon
 import { TitleComponent } from 'src/app/shared/components/title.component';
 import { FooterComponent } from 'src/app/shared/components/footer.component';
 import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
+import { ToastComponent } from "./shared/components/toast.component";
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger
     HttpClientModule,
     TitleComponent,
     FooterComponent,
-    ImageEnlargerComponent
-  ],
+    ImageEnlargerComponent,
+    ToastComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

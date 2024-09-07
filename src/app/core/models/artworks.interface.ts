@@ -1,6 +1,9 @@
 import { SanityPicture } from "src/app/core/models/sanity-picture.interface";
 
 export interface Artworks {
+  // EXTRA
+  isLiked?: boolean;
+
   _id: string;
   _updatedAt: string;
   image: SanityPicture;

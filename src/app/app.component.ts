@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastComponent } from 'src/app/shared/components/toast.component';
 
 @Component({
   selector: 'app-root',
   standalone: false,
   template: `
     <main class="flex p-0 m-0">
-
+      <!-- <button (click)="showToast()">SHOW TOAST</button> -->
       <aside class="w-64 z-20" [ngClass]="{'w-8': hideSideBar}">
         <app-navigation [(hideSideBar)]="hideSideBar" />
       </aside>
@@ -17,9 +19,21 @@ import { Component } from '@angular/core';
         </div>
       </div>
 
+      <app-toast />
     </main>
   `,
 })
 export class AppComponent {
-  hideSideBar = false;
+  @ViewChild(ToastComponent) toast!: ToastComponent;
+  public hideSideBar = false;
+
+  constructor(private toastService: ToastService) {}
+
+  ngAfterViewInit() {
+    this.toastService.register(this.toast);
+  }
+
+  showToast() {
+    this.toastService.show('This is a toast message!', 'warning');
+  }
 }
