@@ -4,6 +4,7 @@ import {
   Input,
   OnInit,
   Output,
+  SimpleChanges,
   WritableSignal,
   inject,
   signal,
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
 import { menuinterface } from 'src/app/core/models/menu.interface';
+import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 
 @Component({
   selector: 'app-navigation',

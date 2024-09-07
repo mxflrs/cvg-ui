@@ -6,6 +6,8 @@ import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
 import { FeaturedComponent } from 'src/app/pages/featured/featured.component';
 import { ArtistsComponent } from 'src/app/pages/artists/artists.component';
 import { SingleArtistsComponent } from 'src/app/pages/single-artists/single-artists.component';
+import { FavoritesComponent } from 'src/app/pages/favorites/favorites.component';
+import { ContactComponent } from 'src/app/pages/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'featured/:slug',
     component: FeaturedComponent,
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
   },
   {
     path: '**',
