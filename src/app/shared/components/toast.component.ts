@@ -6,22 +6,11 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule],
   standalone: true,
   template: `
-  <div *ngIf="isVisible" class="toast" [ngClass]="type" (click)="close()">
+  <div *ngIf="isVisible" class="fixed bottom-5 right-5 p-4 rounded-sm text-white z-[999] transition-all ease-in-out" [ngClass]="type" (click)="close()">
     {{ message }}
   </div>`,
   styles: [
     `
-    .toast {
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     padding: 15px;
-     border-radius: 5px;
-     color: white;
-     z-index: 1000;
-     transition: opacity 0.5s ease;
-   }
-
    .success {
      background-color: green;
    }
