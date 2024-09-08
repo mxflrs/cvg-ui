@@ -8,11 +8,12 @@ import { images } from 'src/app/core/models/images.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ArrayHelper } from 'src/app/shared/helpers/array-helper';
+import { FavoriteIconComponent } from "../../../shared/components/favorite-icon.component";
 
 @Component({
   selector: 'app-original-artworks',
   standalone: true,
-  imports: [CommonModule, TitleComponent, ContentWrapperComponent, ImageEnlargerComponent],
+  imports: [CommonModule, TitleComponent, ContentWrapperComponent, ImageEnlargerComponent, FavoriteIconComponent],
   templateUrl: './original-artworks.component.html',
   styleUrl: './original-artworks.component.scss',
 })

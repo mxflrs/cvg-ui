@@ -8,6 +8,7 @@ import { TitleComponent } from 'src/app/shared/components/title.component';
 import { FooterComponent } from 'src/app/shared/components/footer.component';
 import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
 import { ToastComponent } from "./shared/components/toast.component";
+import { FavoriteIconComponent } from 'src/app/shared/components/favorite-icon.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ToastComponent } from "./shared/components/toast.component";
     TitleComponent,
     FooterComponent,
     ImageEnlargerComponent,
-    ToastComponent
+    ToastComponent,
+    FavoriteIconComponent
 ],
   providers: [],
   bootstrap: [AppComponent]

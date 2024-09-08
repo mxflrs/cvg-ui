@@ -1,4 +1,4 @@
-<section class="grid w-full grid-cols-9 gap-6" *ngIf="artworksShow.length > 0">
+<section class="grid w-full grid-cols-9 gap-6 pt-20" *ngIf="artworksShow.length > 0">
   <!-- ARTWORK INFO -->
   <div class="col-start-3 mt-auto flex flex-col *:text-right col-span-2 py-4">
     <div class="flex flex-col gap-2">
@@ -9,21 +9,21 @@
     </div>
 
     <h4 class="pt-8 whitespace-nowrap">{{artworksShow[imageOnDisplayIndex].title}}</h4>
-      <!-- @if (artworksShow[imageOnDisplayIndex].about?.mediums?.length > 0) {
+      @if (artworksShow[imageOnDisplayIndex].about.mediums) {
         @for (medium of artworksShow[imageOnDisplayIndex].about.mediums; track $index) {
           <h6 class="font-bold">{{medium?.medium}}</h6>
         }
-      } -->
+      }
     <h5>{{artworksShow[imageOnDisplayIndex].artist.name}}</h5>
   </div>
 
   <!-- ACTUAL IMAGE -->
   <div class="relative col-span-5 col-start-5 h-[80dvh] min-h-56 bg-cvg-400 p-4 flex items-center rounded-sm texture-2">
-    <i
-      class="absolute z-40 px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 left-2 top-2 hover:scale-105 active:scale-90"
-      [ngClass]="artworksShow[imageOnDisplayIndex].isLiked == true ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
-      (click)="addArtwork(artworksShow[imageOnDisplayIndex]._id, artworksShow[imageOnDisplayIndex].title)"
-    ></i>
+    <app-favorite-icon
+      [isLiked]="artworksShow[imageOnDisplayIndex].isLiked"
+      [artworkInfo]="{id: artworksShow[imageOnDisplayIndex]._id, title: artworksShow[imageOnDisplayIndex].title}"
+      (refreshData)="reloadData()"
+    />
     <img [src]="imageUrl(artworksShow[imageOnDisplayIndex].image.asset._ref) + '?q=75&fm=webp&w=800'"
       alt="Random Image from Unsplash" class="object-contain w-full h-full max-h-full rounded drop-shadow-2xl" />
     <!-- SMALL THUMBNAIL NAVIGATION -->

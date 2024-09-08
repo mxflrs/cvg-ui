@@ -1,7 +1,6 @@
 [
-  { "label": "Artworks", "link": "/gallery/artworks" },
+  { "label": "Artworks", "link": "/artworks" },
   { "label": "Artists", "link": "/artists" },
   { "label": "Comissions", "link": "/featured/comissions" },
-  { "label": "Favorites", "link": "/favorites" },
-  { "label": "Contact", "link": "/contact" }
+  { "label": "Favorites", "link": "/favorites" }
 ]

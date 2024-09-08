@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { GalleryComponent } from 'src/app/pages/gallery/gallery.component';
 import { FeaturedComponent } from 'src/app/pages/featured/featured.component';
 import { ArtistsComponent } from 'src/app/pages/artists/artists.component';
 import { SingleArtistsComponent } from 'src/app/pages/single-artists/single-artists.component';
 import { FavoritesComponent } from 'src/app/pages/favorites/favorites.component';
 import { ContactComponent } from 'src/app/pages/contact/contact.component';
+import { ArtworksComponent } from 'src/app/pages/artworks/artworks.component';
+import { SingleArtworkComponent } from 'src/app/pages/single-artwork/single-artwork.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,12 @@ const routes: Routes = [
     component: SingleArtistsComponent,
   },
   {
-    path: 'gallery/:slug',
-    component: GalleryComponent,
+  path: 'artworks/',
+  component: ArtworksComponent,
+  },
+  {
+  path: 'artworks/:slug',
+  component: SingleArtworkComponent,
   },
   {
     path: 'featured/:slug',

@@ -1,6 +1,6 @@
 <app-content-wrapper
   title="Original Artworks"
-  sectionCustomClass="pb-24"
+  sectionCustomClass="pb-24 !pt-40"
   url="gallery/original-works"
   [hasNavigation]="true"
   (nextAction)="onNextImage()"
@@ -9,25 +9,30 @@
   <div class="grid grid-cols-8 col-span-8 gap-6" (mouseleave)="onResetIndex()">
     @for(image of imagesToShow; track $index) {
     <div
-      class="relative flex flex-col gap-2 group"
+      class="relative flex flex-col h-full gap-2 group min-h-36"
       (mouseover)="onHoverItem($index)"
     >
       <img
         [src]="imageUrl(image.image.asset._ref) + '?q=75&fm=webp&w=800'"
         alt="image"
-        class="relative z-10 object-cover w-full h-full transition-all duration-200 rounded min-h-36 group-hover:opacity-70"
+        class="relative z-10 object-cover w-full h-auto transition-all duration-200 rounded group-hover:opacity-70"
         (click)="onOpenModal(image, $index)"
       />
       <div
         class="flex flex-col"
         [ngClass]="currentIndex == $index ? 'show' : 'hide'"
       >
-        <h4>{{ image.title }}</h4>
-        <h6>Carlos V Garcia</h6>
-        <i
+        <a [href]="'/artworks/' + image._id" class="text-base hover:text-cvg-accent2">{{ image.title }}</a>
+        <a [href]="'/artists/' + image.artist._id" class="text-xs font-semibold hover:text-cvg-accent2">{{ image.artist.name }}</a>
+        <!-- <i
           class="absolute z-40 px-2 py-1 rounded-sm bg-cvg-200 left-2 top-2"
-          [ngClass]="isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
-        ></i>
+          [ngClass]="image.isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
+        ></i> -->
+        <app-favorite-icon
+          [isLiked]="image.isLiked"
+          [artworkInfo]="{id: image._id, title: image.title}"
+
+        />
 
       </div>
     </div>

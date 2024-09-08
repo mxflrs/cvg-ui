@@ -8,10 +8,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <section
       class="grid grid-cols-10 gap-3 pt-24 relative"
-      [ngClass]="[
-        darkMode ? 'bg-cvg-400' : '',
-        sectionCustomClass
-      ]"
+      [ngClass]="sectionCustomClass"
     >
       <div class="col-span-8 w-full col-start-2">
         <div class="flex justify-between items-start">

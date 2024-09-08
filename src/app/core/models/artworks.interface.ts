@@ -18,12 +18,12 @@ export interface Artworks {
 }
 
 interface Medium {
-  _id: string;
-  medium: string;
+  _id?: string;
+  medium?: string;
 }
 
 interface About {
-  mediums: Medium[];
+  mediums?: Medium[];
 }
 
 interface Artist {

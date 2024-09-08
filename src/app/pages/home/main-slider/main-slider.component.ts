@@ -6,11 +6,12 @@ import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ArrayHelper } from 'src/app/shared/helpers/array-helper';
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 import { ArtworkSimple } from 'src/app/core/models/artwork-simple.interface';
+import { FavoriteIconComponent } from "../../../shared/components/favorite-icon.component";
 
 @Component({
   selector: 'app-main-slider',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FavoriteIconComponent],
   templateUrl: './main-slider.component.html',
   styleUrl: './main-slider.component.scss'
 })
@@ -57,17 +58,14 @@ export class MainSliderComponent {
     }
   }
 
-  addArtwork(id: string, title: string) {
-    const newArtwork: ArtworkSimple = { id, title };
-    this.storeArtworksService.storeArtwork(newArtwork);
-
-    this.fetchLikedArtworks();
-  }
-
   fetchLikedArtworks() {
     const likedIds = this.storeArtworksService.getArtworks().map(x => x.id);
     this.artworksShow.forEach(art => {
       art.isLiked = likedIds.includes(art._id);
     });
+  }
+
+  reloadData() {
+    this.fetchLikedArtworks();
   }
 }
