@@ -9,6 +9,7 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ArrayHelper } from 'src/app/shared/helpers/array-helper';
 import { FavoriteIconComponent } from "../../../shared/components/favorite-icon.component";
+import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 
 @Component({
   selector: 'app-original-artworks',
@@ -26,12 +27,14 @@ export class OriginalArtworksComponent {
   public openModal = false;
   public selectedImage: Artworks = {} as Artworks;
   public selectedIndex = 0;
+  public filteredArtworksList: Artworks[] = [];
 
-  constructor(private imageBuilder: ImageBuilderService) { }
+  constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['artworks'] ){
-      this.imagesToShow = ArrayHelper.getRandomItems(this.artworks, 8);
+      this.filteredArtworksList = ArrayHelper.getRandomItems(this.artworks, 8);
+      this.processArtworkData();
     }
   }
 
@@ -87,5 +90,13 @@ export class OriginalArtworksComponent {
 
   imageUrl(id: string) {
     return this.imageBuilder.image(id).url();
+  }
+
+  processArtworkData() {
+    this.imagesToShow = this.storeArtworksService.filteredLikedArtworks(this.filteredArtworksList);
+  }
+
+  reloadData() {
+    this.processArtworkData();
   }
 }

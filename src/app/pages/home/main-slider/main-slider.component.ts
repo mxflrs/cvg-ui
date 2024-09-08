@@ -21,6 +21,7 @@ export class MainSliderComponent {
   public imageOnDisplayIndex = 0;
   public isLiked = false;
   public imagesToDisplay = structuredClone(sampleImages);
+  public filteredArtworksList: Artworks[] = [];
   public likedArtworks: ArtworkSimple[] = [];
 
   constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService) { }
@@ -28,8 +29,8 @@ export class MainSliderComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['artworks']) {
       if (this.artworks.length > 0) {
-        this.artworksShow = ArrayHelper.getRandomItems(this.artworks, 6);
-        this.fetchLikedArtworks();
+        this.filteredArtworksList = ArrayHelper.getRandomItems(this.artworks, 6);
+        this.processArtworkData();
       }
     }
   }
@@ -58,14 +59,11 @@ export class MainSliderComponent {
     }
   }
 
-  fetchLikedArtworks() {
-    const likedIds = this.storeArtworksService.getArtworks().map(x => x.id);
-    this.artworksShow.forEach(art => {
-      art.isLiked = likedIds.includes(art._id);
-    });
+  processArtworkData() {
+    this.artworksShow = this.storeArtworksService.filteredLikedArtworks(this.filteredArtworksList);
   }
 
   reloadData() {
-    this.fetchLikedArtworks();
+    this.processArtworkData();
   }
 }
