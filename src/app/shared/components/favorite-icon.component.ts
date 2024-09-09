@@ -8,18 +8,27 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-        <i
-          class="absolute z-40 px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 left-2 top-2 hover:scale-105 active:scale-90 cursor-pointer active:bg-cvg-accent2"
-          [ngClass]="isLiked == true ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
-          (click)="addArtwork()"
-        ></i>
+@if (absoluto) {
+  <i
+    class="absolute z-40 px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 left-2 top-2 hover:scale-105 active:scale-90 cursor-pointer active:bg-cvg-accent2"
+    [ngClass]="isLiked == true ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
+    (click)="addArtwork()"
+  ></i>
+} @else {
+  <i
+    class="absolute z-40 px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 left-2 top-2 hover:scale-105 active:scale-90 cursor-pointer active:bg-cvg-accent2"
+    [ngClass]="isLiked == true ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
+    (click)="addArtwork()"
+  ></i>
+}
   `
 })
 
 export class FavoriteIconComponent {
-  @Input() isLiked?: boolean = false; //artworksShow[imageOnDisplayIndex].isLiked
+  @Input() isLiked?: boolean = false;
   @Input() artworkInfo?: ArtworkSimple = {} as ArtworkSimple;
   @Output() refreshData = new EventEmitter<boolean>();
+  @Input() absoluto: boolean = true;
 
   constructor(private storeArtworksService: StoreArtworksService) { }
 

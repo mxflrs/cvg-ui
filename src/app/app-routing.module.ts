@@ -24,7 +24,7 @@ const routes: Routes = [
     component: SingleArtistsComponent,
   },
   {
-  path: 'artworks/',
+  path: 'artworks',
   component: ArtworksComponent,
   },
   {

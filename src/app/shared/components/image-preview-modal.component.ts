@@ -9,7 +9,7 @@ import { images } from 'src/app/core/models/images.interface';
   template: `
     @if (openModal) {
     <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-[9999] backdrop-blur-sm px-72">
-      <div class="flex justify-start items-center w-full h-full p-4 gap-4">
+      <div class="flex justify-start items-center w-full h-full p-4 gap-4 texture-3">
         @if (selectedImage) {
           <img
           [src]="selectedImage.url"
@@ -22,7 +22,7 @@ import { images } from 'src/app/core/models/images.interface';
         <h3 class="text-white">{{selectedImage?.title}}</h3>
         <h4 class="text-white">{{selectedImage?.author}}</h4>
         <i
-          class="z-40 px-2 py-1 rounded-md bg-cvg-200 mr-auto mt-3"
+          class="z-40 px-2 py-1 rounded-sm bg-cvg-200 mr-auto mt-3"
           [ngClass]="isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'"
         ></i>
        </div>

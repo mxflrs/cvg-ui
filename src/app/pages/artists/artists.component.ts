@@ -12,13 +12,17 @@ import { Artists } from 'src/app/core/models/artists.interface';
 })
 export class ArtistsComponent {
   public artists: Artists[] = [];
-  constructor(private cmsService: CmsService){}
+  constructor(private cmsService: CmsService) {}
 
   ngOnInit() {
+    this.loadArtists();
+  }
+
+  loadArtists() {
     this.cmsService.getAllArtists().subscribe({
       next: (data) => {
         this.artists = data;
       }
-    });
+    })
   }
 }

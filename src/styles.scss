@@ -56,7 +56,7 @@ h6 {
 }
 
 .btn {
-  @apply bg-cvg-400 rounded-md px-6 py-3 text-white hover:bg-cvg-300 text-base;
+  @apply bg-cvg-400 rounded-sm px-6 py-3 text-white hover:bg-cvg-300 text-base;
 
   &.clear {
     @apply bg-cvg-100 text-cvg-400 hover:bg-cvg-200;
@@ -68,7 +68,7 @@ h6 {
 }
 
 .btn-round {
-  @apply size-8 rounded-full bg-cvg-450 hover:bg-cvg-400 flex items-center justify-center text-white cursor-pointer;
+  @apply size-8 rounded-sm bg-cvg-450 hover:bg-cvg-400 flex items-center justify-center text-white cursor-pointer;
 
   &.clear {
     @apply bg-cvg-100 text-cvg-400 hover:bg-cvg-200;
@@ -93,7 +93,16 @@ h6 {
 }
 
 .texture-2 {
-  // background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
   background-image: url("https://www.transparenttextures.com/patterns/graphy-dark.png");
+  background-attachment: fixed;
+}
+
+.texture-3 {
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background-attachment: fixed;
+}
+
+.texture-4 {
+  background-image: url("https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png");
   background-attachment: fixed;
 }

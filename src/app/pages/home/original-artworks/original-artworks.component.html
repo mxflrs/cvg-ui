@@ -1,7 +1,7 @@
 <app-content-wrapper
   title="Original Artworks"
   sectionCustomClass="pb-24 !pt-40"
-  url="gallery/original-works"
+  url="artworks"
   [hasNavigation]="true"
   (nextAction)="onNextImage()"
   (prevAction)="onPrevImage()"
@@ -15,14 +15,14 @@
       <img
         [src]="imageUrl(image.image.asset._ref) + '?q=75&fm=webp&w=800'"
         alt="image"
-        class="relative z-10 object-cover w-full h-auto transition-all duration-200 rounded group-hover:opacity-70"
+        class="relative z-10 object-cover w-full h-auto transition-all duration-200 rounded cursor-pointer group-hover:opacity-70"
         (click)="onOpenModal(image, $index)"
       />
       <div
         class="flex flex-col"
         [ngClass]="currentIndex == $index ? 'show' : 'hide'"
       >
-        <a [href]="'/artworks/' + image._id" class="text-base hover:text-cvg-accent2">{{ image.title }}</a>
+        <a [href]="'/artworks/' + image._id" class="text-sm hover:text-cvg-accent2">{{ image.title }}</a>
         <a [href]="'/artists/' + image.artist._id" class="text-xs font-semibold hover:text-cvg-accent2">{{ image.artist.name }}</a>
 
         <app-favorite-icon
