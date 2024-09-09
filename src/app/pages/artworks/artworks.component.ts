@@ -17,11 +17,19 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 })
 export class ArtworksComponent {
   public artworks: Artworks[] = [];
+  public filteredArtworks: Artworks[] = [];
+  public originalArtworks: Artworks[] = [];
   public openModal: boolean = false;
   public selectedImage: Artworks = {} as Artworks;
   public selectedIndex = 0;
+  public selectedFilter = 'recent';
+  public isSearching = false;
 
-  constructor(private cmsService: CmsService, private imageBuilder: ImageBuilderService, private storeDataService: StoreArtworksService) {}
+  constructor(
+    private cmsService: CmsService,
+    private imageBuilder: ImageBuilderService,
+    private storeDataService: StoreArtworksService
+  ) {}
 
   ngOnInit() {
     this.loadArtworks();
@@ -33,11 +41,35 @@ export class ArtworksComponent {
         const dataCopy = structuredClone(data);
         dataCopy.forEach(a => {
           a.title = StringHelper.sanitizeString(a.title);
-        })
-
-        this.artworks = this.storeDataService.filteredLikedArtworks(dataCopy);
+        });
+        const dataBeforeSort = this.storeDataService.filteredLikedArtworks(dataCopy);
+        this.artworks = dataBeforeSort;
+        this.originalArtworks = [...this.artworks];
       }
-    })
+    });
+  }
+
+  private sortArtworks(artworks: Artworks[], filter: string): Artworks[] {
+    return artworks.sort((a, b) => {
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      if (filter === 'az') {
+        return titleA.localeCompare(titleB);
+      } else {
+        return titleB.localeCompare(titleA);
+      }
+    });
+  }
+
+  onFilterChange(e: Event) {
+    const event = e.target as HTMLSelectElement;
+    this.selectedFilter = event.value;
+
+    if (this.selectedFilter === 'recent') {
+      this.artworks = [...this.originalArtworks];
+    } else {
+      this.artworks = this.sortArtworks(this.artworks, this.selectedFilter);
+    }
   }
 
   imageUrl(id: string) {
@@ -67,6 +99,16 @@ export class ArtworksComponent {
       this.selectedIndex--;
     }
     this.selectedImage = this.artworks[this.selectedIndex];
+  }
+
+  onSearchArtwork(e: Event) {
+    const inputText = (e.target as HTMLInputElement).value;
+    inputText.length > 0 ? this.isSearching = true : this.isSearching = false;
+
+    this.filteredArtworks = this.artworks.filter(x =>
+      x.title.toLowerCase().includes(inputText) ||
+      x.artist.name.toLowerCase().includes(inputText)
+    );
   }
 
   reloadData() {
