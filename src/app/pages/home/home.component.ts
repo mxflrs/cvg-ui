@@ -24,7 +24,7 @@ import { Artists } from 'src/app/core/models/artists.interface';
     CommissionsComponent
 ],
   template: `
-    <div class="max-h-screen grid grid-cols-10 gap-6 bg-cvg-50 relative mb-56">
+    <div class="max-h-screen grid grid-cols-10 gap-6 texture-3 relative mb-56">
       <section class="col-span-9 pt-20 max-h-full">
         <!-- TITLE -->
         <div class="uppercase flex flex-col items-end">

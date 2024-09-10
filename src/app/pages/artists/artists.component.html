@@ -13,10 +13,41 @@
     </div>
   </div>
 
+    <!-- FILTERING -->
+    <div class="flex justify-between px-[10%] border-b-[1px] py-6">
+
+      <!-- SEARCH -->
+       <div class="flex items-center gap-4">
+        <i class="text-2xl ri-search-line text-cvg-450"></i>
+        <input type="text"
+          class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-cvg-400 bg-none"
+          placeholder="Search artworks..." (keyup)="onSearchArtist($event)"/>
+       </div>
+
+
+      <!-- DROPDOWN -->
+      <!-- <div class="flex items-center justify-end gap-4">
+        <label for="filter" class="text-sm">Filter by</label>
+        <select id="filter" name="filter" class="px-2 py-1 border rounded-sm" (change)="onFilterChange($event)">
+          <option value="recent">Recent</option>
+          <option value="az">A - Z</option>
+          <option value="za">Z - A</option>
+        </select>
+      </div> -->
+
+    </div>
+
   <!-- CONTENT -->
-  <div class="flex flex-col gap-2 px-1/10">
-    @for (art of artists; track $index) {
-      <p>{{art.name}}</p>
+  <div class="grid grid-cols-4 gap-6 px-[10%] pt-8">
+    @for (a of artists; track $index) {
+    <div class="flex flex-col gap-2">
+        <div class="h-56 gap-2 p-2 bg-cvg-50 texture-3">
+          @if (a.picture?.asset?._ref) {
+            <img [src]="imageUrl(a.picture?.asset?._ref ?? '') + '?q=75&fm=webp&w=800'" alt="image" class="object-contain w-full h-full" />
+          }
+        </div>
+        <p>{{a.name}} <span class="text-xs">{{a.country}}</span></p>
+      </div>
     }
    </div>
 

@@ -1,40 +1,46 @@
-<app-content-wrapper
-  title="Original Artworks"
-  sectionCustomClass="pb-24 !pt-40"
-  url="artworks"
-  [hasNavigation]="true"
-  (nextAction)="onNextImage()"
-  (prevAction)="onPrevImage()"
->
+<app-content-wrapper title="Original Artworks" sectionCustomClass="pb-24 !pt-40" url="artworks" [hasNavigation]="true"
+  (nextAction)="onNextImage()" (prevAction)="onPrevImage()">
   <div class="grid grid-cols-8 col-span-8 gap-6" (mouseleave)="onResetIndex()">
-    @for(image of imagesToShow; track $index) {
-    <div
-      class="relative flex flex-col h-full gap-2 group min-h-36"
-      (mouseover)="onHoverItem($index)"
-    >
-      <img
-        [src]="imageUrl(image.image.asset._ref) + '?q=75&fm=webp&w=800'"
-        alt="image"
-        class="relative z-10 object-cover w-full h-auto transition-all duration-200 rounded cursor-pointer group-hover:opacity-70"
-        (click)="onOpenModal(image, $index)"
-      />
-      <div
-        class="flex flex-col"
-        [ngClass]="currentIndex == $index ? 'show' : 'hide'"
-      >
-        <a [href]="'/artworks/' + image._id" class="text-sm hover:text-cvg-accent2">{{ image.title }}</a>
-        <a [href]="'/artists/' + image.artist._id" class="text-xs font-semibold hover:text-cvg-accent2">{{ image.artist.name }}</a>
 
+
+    @for(image of imagesToShow; track $index) {
+    <div class="flex flex-col gap-1">
+
+      <!-- IMAGE CONTAINER -->
+      <div class="relative flex flex-col w-full h-48 group bg-cvg-75"
+        (mouseover)="onHoverItem($index)">
+
+        <!-- IMG -->
+        <img
+          [src]="imageUrl(image.image.asset._ref) + '?q=75&fm=webp&w=600'" alt="image"
+          class="relative z-10 object-contain w-full h-full p-2 transition-all duration-200 rounded cursor-pointer group-hover:opacity-70"
+          (click)="onOpenModal(image, $index)"
+        />
+          <!-- FAV -->
         <app-favorite-icon
           [isLiked]="image.isLiked"
           [artworkInfo]="{id: image._id, title: image.title}"
           (refreshData)="reloadData()"
+          [ngClass]="currentIndex == $index ? 'show' : 'hide'"
         />
+      </div>
 
+      <!-- ART INFO -->
+      <div class="flex flex-col items-end w-full gap-1 pt-2 text-right" [ngClass]="currentIndex == $index ? 'show' : 'hide'">
+        <a [href]="'/artworks/' + image._id" class="text-xs font-light hover:text-cvg-accent2 text-ellipsis">{{ image.title }}</a>
+        <a [href]="'/artists/' + image.artist._id" class="overflow-hidden text-xs font-semibold truncate hover:text-cvg-accent2 text-ellipsis">{{
+          image.artist.name }}</a>
+          @if (image.about?.mediums) {
+            @for (medium of image.about.mediums; track $index) {
+              <p class="text-xs italic font-extralight">{{medium?.medium ?? ''}}</p>
+            }
+          }
       </div>
     </div>
     }
+
+
   </div>
 </app-content-wrapper>
 <app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
-(prevAction)="onSelectPrevImage()" />
+  (prevAction)="onSelectPrevImage()" />
