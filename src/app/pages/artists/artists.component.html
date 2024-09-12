@@ -21,34 +21,29 @@
         <i class="text-2xl ri-search-line text-cvg-450"></i>
         <input type="text"
           class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-cvg-400 bg-none"
-          placeholder="Search artworks..." (keyup)="onSearchArtist($event)"/>
+          placeholder="Search artist..." (keyup)="onSearchArtist($event)"/>
        </div>
-
-
-      <!-- DROPDOWN -->
-      <!-- <div class="flex items-center justify-end gap-4">
-        <label for="filter" class="text-sm">Filter by</label>
-        <select id="filter" name="filter" class="px-2 py-1 border rounded-sm" (change)="onFilterChange($event)">
-          <option value="recent">Recent</option>
-          <option value="az">A - Z</option>
-          <option value="za">Z - A</option>
-        </select>
-      </div> -->
-
     </div>
 
   <!-- CONTENT -->
   <div class="grid grid-cols-4 gap-6 px-[10%] pt-8">
-    @for (a of artists; track $index) {
-    <div class="flex flex-col gap-2">
-        <div class="h-56 gap-2 p-2 bg-cvg-50 texture-3">
+    @for (a of (isSearching ? filteredArtists : artists); track $index) {
+    <div class="flex flex-col gap-2 overflow-hidden rounded-sm cursor-pointer" *ngIf="a.picture?.asset">
+        <div class="h-56 gap-2 p-2 bg-cvg-50 border-[1px] border-transparent hover:border-cvg-100 hover:bg-cvg-75">
           @if (a.picture?.asset?._ref) {
             <img [src]="imageUrl(a.picture?.asset?._ref ?? '') + '?q=75&fm=webp&w=800'" alt="image" class="object-contain w-full h-full" />
           }
         </div>
-        <p>{{a.name}} <span class="text-xs">{{a.country}}</span></p>
+        <p class="px-2">{{a.name}} <span class="text-[8px]">{{a.country}}</span></p>
       </div>
     }
    </div>
+
+   <!-- BOTTOM BAR -->
+    @if (!isSearching && artists.length > 0) {
+      <div class="flex justify-end gap-6 py-12 px-[10%] bg-cvg-50 mt-12">
+        <p>Displaying {{artists.length}} artists</p>
+      </div>
+    }
 
   </section>

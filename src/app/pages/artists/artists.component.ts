@@ -16,6 +16,9 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
 export class ArtistsComponent {
   public artists: Artists[] = [];
   public artworks: Artworks[] = [];
+  public isSearching: boolean = false;
+  public filteredArtists: Artists[] = [];
+
   constructor(private cmsService: CmsService, private imageBuilder: ImageBuilderService,) {}
 
   ngOnInit() {
@@ -28,24 +31,33 @@ export class ArtistsComponent {
       artworks: this.cmsService.getAllArtworks()
     }).subscribe({
       next: ({artists, artworks}) => {
-        this.artists = artists;
-        this.artworks = artworks;
+        const rawArtists = artists;
+        const rawArtworks = artworks;
 
-        this.artists.forEach(ats => {
-          const firstArtwork = this.artworks.find(i => i.artist.name === ats.name);
-          if (firstArtwork) {
-            ats.picture = firstArtwork.image;
+        rawArtists.forEach(ats => {
+          const firstArtwork = rawArtworks.filter(i => i.artist.name === ats.name);
+          if (firstArtwork.length > 0) {
+            ats.picture = firstArtwork[0].image;
           }
         })
+
+        this.artworks = rawArtworks;
+        this.artists = rawArtists;
       }
     })
   }
 
-  imageUrl(id: string) {
-    return this.imageBuilder.image(id).url();
+  onSearchArtist(e: Event) {
+    const inputText = (e.target as HTMLInputElement).value;
+    inputText.length > 0 ? this.isSearching = true : this.isSearching = false;
+
+    this.filteredArtists = this.artists.filter(x =>
+      x.name?.toLowerCase().includes(inputText) ||
+      x.surname?.toLowerCase().includes(inputText)
+    );
   }
 
-  onSearchArtist(e: Event) {
-
+  imageUrl(id: string) {
+    return this.imageBuilder.image(id).url();
   }
 }

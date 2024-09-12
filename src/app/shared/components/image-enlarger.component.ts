@@ -36,8 +36,9 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
           <i class="ri-arrow-right-line btn-round" (click)="onNextAction()"></i>
         </div>
         <button (click)="closeModal()" class="absolute top-4 right-4 btn">Close</button>
-       <div class="flex flex-col gap-1 justify-start pt-4">
-        <p class="text-white">{{selectedImage.title}}</p>
+       <div class="flex gap-1 justify-start pt-4 *:text-white *:text-xs">
+        <p class="capitalize">{{selectedImage.title}}</p>
+        <p class="font-extralight italic">by {{selectedImage.artist.name}}</p>
        </div>
       </div>
     </section>
