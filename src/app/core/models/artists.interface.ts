@@ -4,8 +4,8 @@ export interface Artists {
   _id: string
   _updatedAt: Date
   name: string
-  surname: string
+  surname?: string
   country: string
-  picture: SanityPicture
+  picture?: SanityPicture
 }
 

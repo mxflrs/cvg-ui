@@ -54,7 +54,7 @@
         <p class="text-xs">{{art.artist.name}}</p>
         <p class="text-base">{{art.title}}</p>
         @if (art.size?.height && art.size?.width) {
-          <p class="text-xs">{{art.size.height + ' x ' + art.size.width}}</p>
+          <p class="text-xs">{{art?.size?.height + ' x ' + art?.size?.width}}</p>
         }
       </div>
     </div>

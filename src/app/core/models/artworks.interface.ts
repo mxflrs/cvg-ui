@@ -7,9 +7,9 @@ export interface Artworks {
   _id: string;
   _updatedAt: string;
   image: SanityPicture;
-  size: {
-    width: number;
-    height: number;
+  size?: {
+    width?: number;
+    height?: number;
   };
   title: string;
   keywords: string[];
