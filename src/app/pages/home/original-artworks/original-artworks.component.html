@@ -31,7 +31,7 @@
         <a [href]="'/artists/' + image.artist._id" class="overflow-hidden text-xs font-semibold truncate hover:text-cvg-accent2 text-ellipsis">{{
           image.artist.name }}</a>
           @if (image.about?.mediums) {
-            @for (medium of image.about.mediums; track $index) {
+            @for (medium of image.about?.mediums; track $index) {
               <p class="text-xs italic font-extralight">{{medium?.medium ?? ''}}</p>
             }
           }

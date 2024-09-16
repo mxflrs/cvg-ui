@@ -1,10 +1,12 @@
 <section>
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
-    <div
-      class="flex items-center justify-between w-full col-span-8 col-start-2"
-    >
-      <h2 class="font-semibold star">Artist</h2>
+    <div class="flex items-center justify-between w-full col-span-8 col-start-2">
+    <div class="flex items-center gap-4">
+      <a href="/artists" class="font-light star hover:text-cvg-accent2">Artists</a>
+      <p class="font-light">/</p>
+      <h2 class="font-semibold capitalize">{{currentArtist.name}}</h2>
+    </div>
       <a href="/" aria-label="Go home">
         <i
           class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"
@@ -12,4 +14,37 @@
       </a>
     </div>
   </div>
+
+  <!-- CONTENT -->
+   <div class="grid grid-cols-2 gap-6 px-[10%] py-12" *ngIf="artworks.length > 0">
+    @for(art of artworks; track $index) {
+      <div class="relative flex flex-col gap-2 group">
+        <div class="w-full bg-cvg-100 h-96 group-hover:bg-cvg-75 bg-cvg-50 border-[1px] hover:border-cvg-100 border-transparent" (click)="onOpenModal(art, $index)">
+          <img
+          [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=600'" alt="image"
+          class="relative z-10 object-contain w-full h-full p-2 transition-all duration-200 rounded cursor-pointer"
+          />
+        </div>
+        <div class="flex flex-col px-2">
+          <p class="text-[8px]">{{currentArtist.name}}</p>
+          <p class="capitalize">{{art.title}}</p>
+          <p class="text-xs" *ngIf="art.size?.width || art.size?.height">{{art.size?.width}} x {{art.size?.height}}</p>
+        </div>
+        <app-favorite-icon
+          [isLiked]="art.isLiked"
+          [artworkInfo]="{id: art._id, title: art.title}"
+          (refreshData)="reloadData()"
+        />
+      </div>
+    }
+   </div>
+
+   <!-- NO CONTENT -->
+    <div class="flex px-[10%] py-12" *ngIf="artworks.length <= 0">
+      <p>Artworks will be displayed here soon!</p>
+    </div>
+   <app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
+  (prevAction)="onSelectPrevImage()" />
+
+
 </section>

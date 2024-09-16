@@ -29,11 +29,11 @@
   <div class="grid grid-cols-4 gap-6 px-[10%] pt-8">
     @for (a of (isSearching ? filteredArtists : artists); track $index) {
     <div class="flex flex-col gap-2 overflow-hidden rounded-sm cursor-pointer" *ngIf="a.picture?.asset">
-        <div class="h-56 gap-2 p-2 bg-cvg-50 border-[1px] border-transparent hover:border-cvg-100 hover:bg-cvg-75">
+        <a [href]="'artists/' + a._id" class="h-56 gap-2 p-2 bg-cvg-50 border-[1px] border-transparent hover:border-cvg-100 hover:bg-cvg-75">
           @if (a.picture?.asset?._ref) {
             <img [src]="imageUrl(a.picture?.asset?._ref ?? '') + '?q=75&fm=webp&w=800'" alt="image" class="object-contain w-full h-full" />
           }
-        </div>
+        </a>
         <p class="px-2">{{a.name}} <span class="text-[8px]">{{a.country}}</span></p>
       </div>
     }

@@ -80,10 +80,10 @@ export class CmsService {
       );
     }
 
-    getArtistsById(id: string): Observable<Artists> {
-      const query = `*[_type == "artists"] && _id == ${id}`
+    getArtistsById(id: string): Observable<Artists[]> {
+      const query = `*[_type == "artists" && _id == "${id}"]`
       return from(this.#sanityClient().fetch(query)).pipe(
-        map(result => result as Artists)
+        map(result => result as Artists[])
       );
     }
 
@@ -91,6 +91,13 @@ export class CmsService {
       const query = '*[_type == "artists"]'
       return from(this.#sanityClient().fetch(query)).pipe(
         map(result => result as Artists[])
+      );
+    }
+
+    getArtworksByArtistId(artistId: string) {
+      const query = `*[_type == "artworks" && artist._ref == "${artistId}"]`;
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result as Artworks[])
       );
     }
 }

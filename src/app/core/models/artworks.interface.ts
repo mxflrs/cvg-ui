@@ -13,17 +13,17 @@ export interface Artworks {
   };
   title: string;
   keywords: string[];
-  about: About;
+  about?: About;
   artist: Artist;
 }
 
 interface Medium {
-  _id: string;
-  medium: string;
+  _id?: string;
+  medium?: string;
 }
 
 interface About {
-  mediums: Medium[];
+  mediums?: Medium[];
 }
 
 interface Artist {
