@@ -1,1 +1,38 @@
-<p>single-artwork works!</p>
+<section>
+  <!-- HEADER -->
+  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+    <div class="flex items-center justify-between w-full col-span-8 col-start-2">
+      <div class="flex items-center gap-4">
+        <a href="/artworks" class="font-light star hover:text-cvg-accent2">Artwork</a>
+        <p class="font-light">/</p>
+        <h3 class="overflow-hidden text-xl font-semibold capitalize truncate">{{ currentArtwork.title}}</h3>
+      </div>
+      <a href="/" aria-label="Go home">
+        <i
+          class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="px-[10%] py-8 flex items-end justify-start gap-6">
+    <img [src]="imageUrl(currentArtwork.image.asset._ref) + '?q=75&fm=webp&w=600'" alt="image"
+      class="z-10 object-contain w-auto max-h-[60vh] rounded cursor-pointer" />
+
+    <div class="p-4 rounded-sm bg-cvg-50 hover:bg-cvg-75">
+      <a [href]="'/artists/' + currentArtwork.artist._id" class="text-sm global text-[8px]">{{currentArtwork.artist.name}}</a>
+      <p class="font-semibold capitalize">{{currentArtwork.title}}</p>
+      <p *ngIf="currentArtwork.size?.height">{{currentArtwork.size?.height}} x {{currentArtwork.size?.width}}</p>
+      @for(medium of currentArtwork.about?.mediums; track $index) {
+        <p *ngIf="currentArtwork.about?.mediums" class="text-[8px]">{{medium.medium}}</p>
+      }
+
+      <div class="flex gap-2 pt-4">
+        @for(tag of currentArtwork.keywords; track $index) {
+        <p class="px-2 py-1 rounded-sm bg-cvg-100 text-[8px]">{{tag}}</p>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

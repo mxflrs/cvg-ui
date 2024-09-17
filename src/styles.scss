@@ -15,6 +15,7 @@
   --cvg-300: #545D68;
   --cvg-200: #C5CED6;
   --cvg-100: #E8EBEF;
+  --cvg-accent: #FFBD00;
 }
 
 body {
@@ -53,6 +54,18 @@ h5 {
 
 h6 {
   font-size: 0.6rem;
+}
+
+a {
+  &.global {
+    text-decoration: none;
+    text-underline-offset: 0.25rem;
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--cvg-accent)
+    }
+  }
 }
 
 .btn {

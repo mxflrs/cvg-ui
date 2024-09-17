@@ -87,6 +87,32 @@ export class CmsService {
       );
     }
 
+    getArtworkById(id: string): Observable<Artworks[]> {
+      const query = `*[_type == "artworks" && _id == "${id}"]{
+        _id,
+        _updatedAt,
+        info,
+        image,
+        size,
+        title,
+        keywords,
+        about {
+          "mediums": medium[]->{
+            _id,
+            medium
+          }
+        },
+        "artist": artist->{
+          _id,
+          name,
+          bio,
+        }
+      }`
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result as Artworks[])
+      );
+    }
+
     getAllArtists(): Observable<Artists[]> {
       const query = '*[_type == "artists"]'
       return from(this.#sanityClient().fetch(query)).pipe(
