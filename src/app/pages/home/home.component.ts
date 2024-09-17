@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainSliderComponent } from 'src/app/pages/home/main-slider/main-slider.component';
 import { OriginalArtworksComponent } from './original-artworks/original-artworks.component';
-import { MerchandiseComponent } from './merchandise/merchandise.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { CmsService } from 'src/app/services/cms.service';
 import { ArtistSectionComponent } from "./artist-section/artist-section.component";
@@ -18,7 +17,6 @@ import { Artists } from 'src/app/core/models/artists.interface';
     CommonModule,
     MainSliderComponent,
     OriginalArtworksComponent,
-    MerchandiseComponent,
     SearchModalComponent,
     ArtistSectionComponent,
     CommissionsComponent
@@ -52,7 +50,6 @@ import { Artists } from 'src/app/core/models/artists.interface';
 
     <app-original-artworks  [artworks]="artworks" />
     <app-commissions [artworks]="artworks" />
-    <!-- <app-merchandise [artworks]="artworks" /> -->
     <app-artist-section [artists]="artists" />
   `,
 })

@@ -1,31 +1,31 @@
 <app-content-wrapper
-  title="Commissions"
-  sectionCustomClass="pb-32 bg-cvg-400"
-  url="gallery/digital-art"
+  title="Latest Artworks"
+  sectionCustomClass="pb-32 bg-cvg-400 texture-2"
+  url="artworks"
   [darkMode]="true"
+  [hasNavigation]="true"
+  (nextAction)="onNextImage()"
+  (prevAction)="onPrevImage()"
   >
-  <div class="grid grid-cols-9 gap-6">
-    <div class="flex flex-col col-span-4 gap-6 pb-24 pr-24">
-      <p class="text-xs leading-6 text-justify text-white">
-        Digital art is a contemporary form of artistic expression that leverages technology and digital tools. Artists use software, tablets, and other digital mediums to create visually stunning and innovative pieces. This medium allows for endless possibilities, blending traditional art techniques with the versatility of digital platforms. Digital art has transformed the way artists conceptualize and produce their work, offering new avenues for creativity and exploration in the ever-evolving landscape of artistic expression.
-      </p>
-      <button class="mr-auto btn clear">View All</button>
-    </div>
+  <div class="relative flex w-full gap-6 overflow-x-hidden transition-all group">
+    @for(art of artworks; track $index) {
+      <img #imageElement [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=800'"
+      [ngClass]="{'!opacity-100': $index == 0}"
+      alt="Random Image from Unsplash" class="object-cover w-full h-auto col-span-2 transition-all rounded opacity-40 max-h-96 drop-shadow-2xl" />
 
-    <div class="col-span-2">
-      <img
-      src="/assets/images/sample1.jpg"
-      alt="Random Image from Unsplash"
-      class="object-cover w-full h-48 rounded"
-    />
-    </div>
-    <div class="col-span-3">
-      <img
-      src="/assets/images/sample2.jpg"
-      alt="Random Image from Unsplash"
-      class="object-cover w-full rounded h-96"
-    />
-    </div>
-
+      <!-- INFO CARD -->
+      <div class="absolute bottom-0 right-0 w-full m-4">
+        <div class="flex flex-col items-center justify-center w-64 h-32 p-2 mx-auto texture-3 bg-cvg-100">
+          <a [href]="'artists/' + art.artist._id" class="text-sm global">{{art.artist.name}}</a>
+          <p class="font-semibold text-md">{{art.title}}</p>
+          @for(medium of art?.about?.mediums; track $index) {
+            <p class="font-semibold text-[8px]">{{medium?.medium}}</p>
+          }
+          @if (art.size?.height) {
+            <p>{{art.size?.height}} x {{art.size?.width}}</p>
+          }
+        </div>
+      </div>
+    }
   </div>
 </app-content-wrapper>
