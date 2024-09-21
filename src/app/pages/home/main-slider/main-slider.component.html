@@ -8,13 +8,13 @@
         aria-label="btn down"><i class="ri-arrow-down-s-line"></i></button>
     </div>
 
-    <h4 class="pt-8 whitespace-nowrap">{{artworksShow[imageOnDisplayIndex].title}}</h4>
-      <!-- @if (artworksShow[imageOnDisplayIndex].about.mediums) {
-        @for (medium of artworksShow[imageOnDisplayIndex].about.mediums; track $index) {
-          <h6 class="font-bold">{{medium?.medium}}</h6>
+    <h5 class="pt-8">{{artworksShow[imageOnDisplayIndex].artist.name}}</h5>
+    <h4 class="capitalize whitespace-nowrap">{{artworksShow[imageOnDisplayIndex].title}}</h4>
+      @if (artworksShow[imageOnDisplayIndex].about?.mediums) {
+        @for (medium of artworksShow[imageOnDisplayIndex].about?.mediums; track $index) {
+          <h6 class="px-2 py-1 ml-auto -mr-2 font-bold bg-cvg-50 hover:bg-cvg-75">{{medium?.medium}}</h6>
         }
-      } -->
-    <h5>{{artworksShow[imageOnDisplayIndex].artist.name}}</h5>
+      }
   </div>
 
   <!-- ACTUAL IMAGE -->

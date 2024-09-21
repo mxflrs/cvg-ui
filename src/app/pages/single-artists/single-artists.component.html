@@ -40,8 +40,9 @@
    </div>
 
    <!-- NO CONTENT -->
-    <div class="flex px-[10%] py-12" *ngIf="artworks.length <= 0">
-      <p>Artworks will be displayed here soon!</p>
+    <div class="flex px-[10%] py-12 flex-col gap-4" *ngIf="artworks.length <= 0">
+      <p><i class="ri-gallery-line ri-lg"></i> Artworks will be displayed here soon!</p>
+      <a href="/" class="global"><i class="ri-arrow-left-line"></i> Take me back</a>
     </div>
    <app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
   (prevAction)="onSelectPrevImage()" />
