@@ -16,6 +16,7 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
 export class FavoritesComponent {
   public ids: string[] = [];
   public likedArtworks: Artworks[] = [];
+  public currentIndex = -1;
 
   constructor(private storeService: StoreArtworksService, private cmsService: CmsService, private imageBuilder: ImageBuilderService) {}
 
@@ -46,4 +47,13 @@ export class FavoritesComponent {
     return this.imageBuilder.image(id).url();
   }
 
+  onHoverItem(e: number) {
+    this.currentIndex = e;
+  }
+
+  onArtworkDelete(id: string) {
+    this.storeService.deleteArtworkById(id);
+    this.loadArtworksFromLocalHost();
+    this.loadAllArtworks();
+  }
 }

@@ -91,4 +91,43 @@ export class StoreArtworksService {
 
     return result;
   }
+
+  deleteArtworkById(artworkId: string): void {
+    if (!artworkId) {
+      this.toastService.show("Artwork ID must be provided.", 'error');
+      return;
+    }
+
+    const existingArtworksJSON = localStorage.getItem(this.storageKey);
+    let artworks: ArtworkSimple[] = [];
+
+    // Check if existing artworks exist and parse them
+    if (existingArtworksJSON) {
+      try {
+        const parsedArtworks = JSON.parse(existingArtworksJSON);
+        // Ensure that parsedArtworks is an array
+        if (Array.isArray(parsedArtworks)) {
+          artworks = parsedArtworks;
+        } else {
+          console.error("Parsed data is not an array. Initializing with an empty array.");
+        }
+      } catch (error) {
+        console.error("Failed to parse existing artworks from local storage:", error);
+      }
+    }
+
+    // Find the index of the artwork to delete
+    const artworkIndex = artworks.findIndex(existingArtwork => existingArtwork.id === artworkId);
+    if (artworkIndex !== -1) {
+      // Remove the artwork from the array
+      artworks.splice(artworkIndex, 1);
+      this.toastService.show("Artwork deleted successfully.", 'success');
+    } else {
+      this.toastService.show("Artwork not found.", 'warning');
+    }
+
+    // Store the updated array back in local storage
+    const updatedArtworksJSON = JSON.stringify(artworks);
+    localStorage.setItem(this.storageKey, updatedArtworksJSON);
+  }
 }

@@ -10,5 +10,6 @@ import { ContactModalComponent } from "../../shared/components/contact-modal.com
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+  public showContactModal = false;
 
 }

@@ -52,7 +52,7 @@
             (refreshData)="reloadData()"
             />
         <a [href]="'/artists/' + art.artist._id" class="text-xs hover:text-cvg-accent2">{{art.artist.name}}</a>
-        <p class="text-base">{{art.title}}</p>
+        <p class="text-base text-right">{{art.title}}</p>
         @if (art.size?.height && art.size?.width) {
           <p class="text-xs">{{art?.size?.height + ' x ' + art?.size?.width}}</p>
         }

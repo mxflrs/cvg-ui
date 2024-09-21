@@ -39,9 +39,9 @@
         <h2 class="font-semibold">Carlos V Garcia</h2>
         <p class="leading-8 text-justify">Garcia is a self-taught painter, muralist, and designer from La Ceiba, Honduras. He has had multiple mural commissions since moving to the Cayman Islands and in 2019 he was a participating artist in KAABOO festival. He currently operates his own artist gallery in George Town where he frequently holds exhibitions.</p>
 
-        <button class="mt-8 mr-auto btn">Get in touch</button>
+        <button class="mt-8 mr-auto btn" (click)="showContactModal = true">Get in touch</button>
       </div>
 
     </div>
-    <app-contact-modal />
+    <app-contact-modal [(openContact)]="showContactModal" />
 </section>

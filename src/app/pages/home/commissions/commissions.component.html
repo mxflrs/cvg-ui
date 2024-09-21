@@ -10,7 +10,8 @@
   <div class="relative flex w-full gap-6 overflow-x-hidden transition-all group">
     @for(art of artworks; track $index) {
       <img #imageElement [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=800'"
-      [ngClass]="{'!opacity-100': $index == 0}"
+      (click)="onOpenModal(art, $index)"
+      [ngClass]="{'!opacity-100 cursor-pointer': $index == 0}"
       alt="Random Image from Unsplash" class="object-cover w-full h-auto col-span-2 transition-all rounded opacity-40 max-h-96 drop-shadow-2xl" />
 
       <!-- INFO CARD -->
@@ -29,3 +30,6 @@
     }
   </div>
 </app-content-wrapper>
+
+<app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
+  (prevAction)="onSelectPrevImage()" />
