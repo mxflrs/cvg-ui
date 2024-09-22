@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="artists.length > 0">
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
     <div
@@ -46,4 +46,6 @@
       </div>
     }
 
-  </section>
+</section>
+
+<app-spinner *ngIf="artists.length <= 0"/>

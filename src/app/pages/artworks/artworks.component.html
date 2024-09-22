@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="artworks.length > 0">
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-400">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
@@ -68,3 +68,5 @@
   <app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
     (prevAction)="onSelectPrevImage()" />
 </section>
+
+<app-spinner *ngIf="artworks.length <= 0"/>

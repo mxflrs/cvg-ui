@@ -7,11 +7,12 @@ import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger
 import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { FavoriteIconComponent } from 'src/app/shared/components/favorite-icon.component';
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
+import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
 
 @Component({
   selector: 'app-artworks',
   standalone: true,
-  imports: [CommonModule, ImageEnlargerComponent, FavoriteIconComponent],
+  imports: [CommonModule, ImageEnlargerComponent, FavoriteIconComponent, SpinnerComponent],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.scss'
 })
