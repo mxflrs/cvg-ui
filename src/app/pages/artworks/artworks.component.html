@@ -14,12 +14,12 @@
   <div class="flex justify-between px-[10%] border-b-[1px] py-6">
 
     <!-- SEARCH -->
-     <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4">
       <i class="text-2xl ri-search-line text-cvg-450"></i>
       <input type="text"
         class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-cvg-400 bg-none"
-        placeholder="Search artworks..." (keyup)="onSearchArtwork($event)"/>
-     </div>
+        placeholder="Search artworks..." (keyup)="onSearchArtwork($event)" />
+    </div>
 
 
     <!-- DROPDOWN -->
@@ -37,36 +37,33 @@
   <!-- CONTENT -->
   <div class="grid grid-cols-4 px-[10%] pt-8">
     @for (art of (isSearching ? filteredArtworks : artworks); track $index) {
-    <div class="m-2">
+    <div class="relative m-2" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
 
+      <app-favorite-icon [isLiked]="art.isLiked" [artworkInfo]="{id: art._id, title: art.title}"
+        (refreshData)="reloadData()" *ngIf="currentIndex == $index" />
       <div
         class="relative z-10 w-full h-64 overflow-hidden transition-all duration-200 rounded-sm cursor-pointer group hover:bg-cvg-75 bg-cvg-50 border-[1px] hover:border-cvg-100 border-transparent">
         <img [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=800'" alt="image"
           class="z-10 object-contain w-full h-full p-4 rounded-sm cursor-pointer max-h-54"
           (click)="onOpenModal(art, $index)" />
-        </div>
-        <div class="flex flex-col items-end justify-end gap-1 p-4 h-54">
-        <app-favorite-icon
-            [isLiked]="art.isLiked"
-            [artworkInfo]="{id: art._id, title: art.title}"
-            (refreshData)="reloadData()"
-            />
+      </div>
+      <div class="flex flex-col items-end justify-end gap-1 p-4 h-54">
         <a [href]="'/artists/' + art.artist._id" class="text-xs hover:text-cvg-accent2">{{art.artist.name}}</a>
         <p class="text-base text-right">{{art.title}}</p>
         @if (art.size?.height && art.size?.width) {
-          <p class="text-xs">{{art?.size?.height + ' x ' + art?.size?.width}}</p>
+        <p class="text-xs">{{art?.size?.height + ' x ' + art?.size?.width}}</p>
         }
       </div>
     </div>
     }
   </div>
 
-     <!-- BOTTOM BAR -->
-      @if (!isSearching && artworks.length > 0) {
-        <div class="flex justify-end gap-6 py-12 px-[10%] bg-cvg-50 mt-12">
-          <p>Displaying {{(isSearching ? filteredArtworks : artworks).length}} artists</p>
-        </div>
-      }
+  <!-- BOTTOM BAR -->
+  @if (!isSearching && artworks.length > 0) {
+  <div class="flex justify-end gap-6 py-12 px-[10%] bg-cvg-50 mt-12">
+    <p>Displaying {{(isSearching ? filteredArtworks : artworks).length}} artworks</p>
+  </div>
+  }
 
   <app-image-enlarger [(openModal)]="openModal" [selectedImage]="selectedImage" (nextAction)="onSelectNextImage()"
     (prevAction)="onSelectPrevImage()" />

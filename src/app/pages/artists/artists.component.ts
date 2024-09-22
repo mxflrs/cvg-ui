@@ -5,11 +5,12 @@ import { Artists } from 'src/app/core/models/artists.interface';
 import { forkJoin } from 'rxjs';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
 
 @Component({
   selector: 'app-artists',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SpinnerComponent],
   templateUrl: './artists.component.html',
   styleUrl: './artists.component.scss'
 })
@@ -18,6 +19,7 @@ export class ArtistsComponent {
   public artworks: Artworks[] = [];
   public isSearching: boolean = false;
   public filteredArtists: Artists[] = [];
+  public isLoading: boolean = true;
 
   constructor(private cmsService: CmsService, private imageBuilder: ImageBuilderService,) {}
 

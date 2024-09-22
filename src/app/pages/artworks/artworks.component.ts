@@ -24,6 +24,7 @@ export class ArtworksComponent {
   public selectedIndex = 0;
   public selectedFilter = 'recent';
   public isSearching = false;
+  public currentIndex = -1;
 
   constructor(
     private cmsService: CmsService,
@@ -109,6 +110,10 @@ export class ArtworksComponent {
       x.title.toLowerCase().includes(inputText) ||
       x.artist.name.toLowerCase().includes(inputText)
     );
+  }
+
+  onHoverItem(e: number) {
+    this.currentIndex = e;
   }
 
   reloadData() {
