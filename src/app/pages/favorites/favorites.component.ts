@@ -20,8 +20,9 @@ export class FavoritesComponent {
   public likedArtworks: Artworks[] = [];
   public currentIndex = -1;
   public showContactModal = false;
+  public message = '';
 
-  constructor(private storeService: StoreArtworksService, private cmsService: CmsService, private imageBuilder: ImageBuilderService) {}
+  constructor(private storeService: StoreArtworksService, private cmsService: CmsService, private imageBuilder: ImageBuilderService) { }
 
   ngOnInit() {
     this.loadArtworksFromLocalHost();
@@ -58,5 +59,19 @@ export class FavoritesComponent {
     this.storeService.deleteArtworkById(id);
     this.loadArtworksFromLocalHost();
     this.loadAllArtworks();
+  }
+
+  onOpenModal(id?: string) {
+    if (id) {
+      const inquiredArtwork = this.likedArtworks.filter(i => i._id == id);
+      this.message = `Hi there, I’m interested in the following artwork: [${inquiredArtwork[0].title} by ${inquiredArtwork[0].artist.name}]. Could you please provide more details on their availability and pricing?`
+      this.showContactModal = true;
+    } else {
+      const allArtworks = this.likedArtworks.flatMap(a => a.title);
+      this.message = `Hi there, I’m interested in the following artworks: [${allArtworks}]. Could you please provide more details on their availability and pricing?`
+      this.showContactModal = true;
+    }
+
+    console.log(this.message);
   }
 }

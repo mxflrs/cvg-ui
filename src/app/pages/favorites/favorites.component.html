@@ -17,7 +17,7 @@
     } @else {
       <p>Nothing to see here</p>
     }
-    <button class="btn" [ngClass]="{'invisible': likedArtworks.length <= 0}">Inquery All Favorite Artworks</button>
+    <button class="btn" [ngClass]="{'invisible': likedArtworks.length <= 0}" (click)="onOpenModal()">Inquery All Favorite Artworks</button>
   </div>
 
   <!-- CONTENT -->
@@ -37,7 +37,7 @@
       <div class="flex items-center justify-center gap-2">
         <button *ngIf="$index == currentIndex" class="h-auto my-auto btn small !bg-cvg-accent1 hover:!bg-cvg-400"
         (click)="onArtworkDelete(artwork._id)">Delete</button>
-        <button *ngIf="$index == currentIndex" class="h-auto my-auto btn small" (click)="showContactModal = true">Inquery</button>
+        <button *ngIf="$index == currentIndex" class="h-auto my-auto btn small" (click)="onOpenModal(artwork._id)">Inquery</button>
       </div>
     </div>
     }
@@ -46,4 +46,4 @@
 </section>
 
 <app-spinner *ngIf="!likedArtworks" />
-<app-contact-modal [(openContact)]="showContactModal" />
+<app-contact-modal [(openContact)]="showContactModal" [message]="message" [emailFrom]="'Favorite Artworks'" [subject]="'Artwork Inquery'" />

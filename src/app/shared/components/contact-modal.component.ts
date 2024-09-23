@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MailService } from 'src/app/services/mail.service';
+import { environment } from 'src/environments/environment.production';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-contact-modal',
@@ -37,26 +40,59 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ContactModalComponent {
   @Input() openContact: boolean = false;
+  @Input() message: string = '';
+  @Input() subject: string = '';
+  @Input() emailFrom: string = '';
   @Output() openContactChange = new EventEmitter<boolean>();
   public contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private mailService: MailService, private notificationService: ToastService) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required]
+      message: [this.message, Validators.required]
     });
   }
 
-  onOpenContact(){
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['message']) {
+      this.contactForm.get('message')?.setValue(this.message);
+    }
+  }
+
+  onOpenContact() {
     this.openContactChange.emit(!this.openContact);
+  }
+
+  async submitEmail() {
+    // -- set formData values
+    let formData: FormData = new FormData();
+    formData.append('name', this.contactForm.get('name')?.value);
+    formData.append('email', this.contactForm.get('email')?.value);
+    formData.append('body', this.contactForm.get('message')?.value);
+    // -- email customization
+    formData.append('access_key', environment.FORM_ACCESS_KEY);
+    formData.append('subject', this.subject);
+    formData.append('from_name', this.emailFrom);
+
+    try {
+      const res = await this.mailService.sendEmail(formData);
+      if (!res.ok) {
+        this.notificationService.show('Something went wrong', 'error');
+        throw new Error();
+      } else {
+        this.notificationService.show('Inquery sent', 'success');
+      }
+    } catch {
+      this.notificationService.show('Something went wrong', 'error');
+    }
   }
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const formValues = this.contactForm.value;
-      console.log('Form Submitted!', formValues);
+      this.submitEmail();
     }
+    this.onOpenContact();
   }
 
 }
