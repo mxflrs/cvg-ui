@@ -1,6 +1,6 @@
 <app-content-wrapper title="Original Artworks" sectionCustomClass="pb-24 !pt-40" url="artworks" [hasNavigation]="true"
   (nextAction)="onNextImage()" (prevAction)="onPrevImage()">
-  <div class="grid grid-cols-8 col-span-8 gap-6" (mouseleave)="onResetIndex()">
+  <div class="grid grid-cols-2 col-span-8 gap-6 xl:grid-cols-8 md:grid-cols-4" (mouseleave)="onResetIndex()">
 
 
     @for(image of imagesToShow; track $index) {

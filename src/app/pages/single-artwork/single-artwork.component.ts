@@ -5,11 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
 
 @Component({
   selector: 'app-single-artwork',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SpinnerComponent],
   templateUrl: './single-artwork.component.html',
   styleUrl: './single-artwork.component.scss'
 })

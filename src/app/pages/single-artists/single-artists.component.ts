@@ -9,11 +9,12 @@ import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { FavoriteIconComponent } from "../../shared/components/favorite-icon.component";
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
+import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
 
 @Component({
   selector: 'app-single-artists',
   standalone: true,
-  imports: [CommonModule, FavoriteIconComponent, ImageEnlargerComponent],
+  imports: [CommonModule, FavoriteIconComponent, ImageEnlargerComponent, SpinnerComponent],
   templateUrl: './single-artists.component.html',
   styleUrl: './single-artists.component.scss'
 })

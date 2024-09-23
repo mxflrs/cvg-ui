@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="currentArtwork._id">
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
@@ -36,3 +36,5 @@
     </div>
   </div>
 </section>
+
+<app-spinner *ngIf="!currentArtwork._id" />
