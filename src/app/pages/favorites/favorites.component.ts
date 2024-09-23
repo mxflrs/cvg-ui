@@ -5,11 +5,13 @@ import { CmsService } from 'src/app/services/cms.service';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
+import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
+import { ContactModalComponent } from 'src/app/shared/components/contact-modal.component';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SpinnerComponent, ContactModalComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
 })
@@ -17,6 +19,7 @@ export class FavoritesComponent {
   public ids: string[] = [];
   public likedArtworks: Artworks[] = [];
   public currentIndex = -1;
+  public showContactModal = false;
 
   constructor(private storeService: StoreArtworksService, private cmsService: CmsService, private imageBuilder: ImageBuilderService) {}
 

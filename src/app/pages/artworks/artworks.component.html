@@ -35,7 +35,7 @@
   </div>
 
   <!-- CONTENT -->
-  <div class="grid grid-cols-4 px-[10%] pt-8">
+  <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 px-[10%] pt-8">
     @for (art of (isSearching ? filteredArtworks : artworks); track $index) {
     <div class="relative m-2" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
 
