@@ -22,9 +22,15 @@ export class SingleArtistsComponent {
   public id  = '';
   public currentArtist = {} as Artists;
   public artworks: Artworks[] = [];
+  public filteredArtworks: Artworks[] = [];
   public openModal = false;
   public selectedImage: Artworks = {} as Artworks;
   public selectedIndex = 0;
+  public isLoading = true;
+
+  public selectedFilter = 'recent';
+  public isSearching = false;
+  public currentIndex = -1;
 
   constructor(private route: ActivatedRoute, private cmsService: CmsService, private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService){}
 
@@ -59,7 +65,8 @@ export class SingleArtistsComponent {
           x.title = StringHelper.sanitizeString(x.title);
         })
         this.artworks = this.storeArtworksService.filteredLikedArtworks(rawData);
-      }
+      },
+      complete: () => this.isLoading = false
     })
   }
 
@@ -94,6 +101,38 @@ export class SingleArtistsComponent {
     document.body.style.overflow = 'hidden';
     this.selectedImage = image;
     this.selectedIndex = index;
+  }
+
+  onFilterChange(e: Event) {
+    const event = e.target as HTMLSelectElement;
+    this.selectedFilter = event.value;
+
+    if (this.selectedFilter === 'recent') {
+      this.artworks = [...this.artworks];
+    } else {
+      this.artworks = this.sortArtworks(this.artworks, this.selectedFilter);
+    }
+  }
+
+  private sortArtworks(artworks: Artworks[], filter: string): Artworks[] {
+    return artworks.sort((a, b) => {
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      if (filter === 'az') {
+        return titleA.localeCompare(titleB);
+      } else {
+        return titleB.localeCompare(titleA);
+      }
+    });
+  }
+
+  onSearchArtwork(e: Event) {
+    const inputText = (e.target as HTMLInputElement).value;
+    inputText.length > 0 ? this.isSearching = true : this.isSearching = false;
+
+    this.filteredArtworks = this.artworks.filter(x =>
+      x.title.toLowerCase().includes(inputText)
+    );
   }
 
   reloadData() {

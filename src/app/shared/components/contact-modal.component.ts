@@ -25,7 +25,7 @@ import { ToastService } from 'src/app/services/toast.service';
               </div>
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea id="message" formControlName="message" rows="4" cols="50"></textarea>
+                <textarea id="message" formControlName="message" rows="4" cols="50" class="input"></textarea>
               </div>
               <div class="flex gap-4 w-full justify-end pt-6">
                 <button type="submit" class="btn !bg-cvg-accent2 hover:!bg-cvg-100" [disabled]="contactForm.invalid">Send</button>

@@ -1,4 +1,4 @@
-<section *ngIf="currentArtist._id">
+<section *ngIf="currentArtist._id && !isLoading">
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
@@ -15,9 +15,33 @@
     </div>
   </div>
 
+    <!-- FILTERING -->
+    <div class="flex justify-between px-[10%] border-b-[1px] py-6">
+
+      <!-- SEARCH -->
+      <div class="flex items-center gap-4">
+        <i class="text-2xl ri-search-line text-cvg-450"></i>
+        <input type="text"
+          class="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-cvg-400 bg-none"
+          placeholder="Search artworks..." (keyup)="onSearchArtwork($event)" />
+      </div>
+
+
+      <!-- DROPDOWN -->
+      <div class="flex items-center justify-end gap-4">
+        <label for="filter" class="text-sm">Filter by</label>
+        <select id="filter" name="filter" class="px-2 py-1 border rounded-sm" (change)="onFilterChange($event)">
+          <option value="recent">Recent</option>
+          <option value="az">A - Z</option>
+          <option value="za">Z - A</option>
+        </select>
+      </div>
+
+    </div>
+
   <!-- CONTENT -->
    <div class="grid grid-cols-2 gap-6 px-[10%] py-12" *ngIf="artworks.length > 0">
-    @for(art of artworks; track $index) {
+    @for(art of (isSearching ? filteredArtworks : artworks); track $index) {
       <div class="relative flex flex-col gap-2 group">
         <div class="w-full bg-cvg-100 h-96 group-hover:bg-cvg-75 bg-cvg-50 border-[1px] hover:border-cvg-100 border-transparent" (click)="onOpenModal(art, $index)">
           <img
@@ -34,6 +58,8 @@
           [isLiked]="art.isLiked"
           [artworkInfo]="{id: art._id, title: art.title}"
           (refreshData)="reloadData()"
+          [showState]="true"
+          [artworkState]="art.info.display ? 'Available' : 'Print Only'"
         />
       </div>
     }
@@ -50,4 +76,4 @@
 
 </section>
 
-<app-spinner *ngIf="!currentArtist._id" />
+<app-spinner *ngIf="!currentArtist._id && !isLoading" />

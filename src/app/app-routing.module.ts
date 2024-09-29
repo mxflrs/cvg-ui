@@ -9,6 +9,7 @@ import { ContactComponent } from 'src/app/pages/contact/contact.component';
 import { ArtworksComponent } from 'src/app/pages/artworks/artworks.component';
 import { SingleArtworkComponent } from 'src/app/pages/single-artwork/single-artwork.component';
 import { AboutComponent } from 'src/app/pages/about/about.component';
+import { PrintsComponent } from 'src/app/pages/prints/prints.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent,
+  },
+  {
+    path: 'prints',
+    component: PrintsComponent,
   },
   {
     path: 'about',

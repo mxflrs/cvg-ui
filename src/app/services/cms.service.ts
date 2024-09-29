@@ -62,6 +62,7 @@ export class CmsService {
         size,
         title,
         keywords,
+        price,
         about {
           "mediums": medium[]->{
             _id,
@@ -96,6 +97,7 @@ export class CmsService {
         size,
         title,
         keywords,
+        price,
         about {
           "mediums": medium[]->{
             _id,

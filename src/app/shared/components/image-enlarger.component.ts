@@ -5,6 +5,7 @@ import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { FavoriteIconComponent } from "./favorite-icon.component";
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-enlarger',
@@ -12,11 +13,11 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
   imports: [CommonModule, FavoriteIconComponent],
   template: `
   @if (openModal) {
-    <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-[9999] backdrop-blur-sm texture-2">
+    <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-[9999] backdrop-blur-sm texture-2" (click)="closeModal()">
       <div class="flex justify-center align-center flex-col items-center w-full h-full">
 
       <!-- IMAGE CONTAINER AND ARROWS -->
-       <div class="flex gap-8 justify-center items-center">
+       <div class="flex gap-8 justify-center items-center" (click)="$event.stopPropagation()">
           <i class="ri-arrow-left-line btn-round" (click)="onPrevAction()"></i>
           @if (selectedImage) {
             <div class="relative z-10 object-cover transition-all duration-200 rounded group-hover:opacity-70"
@@ -55,10 +56,16 @@ export class ImageEnlargerComponent {
   @Output() nextAction = new EventEmitter();
   @Output() prevAction = new EventEmitter();
 
-  constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService) { }
+  constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService, private router: Router) { }
 
   ngOnInit() {
     this.loadData();
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.closeModal();
+      }
+    });
   }
 
   onNextAction() {

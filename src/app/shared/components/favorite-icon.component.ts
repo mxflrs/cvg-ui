@@ -8,15 +8,20 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-  <i
-    class="z-40 px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 hover:scale-105 active:scale-90 cursor-pointer active:bg-cvg-accent2"
+  <div class="flex justify-between items-center w-full left-2 top-2 absolute z-40">
+    <i
+    class="px-2 py-1 rounded-sm bg-cvg-75 hover:bg-cvg-100 hover:scale-105 active:scale-90 cursor-pointer active:bg-cvg-accent2"
     [ngClass]="{
-    'ri-heart-3-fill': isLiked,
-    'ri-heart-3-line': !isLiked,
-    'left-2 top-2 absolute': absoluto
+      'ri-heart-3-fill': isLiked,
+      'ri-heart-3-line': !isLiked
     }"
     (click)="addArtwork()"
-  ></i>
+    ></i>
+
+    <div class="px-2 py-1 bg-cvg-accent2 rounded-sm" *ngIf="showState">
+      <p class="text-xs">{{artworkState}}</p>
+    </div>
+  </div>
   `
 })
 
@@ -24,14 +29,14 @@ export class FavoriteIconComponent {
   @Input() isLiked?: boolean = false;
   @Input() artworkInfo?: ArtworkSimple = {} as ArtworkSimple;
   @Output() refreshData = new EventEmitter<boolean>();
-  @Input() absoluto: boolean = true;
+  @Input() artworkState = 'Available';
+  @Input() showState = false;
 
   constructor(private storeArtworksService: StoreArtworksService) { }
 
-
   addArtwork() {
     if (this.artworkInfo) {
-      this.storeArtworksService.storeArtwork(this.artworkInfo); //artworksShow[imageOnDisplayIndex]._id, artworksShow[imageOnDisplayIndex].title
+      this.storeArtworksService.storeArtwork(this.artworkInfo);
     }
 
     this.refreshData.emit(true);

@@ -13,8 +13,13 @@ export interface Artworks {
   };
   title: string;
   keywords: string[];
+  price?: number;
   about?: About;
   artist: Artist;
+  info: {
+    available: boolean
+    display: boolean
+  }
 }
 
 interface Medium {

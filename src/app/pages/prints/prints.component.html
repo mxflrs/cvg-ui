@@ -1,8 +1,8 @@
 <section *ngIf="artworks.length > 0">
   <!-- HEADER -->
-  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+  <div class="grid h-32 grid-cols-10 bg-cvg-50">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
-      <h2 class="font-semibold star">Artworks</h2>
+      <h2 class="font-semibold star">Prints</h2>
       <a href="/" aria-label="Go home">
         <i
           class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"></i>
@@ -35,36 +35,31 @@
   </div>
 
   <!-- CONTENT -->
-  <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 px-[10%] pt-8">
+  <div class="grid lg:grid-cols-4 grid-cols-1 px-[10%] pt-8">
     @for (art of (isSearching ? filteredArtworks : artworks); track $index) {
-    <div class="relative m-2" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
+    <div class="transition-all duration-200 rounded-sm relative col-span-1 gap-2 m-2 lg:col-span-2 h-64 hover:bg-cvg-75 border-[1px] group grid grid-cols-2" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
 
-      <app-favorite-icon [isLiked]="art.isLiked" [artworkInfo]="{id: art._id, title: art.title}"
-        (refreshData)="reloadData()" [showState]="true" [artworkState]="art.info.display ? 'Available' : 'Print Only'"
-        *ngIf="currentIndex == $index"/>
+      <div class="flex flex-col items-end justify-end gap-1 p-4 h-54 border-r-[1px]">
+        <a [href]="'/artists/' + art.artist._id" class="text-xs italic text-left hover:text-cvg-accent2">{{art.artist.name}}</a>
+        <p class="text-base font-semibold text-right">{{art.title}}</p>
+        @if (art.size?.height && art.size?.width) {
+        <p class="text-xs"><span class="text-[8px]">Original Size:</span> {{art?.size?.height + ' x ' + art?.size?.width}}</p>
+        }
+
+        <!-- @if (art?.price) {
+        <p class="text-xs border-t-[1px] w-full text-right mt-2 p-2 font-bold">{{art.price | currency}}</p>
+        } -->
+
+        <button class="!mt-8 btn small clear"(click)="onOpenContactModal(art.title)">Get print</button>
+      </div>
+
       <div
-        class="relative z-10 w-full h-64 overflow-hidden transition-all duration-200 rounded-sm cursor-pointer group hover:bg-cvg-75 bg-cvg-50 border-[1px] hover:border-cvg-100 border-transparent">
+      class="relative z-10 w-full h-full overflow-hidden cursor-pointer">
+      <app-favorite-icon [isLiked]="art.isLiked" [artworkInfo]="{id: art._id, title: art.title}"
+        (refreshData)="reloadData()" *ngIf="currentIndex == $index" />
         <img [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=800'" alt="image"
           class="z-10 object-contain w-full h-full p-4 rounded-sm cursor-pointer max-h-54"
           (click)="onOpenModal(art, $index)" />
-      </div>
-
-      <div class="flex flex-col items-end justify-end p-4 h-54">
-        <!-- ARTISTS -->
-        <a [href]="'/artists/' + art.artist._id" class="text-[8px] hover:text-cvg-accent2">{{art.artist.name}}</a>
-
-        <!-- TITLE / SIZE -->
-        <div class="flex items-center justify-end w-full gap-2">
-          <p class="w-full overflow-hidden text-xs font-semibold text-right underline capitalize truncate whitespace-nowrap underline-offset-8">{{art.title}}</p>
-          @if (art.size?.height && art.size?.width) {
-            <p class="text-xs italic text-nowrap border-l-[1px] pl-2">{{art?.size?.height + ' x ' + art?.size?.width}}</p>
-          }
-        </div>
-
-        <!-- PRICE -->
-        @if (art.price) {
-          <p class="px-2 py-1 mt-2 text-xs font-semibold rounded-sm bg-cvg-75">{{art?.price | currency}}</p>
-        }
       </div>
     </div>
     }
@@ -82,3 +77,4 @@
 </section>
 
 <app-spinner *ngIf="artworks.length <= 0" />
+<app-contact-modal [(openContact)]="showContactModal" [message]="message" [emailFrom]="'Fine Art Prints'" [subject]="'Artwork Inquery'" />

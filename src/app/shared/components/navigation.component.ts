@@ -21,24 +21,26 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
     <nav
-      class="bg-cvg-500 h-screen p-4 w-64 fixed flex flex-col justify-between border border-l-2 border-cvg-100 bg-white"
+      class="bg-cvg-500 h-screen p-4 w-64 fixed flex flex-col justify-between bg-white border-r-[1px]"
       [ngClass]="{ 'w-8': hideSideBar }"
     >
       <!-- LOGO -->
-      <div class="bg-cvg-100 absolute top-0 left-0 w-full h-32">
+      <div class="bg-cvg-400 absolute top-0 left-0 w-full h-32">
         <a routerLink="/">
           <img
-            src="/assets/images/cvg-logo.png"
+            src="/assets/images/cvg-logo-w.png"
             alt=""
-            class="w-full h-full px-12 py-8 object-contain box-border"
+            class="w-full h-full px-8 py-4 object-contain box-border"
           />
         </a>
+
+        <!-- TOGGLE -->
         <button
-          class="bg-cvg-300 hover:bg-cvg-400 size-8 absolute -bottom-4 -right-4 z-20 rounded-sm"
+          class="bg-cvg-200 hover:bg-cvg-accent2 size-8 absolute -bottom-4 -right-4 z-20 rounded-sm texture2"
           [ngClass]="{ 'rotate-180': hideSideBar }"
           (click)="onHideSideBar()"
         >
-          <i class="ri-arrow-left-s-fill text-white"></i>
+          <i class="ri-arrow-left-s-fill"></i>
         </button>
       </div>
 
@@ -48,12 +50,12 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
         [ngClass]="{ hidden: hideSideBar }"
       >
         @for (menuItem of menuSignal(); track $index) {
-        <li>
+        <li class="group">
           <a
             [routerLink]="menuItem.link"
             routerLinkActive="font-black text-black"
-            class="flex justify-start gap-2 items-center text-cvg-400 hover:text-cvg-300 text-nowrap"
-            ><span class="bullet"></span>{{ menuItem.label }}</a
+            class="flex justify-start gap-2 items-center text-cvg-400 group-hover:text-cvg-accent2 text-nowrap"
+            ><span class="bullet group-hover:bg-cvg-accent2"></span>{{ menuItem.label }}</a
           >
         </li>
         }

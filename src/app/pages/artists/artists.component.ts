@@ -38,9 +38,15 @@ export class ArtistsComponent {
 
         rawArtists.forEach(ats => {
           const firstArtwork = rawArtworks.filter(i => i.artist.name === ats.name);
-          if (firstArtwork.length > 0) {
-            ats.picture = firstArtwork[0].image;
+          const artistPicture = ats.picture?.asset._ref;
+
+          if (!artistPicture) {
+            ats.picture = firstArtwork[0]?.image;
           }
+          // const firstArtwork = rawArtworks.filter(i => i.artist.name === ats.name);
+          // if (firstArtwork.length > 0) {
+          //   ats.picture = firstArtwork[0].image;
+          // }
         })
 
         this.artworks = rawArtworks;

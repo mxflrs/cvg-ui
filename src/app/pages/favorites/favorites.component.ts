@@ -71,7 +71,5 @@ export class FavoritesComponent {
       this.message = `Hi there, I’m interested in the following artworks: [${allArtworks}]. Could you please provide more details on their availability and pricing?`
       this.showContactModal = true;
     }
-
-    console.log(this.message);
   }
 }

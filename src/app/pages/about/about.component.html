@@ -1,47 +1,45 @@
 <section>
   <!-- HEADER -->
-  <div class="grid h-32 grid-cols-10 bg-cvg-400">
-    <div
-      class="flex items-center justify-between w-full col-span-8 col-start-2"
-    >
-      <h2 class="font-semibold text-white star">About Us</h2>
+  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+    <div class="flex items-center justify-between w-full col-span-8 col-start-2">
+      <h2 class="font-semibold star">About</h2>
       <a href="/" aria-label="Go home">
         <i
-          class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"
-        ></i>
+          class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- FILTERING -->
+  <div class="flex justify-between px-[10%] border-b-[1px] py-12 texture3">
+    <h2 class="text-5xl font-bold">The Carlos V Garcia <span class="font-light text-cvg-accent2">Fine Art Gallery</span></h2>
+
+    <!-- SOCIAL -->
+    <div class="flex items-center gap-2">
+      <a href="https://web.facebook.com/chilevenenoso" aria-label="social-icons">
+        <i class="ri-facebook-fill hover:text-cvg-accent2 ri-xl"></i>
+      </a>
+      <a href="https://www.instagram.com/carlosvgarciart/" aria-label="social-icons">
+        <i class="ri-instagram-line hover:text-cvg-accent2 ri-xl"></i>
       </a>
     </div>
   </div>
 
   <!-- CONTENT -->
-   <div class="grid gap-6 grid-cols-1 lg:grid-cols-2 px-[10%] py-8">
+  <div class="grid gap-6 grid-cols-1 lg:grid-cols-3 px-[10%] py-12">
 
-      <div class="flex flex-col gap-2">
-        <img
-          src="/assets/images/carlos-at-the-gallery.webp"
-          alt=""
-          class="box-border object-contain w-full h-full"
-        />
+    <div class="flex flex-col">
+      <p class="leading-8 text-justify">Garcia is a self-taught painter, muralist, and designer from La Ceiba, Honduras.
+        He has had multiple mural commissions since moving to the Cayman Islands and in 2019 he was a participating
+        artist in KAABOO festival. He currently operates his own artist gallery in George Town where he frequently holds
+        exhibitions.</p>
 
-        <!-- SOCIAL -->
-         <div class="flex gap-2">
-          <a href="https://web.facebook.com/chilevenenoso" aria-label="social-icons">
-           <i class="ri-facebook-fill"></i>
-          </a>
-          <a href="https://www.instagram.com/carlosvgarciart/" aria-label="social-icons">
-            <i class="ri-instagram-line"></i>
-          </a>
-         </div>
-
-      </div>
-
-      <div class="flex flex-col">
-        <h2 class="font-semibold">Carlos V Garcia</h2>
-        <p class="leading-8 text-justify">Garcia is a self-taught painter, muralist, and designer from La Ceiba, Honduras. He has had multiple mural commissions since moving to the Cayman Islands and in 2019 he was a participating artist in KAABOO festival. He currently operates his own artist gallery in George Town where he frequently holds exhibitions.</p>
-
-        <button class="mt-8 mr-auto btn" (click)="showContactModal = true">Get in touch</button>
-      </div>
-
+      <button class="mt-8 mr-auto btn" (click)="showContactModal = true">Get in touch</button>
     </div>
-    <app-contact-modal [(openContact)]="showContactModal" [emailFrom]="'About Page'" [subject]="'Contact Information'" />
+    <div class="flex flex-col col-span-1 gap-2 lg:col-span-2">
+      <img src="/assets/images/carlos-at-the-gallery.webp" alt="" class="box-border object-contain w-full h-full" />
+    </div>
+
+  </div>
+  <app-contact-modal [(openContact)]="showContactModal" [emailFrom]="'About Page'" [subject]="'Contact Information'" />
 </section>
