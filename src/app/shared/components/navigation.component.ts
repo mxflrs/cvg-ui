@@ -66,7 +66,9 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
         class="flex flex-col gap-4 w-auto pb-4"
         [ngClass]="{ hidden: hideSideBar }"
       >
+      <a href="https://maps.app.goo.gl/LBxwAi4sUE4D1diy8" target="_blank">
         <i class="ri-map-2-line ri-2x bg-cvg-75 hover:bg-cvg-200 px-4 py-2 mr-auto cursor-pointer"></i>
+      </a>
         <div>
           <h5 class="max-w-48">
             #15 The Grove Plaza Seven Mile Beach Grand Cayman

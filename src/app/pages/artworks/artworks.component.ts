@@ -8,11 +8,12 @@ import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { FavoriteIconComponent } from 'src/app/shared/components/favorite-icon.component';
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
+import { ContactModalComponent } from 'src/app/shared/components/contact-modal.component';
 
 @Component({
   selector: 'app-artworks',
   standalone: true,
-  imports: [CommonModule, ImageEnlargerComponent, FavoriteIconComponent, SpinnerComponent],
+  imports: [CommonModule, ImageEnlargerComponent, FavoriteIconComponent, SpinnerComponent, ContactModalComponent],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.scss'
 })
@@ -26,6 +27,8 @@ export class ArtworksComponent {
   public selectedFilter = 'recent';
   public isSearching = false;
   public currentIndex = -1;
+  public showContactModal = false;
+  public message = '';
 
   constructor(
     private cmsService: CmsService,
@@ -115,6 +118,13 @@ export class ArtworksComponent {
 
   onHoverItem(e: number) {
     this.currentIndex = e;
+  }
+
+  onOpenContactModal(title: string) {
+    if (title) {
+      this.message = `Hi there, I’m interested in the following artwork: [ ${title} ]. Could you please provide more details on their availability and pricing?`
+      this.showContactModal = true;
+    }
   }
 
   reloadData() {

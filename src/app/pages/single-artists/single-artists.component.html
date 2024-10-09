@@ -6,6 +6,7 @@
       <a href="/artists" class="font-light star hover:text-cvg-accent2">Artists</a>
       <p class="font-light">/</p>
       <h2 class="font-semibold capitalize">{{currentArtist.name}}</h2>
+
     </div>
       <a href="/" aria-label="Go home">
         <i
@@ -49,10 +50,14 @@
           class="relative z-10 object-contain w-full h-full p-2 transition-all duration-200 rounded cursor-pointer"
           />
         </div>
-        <div class="flex flex-col px-2">
-          <p class="text-[8px]">{{currentArtist.name}}</p>
-          <p class="capitalize">{{art.title}}</p>
-          <p class="text-xs" *ngIf="art.size?.width || art.size?.height">{{art.size?.width}} x {{art.size?.height}}</p>
+
+        <div class="flex items-center justify-between">
+          <div class="flex flex-col px-2">
+            <p class="text-[8px]">{{currentArtist.name}}</p>
+            <p class="capitalize">{{art.title}}</p>
+            <p class="text-xs" *ngIf="art.size?.width || art.size?.height">{{art.size?.width}} x {{art.size?.height}}</p>
+          </div>
+          <button class="!mt-2 ml-auto btn small group-hover:visible invisible capitalize"(click)="onOpenContactModal(art.title)">Get this artwork</button>
         </div>
         <app-favorite-icon
           [isLiked]="art.isLiked"
@@ -77,3 +82,4 @@
 </section>
 
 <app-spinner *ngIf="!currentArtist._id && !isLoading" />
+<app-contact-modal [(openContact)]="showContactModal" [message]="message" [emailFrom]="'Artists Artworks'" [subject]="'Artwork Inquery'" />
