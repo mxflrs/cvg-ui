@@ -43,7 +43,7 @@
    <div class="grid grid-cols-2 gap-6 px-[10%] py-12" *ngIf="artworks.length > 0">
     @for(art of (isSearching ? filteredArtworks : artworks); track $index) {
       <div class="relative flex flex-col gap-2 group">
-        <div class="w-full bg-cvg-100 h-96 group-hover:bg-cvg-75 bg-cvg-50 border-[1px] hover:border-cvg-100 border-transparent" (click)="onOpenModal(art, $index)">
+        <div class="w-full h-96 group-hover:bg-cvg-50 bg-transparent border-[1px] hover:border-cvg-100 border-75 texture-3" (click)="onOpenModal(art, $index)">
           <img
           [src]="imageUrl(art.image.asset._ref) + '?q=75&fm=webp&w=600'" alt="image"
           class="relative z-10 object-contain w-full h-full p-2 transition-all duration-200 rounded cursor-pointer"

@@ -22,31 +22,53 @@ import { Artists } from 'src/app/core/models/artists.interface';
     CommissionsComponent
 ],
   template: `
-    <div class="max-h-screen grid grid-cols-10 gap-6 texture-3 relative mb-56">
-      <section class="col-span-9 pt-20 max-h-full">
-        <!-- TITLE -->
-        <div class="uppercase flex flex-col items-end">
-          <h1>Carlos</h1>
-          <h1 class="-my-6">V Garcia</h1>
-          <h1 class="font-bold">Gallery</h1>
+
+    <section class="grid grid-cols-2 gap-6 texture-3 px-[10%] h-screen relative overflow-hidden">
+
+        <!-- 1 -->
+        <div class="h-screen flex items-center w-full relative">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1945&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="object-cover h-full rounded-sm py-6 w-full">
+          <div class="absolute right-0 bottom-10 flex w-full">
+            <div class="flex w-auto flex-col bg-cvg-400 mx-auto p-4 min-w-48 text-center texture-2 text-white">
+              <p class="text-xs">Artists</p>
+              <p class="font-bold">Title</p>
+              <p class="text-xs">Price</p>
+            </div>
+          </div>
         </div>
 
-        <app-main-slider [artworks]="artworks"/>
+        <!-- 2 -->
+         <div class="flex h-screen flex-col">
 
-        <!-- SEARCH -->
-        <button
-          class="absolute bottom-8 left-6 flex gap-2 items-center group"
-          (click)="openSearchModal()"
-        >
-          <i
-            class="ri-search-line ri-2 bg-cvg-100 group-hover:bg-cvg-200 p-2 mr-auto"
-          ></i>
-          <h4>Search Artworks / Artists</h4>
-        </button>
-      </section>
+           <div class="uppercase flex flex-col items-end h-1/2 justify-center">
+             <h1>Carlos</h1>
+             <h1 class="-my-6">V Garcia</h1>
+             <h1 class="font-bold">Gallery</h1>
+             <div class="flex gap-6 items-center">
+               <button class="btn clear flex gap-2 justify-center items-center" (click)="openSearchModal()"><i class="ri-search-line ri-2 mr-auto"
+                 ></i>Search Artworks</button>
+               <button class="btn flex gap-2 justify-center items-center"><i class="ri-gallery-line ri-2"></i>Explore</button>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="grid grid-cols-2 gap-6 h-1/2 pb-6">
+              <div class="w-full h-full relative group">
+                <img src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="w-full object-cover h-full opacity-60 group-hover:opacity-100">
+                <button class="btn clear absolute right-4 bottom-4">Artists</button>
+              </div>
+
+              <div class="w-full h-full relative group">
+                <img src="https://images.unsplash.com/photo-1579541513287-3f17a5d8d62c?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="w-full object-cover h-full opacity-60 group-hover:opacity-100">
+                <button class="btn clear absolute right-4 bottom-4">Prints</button>
+              </div>
+
+            </div>
+          </div>
 
       <app-search-modal [(showSearch)]="showSearch" [artworks]="artworks" />
-    </div>
+
+    </section>
 
     <app-original-artworks  [artworks]="artworks" />
     <app-commissions [artworks]="artworks" />

@@ -1,6 +1,6 @@
 <section *ngIf="artists.length > 0">
   <!-- HEADER -->
-  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+  <div class="grid h-32 grid-cols-10 bg-cvg-50 texture-3">
     <div
       class="flex items-center justify-between w-full col-span-8 col-start-2"
     >
@@ -29,7 +29,7 @@
   <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6 px-[10%] pt-8">
     @for (a of (isSearching ? filteredArtists : artists); track $index) {
     <div class="flex flex-col gap-2 overflow-hidden rounded-sm cursor-pointer" *ngIf="a.picture?.asset">
-        <a [href]="'artists/' + a._id" class="h-56 gap-2 p-2 bg-cvg-50 border-[1px] border-transparent hover:border-cvg-100 hover:bg-cvg-75">
+        <a [href]="'artists/' + a._id" class="h-56 gap-2 p-2 bg-transparent border-[1px] border-cvg-75 hover:border-cvg-100 hover:bg-cvg-75 texture-3">
           @if (a.picture?.asset?._ref) {
             <img [src]="imageUrl(a.picture?.asset?._ref ?? '') + '?q=75&fm=webp&w=800'" alt="image" class="object-contain w-full h-full" />
           }

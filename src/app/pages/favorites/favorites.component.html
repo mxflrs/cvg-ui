@@ -1,6 +1,6 @@
 <section class="flex-1" *ngIf="likedArtworks">
   <!-- HEADER -->
-  <div class="grid h-32 grid-cols-10 bg-cvg-75">
+  <div class="grid h-32 grid-cols-10 bg-cvg-50 texture-3">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
       <h2 class="font-semibold star">Favorites</h2>
       <a href="/" aria-label="Go home">
@@ -24,7 +24,7 @@
   <div class="flex py-8 px-[10%] flex-col gap-6">
     @for(artwork of likedArtworks; track $index) {
     <div class="grid grid-cols-8 gap-6" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)" >
-      <a [href]="'artworks/' + artwork._id" class="flex items-center justify-center w-full bg-cvg-50">
+      <a [href]="'artworks/' + artwork._id" class="flex items-center justify-center w-full bg-transparent hover:bg-cvg-50 texture-3 border-[1px] border-cvg-75 hover:border-cvg-100">
         <img [src]="imageUrl(artwork.image.asset._ref) + '?q=75&fm=webp&w=200'" alt="image"
           class="relative z-10 object-contain w-auto h-24 p-2 transition-all duration-200 rounded cursor-pointer group-hover:opacity-70" />
       </a>

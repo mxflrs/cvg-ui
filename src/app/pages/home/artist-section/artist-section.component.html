@@ -5,7 +5,7 @@
 >
 <div class="flex flex-wrap items-center justify-end gap-4 pb-12">
   @for (a of artists; track $index) {
-      <a [href]="'artists/'+a._id" class="px-4 py-2 text-white bg-cvg-400 hover:bg-cvg-475">{{a.name}}</a>
+      <a [href]="'artists/'+a._id" class="px-4 py-2 text-white rounded-sm bg-cvg-400 hover:bg-cvg-475 texture-2">{{a.name}}</a>
     }
   </div>
 </app-content-wrapper>

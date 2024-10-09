@@ -25,7 +25,7 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
       [ngClass]="{ 'w-8': hideSideBar }"
     >
       <!-- LOGO -->
-      <div class="bg-cvg-400 absolute top-0 left-0 w-full h-32">
+      <div class="bg-cvg-400 absolute top-0 left-0 w-full h-32 texture-2">
         <a routerLink="/">
           <img
             src="/assets/images/cvg-logo-w.png"
@@ -36,7 +36,7 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 
         <!-- TOGGLE -->
         <button
-          class="bg-cvg-200 hover:bg-cvg-accent2 size-8 absolute -bottom-4 -right-4 z-20 rounded-sm texture2"
+          class="bg-cvg-200 hover:bg-cvg-accent2 size-8 absolute -bottom-4 -right-4 z-20 rounded-sm texture-3"
           [ngClass]="{ 'rotate-180': hideSideBar }"
           (click)="onHideSideBar()"
         >

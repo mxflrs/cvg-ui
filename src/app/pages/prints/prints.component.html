@@ -1,6 +1,6 @@
 <section *ngIf="artworks.length > 0">
   <!-- HEADER -->
-  <div class="grid h-32 grid-cols-10 bg-cvg-50">
+  <div class="grid h-32 grid-cols-10 bg-cvg-50 texture-3">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
       <h2 class="font-semibold star">Prints</h2>
       <a href="/" aria-label="Go home">
@@ -37,7 +37,7 @@
   <!-- CONTENT -->
   <div class="grid lg:grid-cols-4 grid-cols-1 px-[10%] pt-8">
     @for (art of (isSearching ? filteredArtworks : artworks); track $index) {
-    <div class="transition-all duration-200 rounded-sm relative col-span-1 gap-2 m-2 lg:col-span-2 h-64 hover:bg-cvg-75 border-[1px] group grid grid-cols-2" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
+    <div class="transition-all duration-200 rounded-sm relative col-span-1 gap-2 m-2 lg:col-span-2 h-64 hover:bg-cvg-50 border-[1px] group grid grid-cols-2 texture-3" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)">
 
       <div class="flex flex-col items-end justify-end gap-1 p-4 h-54 border-r-[1px]">
         <a [href]="'/artists/' + art.artist._id" class="text-xs italic text-left hover:text-cvg-accent2">{{art.artist.name}}</a>
