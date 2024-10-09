@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { images } from 'src/app/core/models/images.interface';
 import { Artworks } from 'src/app/core/models/artworks.interface';
@@ -37,9 +37,12 @@ import { NavigationEnd, Router } from '@angular/router';
           <i class="ri-arrow-right-line btn-round" (click)="onNextAction()"></i>
         </div>
         <button (click)="closeModal()" class="absolute top-4 right-4 btn">Close</button>
-       <div class="flex gap-1 justify-start pt-4 *:text-white *:text-xs">
-        <p class="capitalize">{{selectedImage.title}}</p>
-        <p class="font-extralight italic">by {{selectedImage.artist.name}}</p>
+       <div class="flex flex-col justify-center gap-1 pt-4 *:text-white *:text-xs items-center">
+        <div class="flex gap-1">
+          <p class="capitalize">{{selectedImage.title}}</p>
+          <p class="font-extralight italic">by {{selectedImage.artist.name}}</p>
+        </div>
+        <p class="!mt-2 capitalize text-xs underline underline-offset-8 hover:text-cvg-100 text-cvg-accent2 cursor-pointer"(click)="onOpenContactModal(selectedImage.title)">Get this artwork</p>
        </div>
       </div>
     </section>
@@ -55,6 +58,8 @@ export class ImageEnlargerComponent {
   // ARROW ACTIONS
   @Output() nextAction = new EventEmitter();
   @Output() prevAction = new EventEmitter();
+  public showContactModal = false;
+  public message = '';
 
   constructor(private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService, private router: Router) { }
 
@@ -66,6 +71,12 @@ export class ImageEnlargerComponent {
         this.closeModal();
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedImage']) {
+      console.log(this.selectedImage)
+    }
   }
 
   onNextAction() {
@@ -104,6 +115,14 @@ export class ImageEnlargerComponent {
   loadData() {
     this.selectedImage = this.storeArtworksService.filteredLikedArtworks([this.selectedImage])[0];
   }
+
+  onOpenContactModal(title: string) {
+    if (title) {
+      this.message = `Hi there, I’m interested in the following artwork: [ ${title} ]. Could you please provide more details on their availability and pricing?`
+      this.showContactModal = true;
+    }
+  }
+
 
   reloadData() {
     this.loadData();

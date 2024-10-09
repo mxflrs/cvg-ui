@@ -97,7 +97,6 @@ export class CmsService {
         size,
         title,
         keywords,
-        price,
         about {
           "mediums": medium[]->{
             _id,
@@ -123,7 +122,27 @@ export class CmsService {
     }
 
     getArtworksByArtistId(artistId: string) {
-      const query = `*[_type == "artworks" && artist._ref == "${artistId}"]`;
+      const query = `*[_type == "artworks" && artist._ref == "${artistId}"]{
+        _id,
+        _updatedAt,
+        info,
+        image,
+        size,
+        title,
+        keywords,
+        price,
+        about {
+          "mediums": medium[]->{
+            _id,
+            medium
+          }
+        },
+        "artist": artist->{
+          _id,
+          name,
+          bio,
+        }
+      }`;
       return from(this.#sanityClient().fetch(query)).pipe(
         map(result => result as Artworks[])
       );

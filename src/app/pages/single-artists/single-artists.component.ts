@@ -10,11 +10,12 @@ import { FavoriteIconComponent } from "../../shared/components/favorite-icon.com
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger.component';
 import { SpinnerComponent } from 'src/app/shared/components/spinner.component';
+import { ContactModalComponent } from 'src/app/shared/components/contact-modal.component';
 
 @Component({
   selector: 'app-single-artists',
   standalone: true,
-  imports: [CommonModule, FavoriteIconComponent, ImageEnlargerComponent, SpinnerComponent],
+  imports: [CommonModule, FavoriteIconComponent, ImageEnlargerComponent, SpinnerComponent, ContactModalComponent],
   templateUrl: './single-artists.component.html',
   styleUrl: './single-artists.component.scss'
 })
@@ -31,6 +32,8 @@ export class SingleArtistsComponent {
   public selectedFilter = 'recent';
   public isSearching = false;
   public currentIndex = -1;
+  public showContactModal = false;
+  public message = '';
 
   constructor(private route: ActivatedRoute, private cmsService: CmsService, private imageBuilder: ImageBuilderService, private storeArtworksService: StoreArtworksService){}
 
@@ -101,6 +104,8 @@ export class SingleArtistsComponent {
     document.body.style.overflow = 'hidden';
     this.selectedImage = image;
     this.selectedIndex = index;
+
+    console.log(image);
   }
 
   onFilterChange(e: Event) {
@@ -133,6 +138,13 @@ export class SingleArtistsComponent {
     this.filteredArtworks = this.artworks.filter(x =>
       x.title.toLowerCase().includes(inputText)
     );
+  }
+
+  onOpenContactModal(title:string) {
+    if (title) {
+      this.message = `Hi there, I’m interested in the following artwork: [ ${title} ]. Could you please provide more details on their availability and pricing?`
+      this.showContactModal = true;
+    }
   }
 
   reloadData() {
