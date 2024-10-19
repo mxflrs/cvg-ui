@@ -81,6 +81,38 @@ export class CmsService {
       );
     }
 
+    getAllArtworksHighRes(): Observable<Artworks[]> {
+      const query = `*[_type == "artworks" && image.asset->metadata.dimensions.width > 1400 || image.asset->metadata.dimensions.height > 1400]{
+        _id,
+        _updatedAt,
+        info,
+        image,
+        size,
+        title,
+        keywords,
+        price,
+        about {
+          "mediums": medium[]->{
+            _id,
+            medium
+          }
+        },
+        "artist": artist->{
+          _id,
+          name,
+          bio,
+        },
+        "imageUrl": image.asset->url,
+        "imageWidth": image.asset->metadata.dimensions.width,
+        "imageHeight": image.asset->metadata.dimensions.height
+      }`;
+
+      return from(this.#sanityClient().fetch(query)).pipe(
+        map(result => result as Artworks[])
+      );
+    }
+
+
     getArtistsById(id: string): Observable<Artists[]> {
       const query = `*[_type == "artists" && _id == "${id}"]`
       return from(this.#sanityClient().fetch(query)).pipe(
