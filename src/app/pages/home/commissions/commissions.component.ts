@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Artworks } from 'src/app/core/models/artworks.interface';
 import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { ContentWrapperComponent } from 'src/app/shared/components/content-wrapper.component';
@@ -19,6 +19,12 @@ export class CommissionsComponent {
   public openModal = false;
 
   constructor(private imageBuilder: ImageBuilderService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['artworks']) {
+      this.artworks = this.artworks.slice(0, 16)
+    }
+  }
 
   imageUrl(id: string) {
     return this.imageBuilder.image(id).url();
