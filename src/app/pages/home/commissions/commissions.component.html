@@ -18,7 +18,7 @@
       <div class="absolute bottom-0 right-0 w-full m-4">
         <div class="flex flex-col items-center justify-center w-64 h-32 p-2 mx-auto texture-3 bg-cvg-100">
           <a [href]="'artists/' + art.artist._id" class="text-sm global">{{art.artist.name}}</a>
-          <p class="font-semibold text-md">{{art.title}}</p>
+          <p class="font-semibold text-center text-md">{{art.title}}</p>
           @for(medium of art?.about?.mediums; track $index) {
             <p class="font-semibold text-[8px]">{{medium?.medium}}</p>
           }

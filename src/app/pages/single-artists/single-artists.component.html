@@ -2,13 +2,13 @@
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
-    <div class="flex items-center gap-4">
+    <div class="flex items-center w-full gap-4">
       <a href="/artists" class="font-light star hover:text-cvg-accent2">Artists</a>
       <p class="font-light">/</p>
-      <h2 class="font-semibold capitalize">{{currentArtist.name}}</h2>
+      <h2 class="overflow-hidden font-semibold capitalize truncate whitespace-nowrap">{{currentArtist.name}}</h2>
 
     </div>
-      <a href="/" aria-label="Go home">
+      <a href="/" aria-label="Go home" class="hidden md:block">
         <i
           class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"
         ></i>
@@ -29,7 +29,7 @@
 
 
       <!-- DROPDOWN -->
-      <div class="flex items-center justify-end gap-4">
+      <div class="items-center justify-end hidden gap-4 md:flex">
         <label for="filter" class="text-sm">Filter by</label>
         <select id="filter" name="filter" class="px-2 py-1 border rounded-sm" (change)="onFilterChange($event)">
           <option value="recent">Recent</option>
@@ -41,7 +41,7 @@
     </div>
 
   <!-- CONTENT -->
-   <div class="grid grid-cols-2 gap-6 px-[10%] py-12" *ngIf="artworks.length > 0">
+   <div class="grid md:grid-cols-2 grid-cols-1 gap-6 px-[10%] py-12" *ngIf="artworks.length > 0">
     @for(art of (isSearching ? filteredArtworks : artworks); track $index) {
       <div class="relative flex flex-col gap-2 group">
         <div class="w-full h-96 group-hover:bg-cvg-50 bg-transparent border-[1px] hover:border-cvg-100 border-75 texture-3" (click)="onOpenModal(art, $index)">

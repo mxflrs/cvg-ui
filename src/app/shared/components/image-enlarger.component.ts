@@ -73,11 +73,11 @@ export class ImageEnlargerComponent {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedImage']) {
-      console.log(this.selectedImage)
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['selectedImage']) {
+  //     console.log(this.selectedImage)
+  //   }
+  // }
 
   onNextAction() {
     this.nextAction.emit();

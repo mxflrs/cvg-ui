@@ -2,12 +2,12 @@
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-75">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center w-full gap-4">
         <a href="/artworks" class="font-light star hover:text-cvg-accent2">Artwork</a>
         <p class="font-light">/</p>
-        <h3 class="overflow-hidden text-xl font-semibold capitalize truncate">{{ currentArtwork.title}}</h3>
+        <h3 class="overflow-hidden text-xl font-semibold capitalize truncate whitespace-nowrap">{{ currentArtwork.title}}</h3>
       </div>
-      <a href="/" aria-label="Go home">
+      <a href="/" aria-label="Go home" class="hidden md:block">
         <i
           class="flex items-center justify-center text-3xl text-right rounded-sm ri-home-5-line size-12 bg-cvg-100 hover:bg-cvg-200 hover:text-cvg-400"></i>
       </a>
@@ -15,7 +15,7 @@
   </div>
 
   <!-- CONTENT -->
-  <div class="px-[10%] py-8 flex items-end justify-start gap-6">
+  <div class="px-[10%] py-8 flex md:items-end justify-start gap-6 md:flex-row flex-col items-center">
     <img [src]="imageUrl(currentArtwork.image.asset._ref) + '?q=75&fm=webp&w=600'" alt="image"
       class="z-10 object-contain w-auto max-h-[60vh] rounded cursor-pointer" />
 

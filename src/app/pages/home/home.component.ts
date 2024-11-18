@@ -26,12 +26,12 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
 ],
   template: `
 
-    <section class="grid grid-cols-2 gap-6 texture-3 px-[10%] h-screen relative overflow-hidden" *ngIf="artworksShow.length > 0">
+    <section class="grid xl:grid-cols-2 gap-6 texture-3 lg:px-[10%] px-8 lg:h-screen h-full relative overflow-hidden" *ngIf="artworksShow.length > 0">
 
         <!-- 1 -->
-        <div class="h-screen flex items-center w-full relative">
-        <img [src]="imageUrl(artworksShow[0].image.asset._ref) + '?q=50&fm=webp&w=1400'"
-        alt="Main image" class="object-cover h-full rounded-sm py-6 w-full" (load)="onImageLoad()" />
+        <div class="xl:h-screen h-96 flex items-center w-full relative">
+          <img [src]="imageUrl(artworksShow[0].image.asset._ref) + '?q=50&fm=webp&w=1400'"
+          alt="Main image" class="object-cover h-full rounded-sm pt-6 pb-0 lg:pb-6 w-full object-center" (load)="onImageLoad()" />
           <div class="absolute right-0 bottom-10 flex w-full">
             <div class="flex w-auto flex-col bg-cvg-400 mx-auto p-4 min-w-48 text-center texture-2 text-white">
               <p class="text-xs capitalize">{{artworksShow[0].artist.name}}</p>
@@ -41,21 +41,26 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
         </div>
 
         <!-- 2 -->
-         <div class="flex h-screen flex-col">
+         <div class="flex lg:h-screen h-full flex-col">
 
-           <div class="uppercase flex flex-col items-end h-1/2 justify-center">
-             <h1>Carlos</h1>
-             <h1 class="-my-6">V Garcia</h1>
-             <h1 class="font-bold">Gallery</h1>
-             <div class="flex gap-6 items-center">
+           <div class="uppercase flex flex-col lg:items-end items-center lg:h-1/2 h-auto justify-center text-center">
+             <h1 class="hidden lg:block">Carlos</h1>
+             <h1 class="hidden lg:block -my-6">V Garcia</h1>
+             <h1 class="hidden lg:block font-bold">Gallery</h1>
+
+             <!-- MOBILE & TABLET -->
+             <h2 class="lg:hidden block text-3xl">Carlos V Garcia</h2>
+             <h3 class="lg:hidden block font-bold">Gallery</h3>
+
+             <div class="flex lg:gap-6 gap-4 items-center xl:flex-row flex-col text-sm lg:text-base mt-4 pb-8">
                <button class="btn clear flex gap-2 justify-center items-center" (click)="openSearchModal()"><i class="ri-search-line ri-2 mr-auto"
                  ></i>Search Artworks</button>
-               <a href="/artworks" class="btn flex gap-2 justify-center items-center lowercase capitalize"><i class="ri-gallery-line ri-2"></i>Explore</a>
+               <a href="/artworks" class="btn flex gap-2 justify-center items-center capitalize"><i class="ri-gallery-line ri-2"></i>Explore</a>
               </div>
             </div>
 
             <!-- 3 -->
-            <div class="grid grid-cols-2 gap-6 h-1/2 pb-6">
+            <div class="xl:grid grid-cols-2 gap-6 h-1/2 pb-6 hidden">
               <a href="/artists" class="w-full h-full relative group" *ngIf="artworksShow[1].image.asset._ref">
                 <img [src]="imageUrl(artworksShow[1].image.asset._ref) + '?q=75&fm=webp&w=800'" alt="" class="w-full object-cover h-full opacity-40 group-hover:opacity-100 group-hover:filter-none grayscale transition duration-300 ease-in-out">
                 <button class="btn clear absolute right-4 bottom-4">Artists</button>

@@ -10,6 +10,7 @@ import { ImageEnlargerComponent } from 'src/app/shared/components/image-enlarger
 import { ToastComponent } from "./shared/components/toast.component";
 import { FavoriteIconComponent } from 'src/app/shared/components/favorite-icon.component';
 import { FormsModule } from '@angular/forms';
+import { NavBarComponent } from "./shared/components/nav-bar.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     ImageEnlargerComponent,
     ToastComponent,
     FavoriteIconComponent,
-    FormsModule
+    FormsModule,
+    NavBarComponent
 ],
   providers: [],
   bootstrap: [AppComponent]

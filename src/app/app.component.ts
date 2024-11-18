@@ -1,19 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
-import { ToastService } from 'src/app/services/toast.service';
-import { ToastComponent } from 'src/app/shared/components/toast.component';
+import { Component, ViewChild } from "@angular/core";
+import { ToastService } from "src/app/services/toast.service";
+import { ToastComponent } from "src/app/shared/components/toast.component";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: false,
   template: `
     <main class="flex p-0 m-0">
-      <!-- <button (click)="showToast()">SHOW TOAST</button> -->
-      <aside class="w-64 z-20" [ngClass]="{'w-8': hideSideBar}">
+      <aside
+        class="w-64 z-20 hidden lg:block"
+        [ngClass]="{ 'w-8': hideSideBar }"
+      >
         <app-navigation [(hideSideBar)]="hideSideBar" />
       </aside>
 
       <div class="flex-1 z-10">
         <div class="flex flex-col min-h-screen justify-between">
+          <nav class="block lg:hidden">
+            <app-nav-bar />
+          </nav>
           <router-outlet class="hidden" />
           <app-footer />
         </div>
@@ -34,6 +39,6 @@ export class AppComponent {
   }
 
   showToast() {
-    this.toastService.show('This is a toast message!', 'warning');
+    this.toastService.show("This is a toast message!", "warning");
   }
 }

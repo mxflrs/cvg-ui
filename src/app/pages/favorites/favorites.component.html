@@ -11,7 +11,7 @@
   </div>
 
   <!-- FILTERING -->
-  <div class="flex justify-between px-[10%] border-b-[1px] py-6 items-center">
+  <div class="flex justify-between px-[10%] border-b-[1px] py-6 lg:items-center items-start lg:flex-row flex-col gap-2">
     @if(likedArtworks.length > 0) {
       <p>Displaying {{likedArtworks.length}} artworks</p>
     } @else {
@@ -24,17 +24,22 @@
   <div class="flex py-8 px-[10%] flex-col gap-6">
     @for(artwork of likedArtworks; track $index) {
     <div class="grid grid-cols-8 gap-6" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)" >
-      <a [href]="'artworks/' + artwork._id" class="flex items-center justify-center w-full bg-transparent hover:bg-cvg-50 texture-3 border-[1px] border-cvg-75 hover:border-cvg-100">
+
+      <!-- IMAGE -->
+      <a [href]="'artworks/' + artwork._id" class="flex items-center justify-center w-full bg-transparent hover:bg-cvg-50 texture-3 border-[1px] border-cvg-75 hover:border-cvg-100 lg:col-span-1 md:col-span-2 col-span-3">
         <img [src]="imageUrl(artwork.image.asset._ref) + '?q=75&fm=webp&w=200'" alt="image"
           class="relative z-10 object-contain w-auto h-24 p-2 transition-all duration-200 rounded cursor-pointer group-hover:opacity-70" />
       </a>
-      <div class="flex flex-col col-span-2 *:text-[8px] items-start justify-center">
+
+      <!-- LINK -->
+      <div class="flex flex-col lg:col-span-2 col-span-4 *:text-[8px] items-start justify-center">
         <p class="capitalize !text-lg">{{artwork.title}}</p>
         <p class="font-semibold">{{artwork.artist.name}}</p>
         <p *ngIf="artwork.size?.height">{{artwork.size?.height}} x {{artwork.size?.width}}</p>
       </div>
 
-      <div class="flex items-center justify-center gap-2">
+      <!-- ACTIONS -->
+      <div class="items-center justify-center hidden gap-2 md:flex">
         <button *ngIf="$index == currentIndex" class="h-auto my-auto btn small !bg-cvg-accent1 hover:!bg-cvg-400"
         (click)="onArtworkDelete(artwork._id)">Delete</button>
         <button *ngIf="$index == currentIndex" class="h-auto my-auto btn small" (click)="onOpenModal(artwork._id)">Inquery</button>

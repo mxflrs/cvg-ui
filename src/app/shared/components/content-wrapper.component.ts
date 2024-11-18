@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
         <div class="flex justify-between items-start">
           <!-- * ARROWS -->
           <div
-            class="flex gap-6 h-auto items-start pt-4"
+            class="flex gap-6 h-auto items-start xl:pt-4 pt-0"
             [ngClass]="hasNavigation ? 'visible' : 'invisible'"
           >
             <button (click)="onNextAction()">
@@ -31,10 +31,10 @@ import { CommonModule } from '@angular/common';
 
           <!-- * TITLE -->
           <div
-            class="flex justify-end items-center w-full gap-4 pb-16"
+            class="flex justify-end items-center w-full md:gap-4 gap-2 pb-16"
             [ngClass]="containerCustomClass"
           >
-            <h2 [ngClass]="{ 'text-white': darkMode }">{{ title }}</h2>
+            <h2 [ngClass]="{ 'text-white': darkMode }" class="xl:text-4xl md:text-2xl text-lg">{{ title }}</h2>
 
             <!-- * LINK -->
             @if(url != "") {

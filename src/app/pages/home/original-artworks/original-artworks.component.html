@@ -1,4 +1,4 @@
-<app-content-wrapper title="Original Artworks" sectionCustomClass="pb-24 !pt-40" url="artworks" [hasNavigation]="true"
+<app-content-wrapper title="Original Artworks" sectionCustomClass="pb-24 xl:!pt-40 !pt-20" url="artworks" [hasNavigation]="true"
   (nextAction)="onNextImage()" (prevAction)="onPrevImage()">
   <div class="grid grid-cols-2 col-span-8 gap-6 xl:grid-cols-8 md:grid-cols-4" (mouseleave)="onResetIndex()">
 
@@ -26,8 +26,20 @@
       </div>
 
       <!-- ART INFO -->
-      <div class="flex flex-col items-end w-full gap-1 pt-2 text-right" [ngClass]="currentIndex == $index ? 'show' : 'hide'">
-        <a [href]="'/artworks/' + image._id" class="text-xs font-light hover:text-cvg-accent2 text-ellipsis">{{ image.title }}</a>
+      <div class="lg:flex flex-col items-end w-full gap-1 pt-2 text-right hidden" [ngClass]="currentIndex == $index ? 'show' : 'hide'">
+        <a [href]="'/artworks/' + image._id" class="text-xs font-light hover:text-cvg-accent2 text-ellipsis ">{{ image.title }}</a>
+        <a [href]="'/artists/' + image.artist._id" class="overflow-hidden text-xs font-semibold truncate hover:text-cvg-accent2 text-ellipsis">{{
+          image.artist.name }}</a>
+          @if (image.about?.mediums) {
+            @for (medium of image.about?.mediums; track $index) {
+              <p class="text-xs italic font-extralight">{{medium?.medium ?? ''}}</p>
+            }
+          }
+      </div>
+
+      <!-- ART INFO MOBILE -->
+      <div class="lg:hidden flex flex-col items-end w-full gap-1 pt-2 text-right show">
+        <a [href]="'/artworks/' + image._id" class="text-xs font-light hover:text-cvg-accent2 text-ellipsis ">{{ image.title }}</a>
         <a [href]="'/artists/' + image.artist._id" class="overflow-hidden text-xs font-semibold truncate hover:text-cvg-accent2 text-ellipsis">{{
           image.artist.name }}</a>
           @if (image.about?.mediums) {

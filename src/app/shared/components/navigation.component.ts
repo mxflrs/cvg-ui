@@ -8,15 +8,15 @@ import {
   WritableSignal,
   inject,
   signal,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MenuService } from 'src/app/services/menu.service';
-import { menuinterface } from 'src/app/core/models/menu.interface';
-import { StoreArtworksService } from 'src/app/services/store-artworks.service';
+} from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterLink, RouterLinkActive } from "@angular/router";
+import { MenuService } from "src/app/services/menu.service";
+import { menuinterface } from "src/app/core/models/menu.interface";
+import { StoreArtworksService } from "src/app/services/store-artworks.service";
 
 @Component({
-  selector: 'app-navigation',
+  selector: "app-navigation",
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
@@ -50,14 +50,15 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
         [ngClass]="{ hidden: hideSideBar }"
       >
         @for (menuItem of menuSignal(); track $index) {
-        <li class="group">
-          <a
-            [routerLink]="menuItem.link"
-            routerLinkActive="font-black text-black"
-            class="flex justify-start gap-2 items-center text-cvg-400 group-hover:text-cvg-accent2 text-nowrap"
-            ><span class="bullet group-hover:bg-cvg-accent2"></span>{{ menuItem.label }}</a
-          >
-        </li>
+          <li class="group">
+            <a
+              [routerLink]="menuItem.link"
+              routerLinkActive="font-black text-black"
+              class="flex justify-start gap-2 items-center text-cvg-400 group-hover:text-cvg-accent2 text-nowrap"
+              ><span class="bullet group-hover:bg-cvg-accent2"></span
+              >{{ menuItem.label }}</a
+            >
+          </li>
         }
       </ul>
 
@@ -66,9 +67,11 @@ import { StoreArtworksService } from 'src/app/services/store-artworks.service';
         class="flex flex-col gap-4 w-auto pb-4"
         [ngClass]="{ hidden: hideSideBar }"
       >
-      <a href="https://maps.app.goo.gl/LBxwAi4sUE4D1diy8" target="_blank">
-        <i class="ri-map-2-line ri-2x bg-cvg-75 hover:bg-cvg-200 px-4 py-2 mr-auto cursor-pointer"></i>
-      </a>
+        <a href="https://maps.app.goo.gl/LBxwAi4sUE4D1diy8" target="_blank">
+          <i
+            class="ri-map-2-line ri-2x bg-cvg-75 hover:bg-cvg-200 px-4 py-2 mr-auto cursor-pointer"
+          ></i>
+        </a>
         <div>
           <h5 class="max-w-48">
             #15 The Grove Plaza Seven Mile Beach Grand Cayman
