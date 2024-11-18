@@ -1,4 +1,4 @@
-<section class="flex-1" *ngIf="likedArtworks">
+<section *ngIf="likedArtworks">
   <!-- HEADER -->
   <div class="grid h-32 grid-cols-10 bg-cvg-50 texture-3">
     <div class="flex items-center justify-between w-full col-span-8 col-start-2">
@@ -21,7 +21,7 @@
   </div>
 
   <!-- CONTENT -->
-  <div class="flex py-8 px-[10%] flex-col gap-6">
+  <div class="flex py-8 px-[10%] flex-col gap-6 flex-1">
     @for(artwork of likedArtworks; track $index) {
     <div class="grid grid-cols-8 gap-6" (mouseover)="onHoverItem($index)" (mouseleave)="onHoverItem(-1)" >
 

@@ -17,13 +17,13 @@ import { ToastComponent } from "src/app/shared/components/toast.component";
       <div class="flex-1 z-10">
         <div class="flex flex-col min-h-screen justify-between">
           <nav class="block lg:hidden">
-            <app-nav-bar />
+            <app-nav-bar (openSideMenu)="openSideMenu()" />
+            <app-side-menu [(hideSideBar)]='hideSideBar' />
           </nav>
           <router-outlet class="hidden" />
           <app-footer />
         </div>
       </div>
-
       <app-toast />
     </main>
   `,
@@ -31,6 +31,7 @@ import { ToastComponent } from "src/app/shared/components/toast.component";
 export class AppComponent {
   @ViewChild(ToastComponent) toast!: ToastComponent;
   public hideSideBar = false;
+  public hideMenu = false;
 
   constructor(private toastService: ToastService) {}
 
@@ -40,5 +41,10 @@ export class AppComponent {
 
   showToast() {
     this.toastService.show("This is a toast message!", "warning");
+  }
+
+  openSideMenu() {
+    this.hideSideBar = true;
+    console.log('CLICKED')
   }
 }

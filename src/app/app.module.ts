@@ -11,6 +11,7 @@ import { ToastComponent } from "./shared/components/toast.component";
 import { FavoriteIconComponent } from 'src/app/shared/components/favorite-icon.component';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from "./shared/components/nav-bar.component";
+import { SideMenuComponent } from "./shared/components/side-menu.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NavBarComponent } from "./shared/components/nav-bar.component";
     ToastComponent,
     FavoriteIconComponent,
     FormsModule,
-    NavBarComponent
+    NavBarComponent,
+    SideMenuComponent
 ],
   providers: [],
   bootstrap: [AppComponent]
