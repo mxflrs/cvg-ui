@@ -9,7 +9,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
-    <aside class="w-screen h-screen bg-cvg-400 absolute top-0 left-0 z-[999]" *ngIf="hideSideBar">
+    <aside class="w-screen h-[100dvh] bg-cvg-400 absolute top-0 left-0 z-[999]" *ngIf="hideSideBar">
     <ul
         class="mt-8 flex flex-col gap-4 p-4 items-center"
       >

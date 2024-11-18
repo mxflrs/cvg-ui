@@ -6,19 +6,20 @@ import { ImageBuilderService } from 'src/app/services/image-builder.service';
 import { FavoriteIconComponent } from "./favorite-icon.component";
 import { StoreArtworksService } from 'src/app/services/store-artworks.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ContactModalComponent } from 'src/app/shared/components/contact-modal.component';
 
 @Component({
   selector: 'app-image-enlarger',
   standalone: true,
-  imports: [CommonModule, FavoriteIconComponent],
+  imports: [CommonModule, FavoriteIconComponent, ContactModalComponent],
   template: `
   @if (openModal) {
-    <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-[9999] backdrop-blur-sm texture-2" (click)="closeModal()">
+    <section class="h-dvh w-full fixed top-0 left-0 bg-cvg-475 z-50 backdrop-blur-sm texture-2">
       <div class="flex justify-center align-center flex-col items-center w-full h-full">
 
       <!-- IMAGE CONTAINER AND ARROWS -->
        <div class="flex gap-8 justify-center items-center" (click)="$event.stopPropagation()">
-          <i class="ri-arrow-left-line btn-round" (click)="onPrevAction()"></i>
+          <i class="ri-arrow-left-line btn-round !hidden md:!flex" (click)="onPrevAction()"></i>
           @if (selectedImage) {
             <div class="relative z-10 object-cover transition-all duration-200 rounded group-hover:opacity-70"
             >
@@ -34,7 +35,7 @@ import { NavigationEnd, Router } from '@angular/router';
               />
             </div>
           }
-          <i class="ri-arrow-right-line btn-round" (click)="onNextAction()"></i>
+          <i class="ri-arrow-right-line btn-round !hidden md:!flex" (click)="onNextAction()"></i>
         </div>
         <button (click)="closeModal()" class="absolute top-4 right-4 btn">Close</button>
        <div class="flex flex-col justify-center gap-1 pt-4 *:text-white *:text-xs items-center">
@@ -42,10 +43,18 @@ import { NavigationEnd, Router } from '@angular/router';
           <p class="capitalize">{{selectedImage.title}}</p>
           <p class="font-extralight italic">by {{selectedImage.artist.name}}</p>
         </div>
-        <p class="!mt-2 capitalize text-xs underline underline-offset-8 hover:text-cvg-100 text-cvg-accent2 cursor-pointer"(click)="onOpenContactModal(selectedImage.title)">Get this artwork</p>
+        <p class="!mt-2 capitalize text-xs underline underline-offset-8 hover:text-cvg-100 text-cvg-accent2 cursor-pointer hidden sm:block"(click)="onOpenContactModal(selectedImage.title)">Get this artwork</p>
        </div>
       </div>
+
+      <!-- ARROWS MOBILE -->
+       <div class="absolute bottom-0 w-full left-0 justify-between flex sm:hidden p-8">
+         <i class="ri-arrow-left-line btn-round" (click)="onPrevAction()"></i>
+         <p class="!mt-2 capitalize text-xs underline underline-offset-8 hover:text-cvg-100 text-cvg-accent2 cursor-pointer"(click)="onOpenContactModal(selectedImage.title)">Get this artwork</p>
+         <i class="ri-arrow-right-line btn-round" (click)="onNextAction()"></i>
+       </div>
     </section>
+    <app-contact-modal [(openContact)]="showContactModal" [emailFrom]="'About Page'" [subject]="'Contact Information'" />
   }
   `,
 })
